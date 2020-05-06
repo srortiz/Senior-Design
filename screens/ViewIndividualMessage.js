@@ -1,6 +1,7 @@
 import React from 'react';
 import { Text, View, Image, TextInput, ScrollView, TouchableOpacity } from 'react-native';
 import styles from '../Style';
+import { Form, Button } from 'native-base'
 
 export default class ViewIndividualMessage extends React.Component {
 	render(){
@@ -11,7 +12,12 @@ export default class ViewIndividualMessage extends React.Component {
 				</View>
 
 				<View style={styles.pageContent}>
-					<View style={styles.respondMessCont}>
+					<View style={styles.viewMessCont}>
+
+						<Button style={styles.backButton}
+                            onPress={() => this.props.navigation.navigate('WaterHome')}>
+                            <Text style={styles.backText}>{'<'} Atrás</Text>
+                        </Button>
 
 						<Text style={styles.viewMessDate}>10 de febrario</Text>
 						<Text style={styles.viewMessHead}>De: [Nombre]</Text>
@@ -35,11 +41,13 @@ export default class ViewIndividualMessage extends React.Component {
 								<Text style={{fontSize: 17, color: 'white'}}>Llamar</Text>
 							</TouchableOpacity> 
 
-							<TouchableOpacity style={styles.viewMessRespondButton}>
+							<TouchableOpacity style={styles.viewMessRespondButton}
+								onPress={() => this.props.navigation.navigate('RespondToMessage')}>
 								<Text style={{fontSize: 17, color: 'white'}}>Responder</Text>
 							</TouchableOpacity> 
 
-							<TouchableOpacity style={styles.viewMessPublishButton}>
+							<TouchableOpacity style={styles.viewMessPublishButton}
+								onPress={() => this.props.navigation.navigate('CreateNewWaterQualityReport')}>
 								<Text style={{fontSize: 17, color: 'white'}}>Publicar</Text>
 							</TouchableOpacity> 
 						</View>

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Text, View, Image, TextInput, TouchableOpacity } from 'react-native';
 import styles from '../Style';
+import { Form, Button } from 'native-base'
 
 export default class RespondToMessage extends React.Component {
 	render(){
@@ -13,6 +14,12 @@ export default class RespondToMessage extends React.Component {
 
 				<View style={styles.pageContent}>
 					<View style={styles.respondMessCont}>
+
+						<Button style={styles.backButton}
+                            onPress={() => this.props.navigation.navigate('ViewIndividualMessage')}>
+                            <Text style={styles.backText}>{'<'} Atrás</Text>
+                        </Button>
+
 						<Text style={styles.respondMessHead}>A: [Nombre]</Text>
 
 						<View style={styles.respondMessBox}>
@@ -31,7 +38,8 @@ export default class RespondToMessage extends React.Component {
 							</TouchableOpacity>
 						</View>
 
-						<TouchableOpacity style={styles.respondMessSendButton}>
+						<TouchableOpacity style={styles.respondMessSendButton}
+							onPress={() => this.props.navigation.navigate('ViewIndividualMessage')}>
 							<Text style={{fontSize: 17, color: 'white', fontWeight: 'bold'}}>Enviar</Text>
 						</TouchableOpacity> 
 

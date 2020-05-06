@@ -2,6 +2,7 @@ import React from 'react';
 import { Text, View, Image, ScrollView, TouchableOpacity, TextInput } from 'react-native';
 import styles from '../Style';
 import { Dropdown } from 'react-native-material-dropdown'
+import { Form, Button } from 'native-base'
 
 export default class ReportWaterQuality extends React.Component {
 	render(){
@@ -26,6 +27,12 @@ export default class ReportWaterQuality extends React.Component {
 				
 				<View style={styles.pageContent}>
 					<View style={styles.reportWaterCont}>
+
+						<Button style={styles.backButton}
+                            onPress={() => this.props.navigation.navigate('WaterHome')}>
+                            <Text style={styles.backText}>{'<'} Atrás</Text>
+                        </Button>
+
 						<Text style={styles.reportWaterHead}>Informar sobre incidentes del calidad de agua en su comunidad</Text>
 
 						<View style={styles.reportWaterBox}>
@@ -71,7 +78,8 @@ export default class ReportWaterQuality extends React.Component {
 								</View>
 							</ScrollView>
 						</View>
-						<TouchableOpacity style={styles.reportWaterSendButton}>
+						<TouchableOpacity style={styles.reportWaterSendButton}
+							onPress={() => this.props.navigation.navigate('ConfirmWaterQualityReport')}>
 							<Text style={{fontSize: 17, color: 'white', fontWeight: 'bold'}}>Enviar</Text>
 						</TouchableOpacity>
 					</View>

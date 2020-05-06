@@ -50,7 +50,7 @@ export default class CreateNewAccount extends React.Component {
 							containerStyle={styles.newAccountDropdown}
 							label="Eligir su comunidad"
 							data={community}
-							dropdownOffset={{'top':7}}
+							dropdownOffset={{'top':7, 'left':0}}
 							inputContainerStyle={{ borderBottomColor: 'transparent' }}
 							baseColor='#707070'
 						/>
@@ -102,7 +102,8 @@ export default class CreateNewAccount extends React.Component {
 							textAlign = "left"
 						/>
 
-						<TouchableOpacity style={styles.newAccountButton}>
+						<TouchableOpacity style={styles.newAccountButton}
+							onPress={() => this.props.navigation.navigate('Homepage')}>
 							<Text style={{color: 'white', fontSize: 23}}>Enviar</Text>
 						</TouchableOpacity>
 

@@ -77,7 +77,6 @@ export default StyleSheet.create({
         borderColor: '#707070',
         borderWidth: 1.25,
         borderRadius: 20,
-        color: '#707070',
     },
 
     newAccountButton: {
@@ -96,11 +95,18 @@ export default StyleSheet.create({
 
     viewReportCont: {
         alignItems: 'center',
-        marginTop: 70,
     },
 
     viewReportHead: {
         fontSize: 37,
+    },
+
+    backButton: {
+        alignSelf: 'flex-start',
+        marginTop: 18,
+        marginLeft: 20,
+        backgroundColor: 'white'
+
     },
 
     viewReportBox: {
@@ -146,7 +152,6 @@ export default StyleSheet.create({
 
     reportWaterCont: {
         alignItems: 'center',
-        marginTop: 70,
     },
 
     reportWaterHead: {
@@ -274,12 +279,12 @@ export default StyleSheet.create({
 
     createReportCont: {
         alignItems: 'center',
-        marginTop: 70,
     },
 
     createReportHead: {
         fontSize: 30,
         textAlign: 'center',
+        marginTop: 15,
     },
 
     createReportBox: {
@@ -363,13 +368,13 @@ export default StyleSheet.create({
 
     respondMessCont: {
         alignItems: 'center',
-        marginTop: 25,
     },
 
     respondMessHead: {
         fontSize: 30,
         alignSelf: 'flex-start',
         marginLeft: 40,
+        marginTop: 15,
     },
 
     respondMessBox: {
@@ -414,6 +419,9 @@ export default StyleSheet.create({
     },
 
 
+    viewMessCont: {
+        alignItems: 'center',
+    },
 
     viewMessDate: {
         alignSelf: 'flex-end',
@@ -425,7 +433,7 @@ export default StyleSheet.create({
         fontSize: 30,
         alignSelf: 'flex-start',
         marginLeft: 40,
-        marginTop: 30,
+        marginTop: 10,
     },
 
     viewMessBox: {
@@ -494,6 +502,155 @@ export default StyleSheet.create({
         borderColor: '#707070',
         borderWidth: 1.25,
         alignItems: 'center',
+    },
+
+
+
+
+    form: {
+        height: 550,
+        justifyContent: 'center',
+        margin: 50
+    },
+
+    title: {
+        textAlign: 'center',
+        fontSize: 30,
+    },
+
+    buttonText: {
+        color: 'white',
+        fontSize: 18
+    },
+
+    blueButton: {
+        backgroundColor: '#008bfc',
+        marginTop: 20,
+        marginLeft: 70,
+        marginRight: 70
+    },
+
+    link: {
+        color: 'black',
+        backgroundColor: 'white',
+        justifyContent: 'center',
+        fontSize: 15
+    },
+
+    subheader: {
+        height: 10,
+        flex: 0.5,
+        flexDirection: 'row',
+        justifyContent: 'space-between'
+    },
+
+    leftHeader: {
+        width: 100
+    },
+
+    rightHeader: {
+        width: 100,
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'flex-end',
+        marginTop: 5,
+        marginRight: 20
+    },
+
+    back: {
+        marginTop: 18,
+        marginLeft: 20,
+        backgroundColor: 'white'
+    },
+
+    backText: {
+        fontSize: 18
+    },
+
+    add: {
+        marginTop: 10,
+        marginRight: 20,
+        backgroundColor: 'white'
+    },
+
+    addText: {
+        fontSize: 28
+    },
+
+    mail: {
+        marginTop: 10,
+        backgroundColor: 'white'
+    },
+
+    mailPicture: {
+        width: 50,
+        height: 33
+    },
+
+    waterTitle: {
+        textAlign: 'center',
+        fontSize: 30,
+        height: 30
+    },
+
+    waterForm: {
+        height: 485,
+        justifyContent: 'space-between',
+        margin: 30,
+        borderWidth: 1,
+        padding: 5,
+        paddingTop: 10,
+        paddingBottom: 10,
+        borderColor: 'black',
+        borderRadius: 20
+    },
+
+    subTitle: {
+        textAlign: 'center',
+        fontSize: 24
+    },
+
+    reportButton: {
+        backgroundColor: '#008bfc',
+        height: 80,
+        marginTop: 20,
+        marginLeft: 20,
+        marginRight: 20,
+        borderRadius: 20
+    },
+
+    emergency: {
+        width: 38,
+        height: 30,
+        marginLeft: 20
+    },
+
+    inboxBody: {
+        height: 479,
+        margin: 30,
+        borderLeftWidth: 1,
+        borderRightWidth: 1
+    },
+
+    message: {
+        borderTopWidth: 1,
+        borderBottomWidth: 1,
+        height: 70
+    },
+
+    unread: {
+        
+    },
+
+    circle: {
+
+    },
+
+    messageSummary: {
+
+    },
+
+    messageDate: {
 
     },
 

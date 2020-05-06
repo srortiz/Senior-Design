@@ -1,5 +1,6 @@
 import React from 'react';
 import { Text, View, Image, ScrollView, TouchableOpacity } from 'react-native';
+import { Form, Button } from 'native-base'
 import styles from '../Style';
 
 export default class ViewIndividualWaterReport extends React.Component {
@@ -14,6 +15,12 @@ export default class ViewIndividualWaterReport extends React.Component {
 
 				<View style={styles.pageContent}>
 					<View style={styles.viewReportCont}>
+
+                        <Button style={styles.backButton}
+                            onPress={() => this.props.navigation.navigate('WaterHome')}>
+                            <Text style={styles.backText}>{'<'} Atrás</Text>
+                        </Button>
+
 						<Text style={styles.viewReportHead}>Titular</Text>
 
 						<View style={styles.viewReportBox}>
