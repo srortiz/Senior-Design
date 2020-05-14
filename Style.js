@@ -147,6 +147,18 @@ export default StyleSheet.create({
         alignSelf: 'center',
     },
 
+    viewReportCloseImg: {
+        backgroundColor: "black",
+        height: 100,
+    },
+
+    viewReportCloseText: {
+        fontSize: 20,
+        alignSelf: 'center',
+        marginTop: 45,
+        color: 'white',
+    },
+
 
 
 

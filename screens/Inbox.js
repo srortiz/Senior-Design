@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text, Image } from 'react-native'
+import { View, Text, Image, TouchableOpacity } from 'react-native'
 import { Form, Button } from 'native-base'
 import styles from '../Style'
 
@@ -13,11 +13,10 @@ export class Inbox extends React.Component {
             <View style={styles.container}>
                 <View style={styles.header}>
                     <Image source={require('../assets/asdenic.png')} style={styles.asdenicLogo}/>
-                    <Text style={styles.logoutButton}>Cerrar sesión</Text>
-                    {/*<Button style={styles.logout}
-                        onPress={() => { this.logout(); this.props.navigation.navigate('Welcome'); }}>
-                        <Text style={styles.logoutText}>Logout</Text>
-                    </Button>*/}
+                    <TouchableOpacity
+                        onPress={() => this.props.navigation.navigate('Welcome')}>
+                        <Text style={styles.logoutButton}>Cerrar sesión</Text>
+                    </TouchableOpacity>
                 </View>
 
                 <View style={styles.pageContent}>

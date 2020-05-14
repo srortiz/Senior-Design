@@ -12,6 +12,7 @@ import RespondToMessage from './screens/RespondToMessage'
 import ViewIndividualMessage from './screens/ViewIndividualMessage'
 import ViewIndividualWaterReport from './screens/ViewIndividualWaterReport'
 import Inbox from './screens/Inbox'
+import RecordMessage from './screens/RecordMessage'
 
 import { createStackNavigator } from 'react-navigation-stack';
 import { createSwitchNavigator, createAppContainer } from 'react-navigation';
@@ -27,6 +28,7 @@ const myStackNavigator = createStackNavigator(
 	ReportWaterQuality: ReportWaterQuality,
 	RespondToMessage: RespondToMessage,
 	Inbox: Inbox,
+	RecordMessage: RecordMessage,
 },
 {
 	initialRouteName: 'Homepage',

@@ -1,10 +1,28 @@
 import React from 'react';
-import { Text, View, Image, TextInput, ScrollView, TouchableOpacity } from 'react-native';
+import { Text, View, Image, TextInput, ScrollView, TouchableOpacity, Modal } from 'react-native';
 import styles from '../Style';
 import { Form, Button } from 'native-base'
+import ImageViewer from 'react-native-image-zoom-viewer'
+
+const images = [{
+	url:'',
+	props: {
+		source: require('../assets/water.jpg')
+	}
+}]
 
 export default class ViewIndividualMessage extends React.Component {
+	state = {
+		modalVisible: false
+	};
+
+	setModalVisible = (visible) => {
+		this.setState({ modalVisible: visible });
+	}
+
 	render(){
+		const { modalVisible } = this.state;
+
 		return (
 			<View style={styles.container}>
 				<View style={styles.header}>
@@ -31,7 +49,32 @@ export default class ViewIndividualMessage extends React.Component {
 									<Text style={{fontSize: 17}}>Escuchar al mensaje</Text>
 								</TouchableOpacity>
 
-								<Image source={require('../assets/water.jpg')} style={styles.waterImage}/>
+								<TouchableOpacity
+									onPress={() => {
+										this.setModalVisible(true);
+									}}
+								>
+									<Image source={require('../assets/water.jpg')} style={styles.waterImage}/>
+								</TouchableOpacity>
+
+								<Modal
+									transparent={false}
+									visible={modalVisible}
+									onRequestClose={() => this.setModalVisible()}
+								>
+									
+									<TouchableOpacity style={styles.viewReportCloseImg}
+										onPress={() => {
+											this.setModalVisible(!modalVisible);
+										}}
+									>
+										<Text style={styles.viewReportCloseText}>Go back to report</Text>
+									</TouchableOpacity>
+									<ImageViewer imageUrls={images}/>
+										
+								</Modal>
+								
+
 
 							</ScrollView>
 						</View>

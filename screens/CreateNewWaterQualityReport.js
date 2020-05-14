@@ -21,7 +21,10 @@ export default class CreateNewWaterQualityReport extends React.Component {
 
 				<View style={styles.header}>
 					<Image source={require('../assets/asdenic.png')} style={styles.asdenicLogo}/>
-					<Text style={styles.logoutButton}>Cerrar sesión</Text>
+					<TouchableOpacity
+						onPress={() => this.props.navigation.navigate('Welcome')}>
+						<Text style={styles.logoutButton}>Cerrar sesión</Text>
+					</TouchableOpacity>
 				</View>
 				
 				<View style={styles.pageContent}>

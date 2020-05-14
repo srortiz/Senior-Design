@@ -3,6 +3,7 @@ import { Text, View, Image, ScrollView, TouchableOpacity, TextInput } from 'reac
 import styles from '../Style';
 import { Dropdown } from 'react-native-material-dropdown'
 import { Form, Button } from 'native-base'
+//import PhotoUpload from 'react-native-photo-upload'
 
 export default class ReportWaterQuality extends React.Component {
 	render(){
@@ -22,7 +23,10 @@ export default class ReportWaterQuality extends React.Component {
 
 				<View style={styles.header}>
 					<Image source={require('../assets/asdenic.png')} style={styles.asdenicLogo}/>
-					<Text style={styles.logoutButton}>Cerrar sesión</Text>
+					<TouchableOpacity
+						onPress={() => this.props.navigation.navigate('Welcome')}>
+						<Text style={styles.logoutButton}>Cerrar sesión</Text>
+					</TouchableOpacity>
 				</View>
 				
 				<View style={styles.pageContent}>
