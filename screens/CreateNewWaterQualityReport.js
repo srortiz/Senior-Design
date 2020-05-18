@@ -3,9 +3,16 @@ import { Text, View, Image, ScrollView, TouchableOpacity, TextInput } from 'reac
 import styles from '../Style';
 import { Dropdown } from 'react-native-material-dropdown'
 import { Form, Button } from 'native-base'
+import * as ImagePicker from 'expo-image-picker';
 
 export default class CreateNewWaterQualityReport extends React.Component {
+	state = {
+		image: null,
+	};
+
 	render(){
+		let { image } = this.state;
+
 		let community = [{
 			value: 'Communidad 1',
 		}, {
@@ -65,11 +72,13 @@ export default class CreateNewWaterQualityReport extends React.Component {
 										<Text style={{fontSize: 15}}>Recordar un mensaje</Text>
 									</TouchableOpacity>
 
-									<TouchableOpacity style={styles.createReportUploadButton}>
+									<TouchableOpacity style={styles.createReportUploadButton} onPress={this._pickImage}>
 										<Image source={require('../assets/uparrow.png')} style={styles.uparrow}/>
 										<Text style={{fontSize: 15}}>Cargar una foto</Text>
 									</TouchableOpacity>
 								</View>
+								<Text>{"\n"}</Text>
+								{image && <Image source={{ uri: image }} style={{ width: 200, height: 200 }} />}
 							</ScrollView>
 						</View>
 						<TouchableOpacity style={styles.createReportPublishButton}
@@ -85,4 +94,35 @@ export default class CreateNewWaterQualityReport extends React.Component {
 			</View>
 		);
 	}
+
+	componentDidMount() {
+		this.getPermissionAsync();
+	}
+	
+	getPermissionAsync = async () => {
+		if (Constants.platform.ios) {
+		  const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
+		  if (status !== 'granted') {
+			alert('Sorry, we need camera roll permissions to make this work!');
+		  }
+		}
+	};
+	
+	_pickImage = async () => {
+		try {
+		  let result = await ImagePicker.launchImageLibraryAsync({
+			mediaTypes: ImagePicker.MediaTypeOptions.All,
+			allowsEditing: true,
+			aspect: [4, 3],
+			quality: 1,
+		});
+		if (!result.cancelled) {
+			this.setState({ image: result.uri });
+		}
+	
+		console.log(result);
+		} catch (E) {
+		  console.log(E);
+		}
+	};
 }
