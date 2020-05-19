@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, Image, TextInput, TouchableOpacity } from 'react-native';
+import { Text, View, Image, TextInput, TouchableOpacity, FlatList } from 'react-native';
 import styles from '../Style';
 import { Dropdown } from 'react-native-material-dropdown';
 
@@ -17,30 +17,31 @@ export default class CreateNewAccount extends React.Component {
 			password:'',
 			passwordCon: '',
 			admin: 0,
+			data: [],
 		};
 	}
 
+	fetchNumber = async() => {
+		var checkNum = this.state.phoneNum;
+
+		const response = await fetch("http://192.168.0.11:3004/users/" + checkNum, {
+			method: 'GET',
+			redirect: 'follow'
+		})
+		
+		const user = await response.json();
+		this.setState({data: user});
+	}
+
+	componentDidMount () {
+		this.fetchNumber();
+	}
 
 	addNewUser = () => {
 
 		//checks to make sure phone number is unique
-		var checkNum = this.state.phoneNum;
-		fetch("http://192.168.0.11:3004/users/" + checkNum, {
-			method: 'GET',
-			redirect: 'follow'
-		})
-			.then(response => response.text())
-			.then(result => {
-								console.log(result);
-								if (result === "[]")
-								{
-									console.log('can create account');
-								}
-								else {
-									console.log('number is already in use, use a new one');
-								}
-							})
-			.catch(error => console.log('error', error));
+		var result = this.getNumber();
+		console.log(result.firstname);
 
 		// if (uniqueNum != null)
 		// {
@@ -107,6 +108,13 @@ export default class CreateNewAccount extends React.Component {
 					<View style={styles.newAccountCont}>
 						<Text style={styles.newAccountHead}>Información del Miembro Principal</Text>
 
+						<FlatList
+							data = {this.state.data}
+							renderItem = {({item}) => 
+							<View>
+								<Text>{item.firstname}</Text>
+							</View>
+						}/>
 						{/*first name*/}
 						<TextInput style={styles.newAccountInput}
 							underlineColorAndroid = "transparent"
