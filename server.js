@@ -81,3 +81,39 @@ app.post('/users', (req, res) => {
 
 
 
+
+//insert a new water quality report
+app.post('/reports', (req, res) => {
+
+	let report = req.body;
+
+	var sql = 'SET @title = ?; SET @urgent = ?; SET @communities = ?; SET @message = ?; SET @audio = ?; SET @image = ?; \
+				CALL waterdb.AddNewReport(@title, @urgent, @communities, @message, @audio, @image);';
+	
+
+	con.query(sql, [report.title, report.urgent, report.communities, report.message, report.audio, report.image], (err, rows, fields) => {
+		if (!err)
+			res.send('New report inserted successfully');
+		else
+			console.log(err);
+	});
+});
+
+
+
+//insert a new incident report
+app.post('/incidents', (req, res) => {
+
+	let incident = req.body;
+
+	var sql = 'SET @sender = ?; SET @community = ?; SET @urgent = ?; SET @message = ?; SET @audio = ?; SET @image = ?; \
+				CALL waterdb.AddNewIncident(@sender, @community, @urgent, @message, @audio, @image);';
+	
+
+	con.query(sql, [incident.sender, incident.community, incident.urgent, incident.message, incident.audio, incident.image], (err, rows, fields) => {
+		if (!err)
+			res.send('New incident inserted successfully');
+		else
+			console.log(err);
+	});
+});

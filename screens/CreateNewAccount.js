@@ -23,22 +23,31 @@ export default class CreateNewAccount extends React.Component {
 
 	addNewUser = () => {
 
-		// //checks to make sure phone number is unique
-		// var checkNum = this.state.phoneNum;
-		// const fetchResult = fetch("http://192.168.0.11:3004/users/checkNum", {
-		// 	method: 'GET',
-		// 	redirect: 'follow'
-		// })
-		// 	.then(response => response.text())
-		// 	.then(result => console.log(result))
-		// 	.catch(error => console.log('error', error));
+		//checks to make sure phone number is unique
+		var checkNum = this.state.phoneNum;
+		fetch("http://192.168.0.11:3004/users/" + checkNum, {
+			method: 'GET',
+			redirect: 'follow'
+		})
+			.then(response => response.text())
+			.then(result => {
+								console.log(result);
+								if (result === "[]")
+								{
+									console.log('can create account');
+								}
+								else {
+									console.log('number is already in use, use a new one');
+								}
+							})
+			.catch(error => console.log('error', error));
 
-		// // if (uniqueNum != null)
-		// // {
-		// // 	alert('number is already in use');
-		// // 	return;
-		// // }
-		// //alert(uniqueNum);
+		// if (uniqueNum != null)
+		// {
+		// 	alert('number is already in use');
+		// 	return;
+		// }
+		//alert(uniqueNum);
 
 		//checks to make sure phone numbers entered are the same - does not create new user if not same
 		if (this.state.phoneNum != this.state.phoneNumCon)

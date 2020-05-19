@@ -8,8 +8,28 @@ import * as ImagePicker from 'expo-image-picker';
 
 export default class ReportWaterQuality extends React.Component {
 	state = {
+		sender: '',
+		community: 0,
+		urgent: '',
+		message: '',
+		audio: null,
 		image: null,
 	};
+
+	createIncident = () => {
+		alert('new incident created!');
+
+		//inserts new incident into database
+		fetch("http://192.168.0.11:3004/incidents", {
+			method: 'POST',
+			headers: {"Content-Type": "application/json"},
+			body: JSON.stringify({"sender":this.state.sender,"community":this.state.community,"urgent":this.state.urgent,"message":this.state.message,"audio":this.state.audio,"image":this.state.image}),
+			redirect: 'follow'
+		})
+			.then(response => response.text())
+			.then(result => console.log(result))
+			.catch(error => console.log('error', error));
+	}
 
 	render(){
 		let { image } = this.state;
@@ -54,6 +74,7 @@ export default class ReportWaterQuality extends React.Component {
 									placeholderTextColor = "#707070"
 									autoCapitalize = "none"
 									textAlign = "left"
+									onChangeText = {sender => this.setState({sender})}
 								/>
 
 								{/*community*/}
@@ -64,6 +85,7 @@ export default class ReportWaterQuality extends React.Component {
 									dropdownOffset={{'top':7}}
 									inputContainerStyle={{ borderBottomColor: 'transparent' }}
 									baseColor='#707070'
+									onChangeText = {community => this.setState({community})}
 								/>
 
 								{/*description of incident*/}
@@ -73,6 +95,7 @@ export default class ReportWaterQuality extends React.Component {
 									placeholderTextColor = "#707070"
 									autoCapitalize = "none"
 									textAlign = "left"
+									onChangeText = {message => this.setState({message})}
 								/>
 
 								<View style={styles.reportWaterButtons}>
@@ -91,7 +114,8 @@ export default class ReportWaterQuality extends React.Component {
 							</ScrollView>
 						</View>
 						<TouchableOpacity style={styles.reportWaterSendButton}
-							onPress={() => this.props.navigation.navigate('ConfirmWaterQualityReport')}>
+							onPress={() => {	this.createIncident();
+												this.props.navigation.navigate('ConfirmWaterQualityReport');}}>
 							<Text style={{fontSize: 17, color: 'white', fontWeight: 'bold'}}>Enviar</Text>
 						</TouchableOpacity>
 					</View>

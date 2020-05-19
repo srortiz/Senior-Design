@@ -309,6 +309,17 @@ export default StyleSheet.create({
         padding: 20,
     },
 
+    createReportIncidentTitle: {
+        height: 40,
+        marginBottom: 18,
+        width: 250,
+        paddingLeft: 10,
+        borderColor: '#707070',
+        borderWidth: 1.25,
+        borderRadius: 25,
+        fontSize: 16,
+    },
+
     createReportCommDropdown: {
         height: 40,
         width: 250,
@@ -321,7 +332,7 @@ export default StyleSheet.create({
 
     createReportIncidentInput: {
         marginTop: 18,
-        height: 275,
+        height: 225,
         width: 307,
         paddingLeft: 10,
         borderColor: '#707070',

@@ -11,22 +11,29 @@ export class Login extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            email: "",
+            phoneNum: "",
             password: ""
         };
     }
 
-    Login = (email, password) => {
-        try {
-            firebase
-                .auth()
-                .signInWithEmailAndPassword(email, password)
-                .then(user => {
-                    console.log(user);
-                });
-        } catch (error) {
-            console.log(error.toString(error));
-        }
+    correctLogin = () => {
+        alert('logged in');
+        var checkNum = this.state.phoneNum;
+
+        fetch("http://192.168.0.11:3004/users/" + checkNum, {
+            method: 'GET',
+            redirect: 'follow'
+        })
+            .then(response => response.text())
+            .then(result => {   console.log(result);
+                                console.log(typeof result);
+                                if (result === "[]")
+                                    console.log('no user exists with this phone number, cannot login');
+                                else
+                                    console.log('user exists');
+                            })
+            .catch(error => console.log('error', error));
+
     }
     
     render() {
@@ -44,7 +51,7 @@ export class Login extends React.Component {
                             <Input
                             autoCapitalize="none"
                             autoCorrect={false}
-                            onChangeText={email => this.setState({ email })} />
+                            onChangeText={phoneNum => this.setState({ phoneNum })} />
                         </Item>
 
                         <Item floatingLabel>
@@ -57,7 +64,8 @@ export class Login extends React.Component {
                         </Item>
 
                         <Button full rounded success style={styles.blueButton}
-                            onPress={() => { this.Login(this.state.email, this.state.password); this.props.navigation.navigate('Homepage'); }}>
+                            onPress={() => { this.correctLogin ();
+                                            this.props.navigation.navigate('Homepage'); }}>
                             <Text style={styles.buttonText}>Entrar</Text>
                         </Button>
 

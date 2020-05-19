@@ -8,7 +8,27 @@ import * as ImagePicker from 'expo-image-picker';
 export default class CreateNewWaterQualityReport extends React.Component {
 	state = {
 		image: null,
+		title: '',
+		urgent: 0,
+		community: '',
+		message: '',
+		audio: null,
 	};
+
+	createReport = () => {
+		alert('new report created!');
+
+		//inserts new report into database
+		fetch("http://192.168.0.11:3004/reports", {
+			method: 'POST',
+			headers: {"Content-Type": "application/json"},
+			body: JSON.stringify({"title":this.state.title,"urgent":this.state.urgent,"communities":this.state.community,"message":this.state.message,"audio":this.state.audio,"image":this.state.image}),
+			redirect: 'follow'
+		})
+			.then(response => response.text())
+			.then(result => console.log(result))
+			.catch(error => console.log('error', error));
+	}
 
 	render(){
 		let { image } = this.state;
@@ -47,6 +67,16 @@ export default class CreateNewWaterQualityReport extends React.Component {
 						<View style={styles.createReportBox}>
 							<ScrollView style={styles.createReportScrollView}>
 
+								{/*report title*/}
+								<TextInput style={styles.createReportIncidentTitle}
+									underlineColorAndroid = "transparent"
+									placeholder = "Escribir su titular aquí..."
+									placeholderTextColor = "#707070"
+									autoCapitalize = "none"
+									textAlign = "left"
+									onChangeText = {title => this.setState({title})}
+								/>
+
 								{/*community*/}
 								<Dropdown
 									containerStyle={styles.createReportCommDropdown}
@@ -55,6 +85,7 @@ export default class CreateNewWaterQualityReport extends React.Component {
 									dropdownOffset={{'top':7}}
 									inputContainerStyle={{ borderBottomColor: 'transparent' }}
 									baseColor='#707070'
+									onChangeText = {community => this.setState({community})}
 								/>
 
 								{/*description of incident*/}
@@ -64,6 +95,7 @@ export default class CreateNewWaterQualityReport extends React.Component {
 									placeholderTextColor = "#707070"
 									autoCapitalize = "none"
 									textAlign = "left"
+									onChangeText = {message => this.setState({message})}
 								/>
 
 								<View style={styles.createReportButtons}>
@@ -82,7 +114,8 @@ export default class CreateNewWaterQualityReport extends React.Component {
 							</ScrollView>
 						</View>
 						<TouchableOpacity style={styles.createReportPublishButton}
-							onPress={() => this.props.navigation.navigate('ViewIndividualMessage')}>
+							onPress={() => {	this.createReport();
+												this.props.navigation.navigate('ViewIndividualMessage');}}>
 							<Text style={{fontSize: 17, color: 'white', fontWeight: 'bold'}}>Publicar</Text>
 						</TouchableOpacity> 
 					</View>
