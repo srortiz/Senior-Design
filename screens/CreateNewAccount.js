@@ -3,8 +3,9 @@ import { Text, View, Image, TextInput, TouchableOpacity } from 'react-native';
 import styles from '../Style';
 import { Dropdown } from 'react-native-material-dropdown';
 
+
 export default class CreateNewAccount extends React.Component {
-	
+
 	constructor(props){
 		super(props)
 		this.state={
@@ -12,23 +13,66 @@ export default class CreateNewAccount extends React.Component {
 			lastName:'',
 			community:'',
 			phoneNum:'',
-			phoneNumCon:'',
+			phoneNumCon: '',
 			password:'',
-			passwordCon:''
-		}
+			passwordCon: '',
+			admin: 0,
+		};
 	}
 
-	userReg = () => {
-		alert('ok');
 
-		const {firstName} = this.state;
-		const {lastName} = this.state;
-		const {community} = this.state;
-		const {phoneNum} = this.state;
-		const {phoneNumCon} = this.state;
-		const {password} = this.state;
-		const {passwordCon} = this.state;
+	addNewUser = () => {
 
+		// //checks to make sure phone number is unique
+		// var checkNum = this.state.phoneNum;
+		// const fetchResult = fetch("http://192.168.0.11:3004/users/checkNum", {
+		// 	method: 'GET',
+		// 	redirect: 'follow'
+		// })
+		// 	.then(response => response.text())
+		// 	.then(result => console.log(result))
+		// 	.catch(error => console.log('error', error));
+
+		// // if (uniqueNum != null)
+		// // {
+		// // 	alert('number is already in use');
+		// // 	return;
+		// // }
+		// //alert(uniqueNum);
+
+		//checks to make sure phone numbers entered are the same - does not create new user if not same
+		if (this.state.phoneNum != this.state.phoneNumCon)
+		{
+			//alert('phone numbers do not match, please try again');
+			return;
+		}
+		else
+			//alert('phone numbers do match');
+
+
+		//checks to make sure passwords entered are the same - does not create new user if not same
+		if (this.state.password != this.state.passwordCon)
+		{
+			//alert('passwords do not match, please try again');
+			return;
+		}
+		else
+			//alert('passwords numbers do match');
+
+
+		//inserts new user into database
+		fetch("http://192.168.0.11:3004/users", {
+			method: 'POST',
+			headers: {"Content-Type": "application/json"},
+			body: JSON.stringify({"firstname":this.state.firstName,"lastname":this.state.lastName,"community":this.state.community,"phonenumber":this.state.phoneNum,"admin":0,"password":this.state.password}),
+			redirect: 'follow'
+		})
+			.then(response => response.text())
+			.then(result => console.log(result))
+			.catch(error => console.log('error', error));
+
+		//moves user further into application if all parameters are met
+		this.props.navigation.navigate('Homepage');
 	}
 
 	render(){
@@ -137,9 +181,7 @@ export default class CreateNewAccount extends React.Component {
 						/>
 
 						<TouchableOpacity style={styles.newAccountButton}
-							onPress={() => {
-								this.userReg (),
-								this.props.navigation.navigate('Homepage')}}>
+							onPress={() => this.addNewUser () }>
 							<Text style={{color: 'white', fontSize: 23}}>Enviar</Text>
 						</TouchableOpacity>
 
