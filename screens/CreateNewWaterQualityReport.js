@@ -19,7 +19,7 @@ export default class CreateNewWaterQualityReport extends React.Component {
 		alert('new report created!');
 
 		//inserts new report into database
-		fetch("http://192.168.0.11:3004/reports", {
+		fetch("http://10.0.0.13:3004/reports", {
 			method: 'POST',
 			headers: {"Content-Type": "application/json"},
 			body: JSON.stringify({"title":this.state.title,"urgent":this.state.urgent,"communities":this.state.community,"message":this.state.message,"audio":this.state.audio,"image":this.state.image}),
