@@ -22,12 +22,6 @@ export class WaterHome extends React.Component {
                 <View style={styles.pageContent}>
 
                     <View style={styles.subheader}>
-                        <View style={styles.leftHeader}>
-                            <Button style={styles.back}
-                                onPress={() => this.props.navigation.navigate('Homepage')}>
-                                <Text style={styles.backText}>{'<'} Atrás</Text>
-                            </Button>
-                        </View>
 
                         <View style={styles.rightHeader}>
                             <Button style={styles.add}

@@ -24,13 +24,23 @@ export default class CreateNewAccount extends React.Component {
 	fetchNumber = async() => {
 		var checkNum = this.state.phoneNum;
 
-		const response = await fetch("http://192.168.0.11:3004/users/" + checkNum, {
+		fetch("http://10.0.0.123:3004/users", {
 			method: 'GET',
 			redirect: 'follow'
 		})
+			.then(response => response.text())
+			.then(result => {console.log(result);
+							})
+			.catch(error => console.log('error', error));
+
+
+		// const response = await fetch("http://192.168.0.11:3004/users/" + checkNum, {
+		// 	method: 'GET',
+		// 	redirect: 'follow'
+		// })
 		
-		const user = await response.json();
-		this.setState({data: user});
+		// const user = await response.json();
+		// this.setState({data: user});
 	}
 
 	componentDidMount () {
@@ -40,8 +50,8 @@ export default class CreateNewAccount extends React.Component {
 	addNewUser = () => {
 
 		//checks to make sure phone number is unique
-		var result = this.getNumber();
-		console.log(result.firstname);
+		//var result = this.getNumber();
+		//console.log(result.firstname);
 
 		// if (uniqueNum != null)
 		// {

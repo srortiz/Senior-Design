@@ -12,29 +12,49 @@ export class Login extends React.Component {
         super(props);
         this.state = {
             phoneNum: "",
-            password: ""
+            password: "",
         };
     }
 
-    correctLogin = () => {
-        alert('logged in');
+    correctLogin = async() => {
+
         var checkNum = this.state.phoneNum;
 
-        fetch("http://192.168.0.11:3004/users/" + checkNum, {
+        await fetch("http://10.0.0.123:3004/users/" + checkNum, {
             method: 'GET',
             redirect: 'follow'
         })
-            .then(response => response.text())
+            .then(response => response.json())
             .then(result => {   console.log(result);
-                                console.log(typeof result);
-                                if (result === "[]")
+                                //console.log(typeof result);
+                                if (result.length == 0)
+                                {
                                     console.log('no user exists with this phone number, cannot login');
+                                    alert('No user with this phone number, please try again or make account.');
+                                }
+
                                 else
+                                {
                                     console.log('user exists');
+
+                                    if (result[0].password == this.state.password)
+                                    {
+                                        this.props.navigation.navigate('WaterHome');
+                                    }
+                                    else
+                                    {
+                                        alert('passwords do not match');
+                                        return;
+                                    }
+                                }
                             })
             .catch(error => console.log('error', error));
 
     }
+
+    // componentDidMount () {
+    //     this.correctLogin();
+    // }
     
     render() {
         return (
@@ -64,8 +84,7 @@ export class Login extends React.Component {
                         </Item>
 
                         <Button full rounded success style={styles.blueButton}
-                            onPress={() => { this.correctLogin ();
-                                            this.props.navigation.navigate('Homepage'); }}>
+                            onPress={() => this.correctLogin ()}>
                             <Text style={styles.buttonText}>Entrar</Text>
                         </Button>
 

@@ -2,7 +2,6 @@ import React from 'react';
 
 import Welcome from './screens/Welcome'
 import Login from './screens/Login'
-import Homepage from './screens/Homepage'
 import WaterHome from './screens/WaterHome'
 import ConfirmWaterQualityReport from './screens/ConfirmWaterQualityReport'
 import CreateNewAccount from './screens/CreateNewAccount'
@@ -19,7 +18,6 @@ import { createSwitchNavigator, createAppContainer } from 'react-navigation';
 
 const myStackNavigator = createStackNavigator(
 {
-	Homepage: Homepage,
 	WaterHome: WaterHome,
 	ConfirmWaterQualityReport: ConfirmWaterQualityReport,
 	CreateNewWaterQualityReport: CreateNewWaterQualityReport,
@@ -31,7 +29,7 @@ const myStackNavigator = createStackNavigator(
 	RecordMessage: RecordMessage,
 },
 {
-	initialRouteName: 'Homepage',
+	initialRouteName: 'WaterHome',
 	headerMode: 'none',
 	navigationOptions: {
 		headerVisible: false,
@@ -44,7 +42,7 @@ const mySwitchNavigator = createSwitchNavigator(
 	Welcome: { screen: Welcome },
 	CreateNewAccount: { screen: CreateNewAccount },
 	Login: { screen: Login },
-	Homepage: { screen: myStackNavigator },
+	WaterHome: { screen: myStackNavigator },
 },
 {
 	initialRouteName: 'Welcome'
