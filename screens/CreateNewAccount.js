@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, Image, TextInput, TouchableOpacity, FlatList } from 'react-native';
+import { Text, View, Image, TextInput, TouchableOpacity, FlatList, ScrollView } from 'react-native';
 import styles from '../Style';
 import { Dropdown } from 'react-native-material-dropdown';
 
@@ -115,6 +115,7 @@ export default class CreateNewAccount extends React.Component {
 				</View>
 
 				<View style={styles.pageContent}>
+					<ScrollView>
 					<View style={styles.newAccountCont}>
 						<Text style={styles.newAccountHead}>Información del Miembro Principal</Text>
 
@@ -148,8 +149,9 @@ export default class CreateNewAccount extends React.Component {
 						{/*community*/}
 						<Dropdown
 							containerStyle={styles.newAccountDropdown}
-							label="Eligir su comunidad"
+							placeholder="Eligir su comunidad"
 							data={community}
+							placeholderTextColor={"#707070"}
 							dropdownOffset={{'top':7, 'left':0}}
 							inputContainerStyle={{ borderBottomColor: 'transparent' }}
 							baseColor='#707070'
@@ -213,6 +215,7 @@ export default class CreateNewAccount extends React.Component {
 						</TouchableOpacity>
 
 					</View>
+					</ScrollView>
 				</View>
 
 				<View style={styles.footer}>

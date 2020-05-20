@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text, Image, TouchableOpacity } from 'react-native'
+import { View, Text, Image, TouchableOpacity, ScrollView, FlatList } from 'react-native'
 import { Form, Button } from 'native-base'
 import styles from '../Style'
 
@@ -7,6 +7,13 @@ export class WaterHome extends React.Component {
     static navigationOptions = {
         title: 'WaterHome',
     };
+
+    state = {
+        reports: [
+            {"idreports":1,"title":"First Report","date":"2020-05-19 07:00:15","urgent":0,"communities":"comunidad 3","message":"This is a test report","audio":"","image":""},
+            {"idreports":2,"title":"Second Report","date":"2020-05-19 07:00:15","urgent":0,"communities":"comunidad 3","message":"This is a test report","audio":"","image":""}
+        ],
+	};
 
     render() {
         return (
@@ -38,17 +45,26 @@ export class WaterHome extends React.Component {
 
                     <Text style={styles.waterTitle}>AGUA</Text>
                     <Form style={styles.waterForm}>
-                        <Text style={styles.subTitle}>Noticias</Text>
-                        <Button full rounded success style={styles.reportButton}
-                            onPress={() => this.props.navigation.navigate('ViewIndividualWaterReport')}>
-                            <Text style={styles.buttonText}>View Water Report</Text>
-                            <Image source={require('../assets/emergency.png')} style={styles.emergency}/>
-                        </Button>
+                        <ScrollView>
+                            <Text style={styles.subTitle}>Noticias</Text>
+                            <FlatList data={this.state.reports} renderItem={({ item, index }) =>
+                                <Button full rounded success style={styles.reportButton} onPress={() => this.props.navigation.navigate('ViewIndividualWaterReport')}>
+                                    <Text style={styles.buttonText}>{item.title}</Text>
+                                    <Image source={require('../assets/emergency.png')} style={styles.emergency}/>
+                                </Button>}
+                            />
+                            
+                            {/* <Button full rounded success style={styles.reportButton}
+                                onPress={() => this.props.navigation.navigate('ViewIndividualWaterReport')}>
+                                <Text style={styles.buttonText}>View Water Report</Text>
+                                <Image source={require('../assets/emergency.png')} style={styles.emergency}/>
+                            </Button> */}
 
-                        <Button style={styles.link}
-                            onPress={() => this.props.navigation.navigate('ReportWaterQuality')}>
-                            <Text style={styles.underline}>¿Tienes algo que reportar? Haz clic aquí.</Text>
-                        </Button>
+                            <Button style={styles.link}
+                                onPress={() => this.props.navigation.navigate('ReportWaterQuality')}>
+                                <Text style={styles.underline}>¿Tienes algo que reportar? Haz clic aquí.</Text>
+                            </Button>
+                        </ScrollView>
                     </Form>
                 </View>
 

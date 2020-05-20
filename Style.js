@@ -61,7 +61,7 @@ export default StyleSheet.create({
     newAccountInput: {
         marginTop: 18,
         height: 40,
-        width: 250,
+        width: 300,
         paddingLeft: 10,
         borderColor: '#707070',
         borderWidth: 1.25,
@@ -72,7 +72,7 @@ export default StyleSheet.create({
     newAccountDropdown: {
         marginTop: 18,
         height: 40,
-        width: 250,
+        width: 300,
         paddingLeft: 10,
         borderColor: '#707070',
         borderWidth: 1.25,
