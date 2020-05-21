@@ -1,4 +1,5 @@
 import {StyleSheet} from 'react-native'
+//import { NONAME } from 'dns';
 
 export default StyleSheet.create({
     
@@ -173,8 +174,9 @@ export default StyleSheet.create({
 
     reportWaterBox: {
         marginTop: 25,
+        marginBottom: 10,
         width: 350,
-        height: 485,
+        height: 410,
         borderColor: 'black',
         borderWidth: 1,
         borderRadius: 30,
@@ -385,9 +387,6 @@ export default StyleSheet.create({
         alignItems: 'center',
         fontSize: 10,
     },
-
-
-
 
     respondMessCont: {
         alignItems: 'center',
@@ -651,30 +650,43 @@ export default StyleSheet.create({
     inboxBody: {
         height: 479,
         margin: 30,
-        borderLeftWidth: 1,
-        borderRightWidth: 1
+        borderWidth: 1
     },
 
     message: {
+        backgroundColor: 'white',
+        borderRadius: 0,
+        borderColor: 'black',
         borderTopWidth: 1,
         borderBottomWidth: 1,
-        height: 70
+        height: 70,
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'space-between'
     },
 
     unread: {
-        
+        marginLeft: 30,
+        marginTop: 3
     },
 
     circle: {
-
+        height: 15,
+        width: 15
     },
 
-    messageSummary: {
+    content: {
+        marginTop: 3
+    },
 
+    fromText: {
+        fontSize: 20,
+        fontWeight: "bold"
     },
 
     messageDate: {
-
+        marginTop: 10,
+        marginRight: 10
     },
 
 });

@@ -3,8 +3,8 @@
   "expoServerPort": null,
   "packagerPort": null,
   "packagerPid": null,
-  "expoServerNgrokUrl": "https://7w-ugx.anonymous.senior-design.exp.direct",
-  "packagerNgrokUrl": "https://packager.7w-ugx.anonymous.senior-design.exp.direct",
-  "ngrokPid": 60194,
+  "expoServerNgrokUrl": null,
+  "packagerNgrokUrl": null,
+  "ngrokPid": null,
   "webpackServerPort": null
 }

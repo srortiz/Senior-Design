@@ -113,7 +113,7 @@ export default class ReportWaterQuality extends React.Component {
 								{image && <Image source={{ uri: image }} style={{ width: 200, height: 200 }} />}
 							</ScrollView>
 						</View>
-						<TouchableOpacity style={styles.reportWaterSendButton}
+						<TouchableOpacity style={styles.createReportPublishButton}
 							onPress={() => {	this.createIncident();
 												this.props.navigation.navigate('ConfirmWaterQualityReport');}}>
 							<Text style={{fontSize: 17, color: 'white', fontWeight: 'bold'}}>Enviar</Text>
