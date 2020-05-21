@@ -199,7 +199,6 @@ export default StyleSheet.create({
         borderColor: '#707070',
         borderWidth: 1.25,
         borderRadius: 20,
-        color: '#707070',
     },
 
     reportWaterIncidentInput: {
@@ -327,7 +326,6 @@ export default StyleSheet.create({
         borderColor: '#707070',
         borderWidth: 1.25,
         borderRadius: 20,
-        color: '#707070',
     },
 
     createReportIncidentInput: {

@@ -82,7 +82,7 @@ export default class CreateNewWaterQualityReport extends React.Component {
 									containerStyle={styles.createReportCommDropdown}
 									label="Eligir su comunidad"
 									data={community}
-									dropdownOffset={{'top':7}}
+									dropdownOffset={{'top':7, 'left':0}}
 									inputContainerStyle={{ borderBottomColor: 'transparent' }}
 									baseColor='#707070'
 									onChangeText = {community => this.setState({community})}
@@ -115,7 +115,7 @@ export default class CreateNewWaterQualityReport extends React.Component {
 						</View>
 						<TouchableOpacity style={styles.createReportPublishButton}
 							onPress={() => {	this.createReport();
-												this.props.navigation.navigate('ViewIndividualMessage');}}>
+												this.props.navigation.navigate('WaterHome');}}>
 							<Text style={{fontSize: 17, color: 'white', fontWeight: 'bold'}}>Publicar</Text>
 						</TouchableOpacity> 
 					</View>

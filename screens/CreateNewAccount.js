@@ -81,7 +81,7 @@ export default class CreateNewAccount extends React.Component {
 
 
 		//inserts new user into database
-		fetch("http://192.168.0.11:3004/users", {
+		fetch("http://10.0.0.123:3004/users", {
 			method: 'POST',
 			headers: {"Content-Type": "application/json"},
 			body: JSON.stringify({"firstname":this.state.firstName,"lastname":this.state.lastName,"community":this.state.community,"phonenumber":this.state.phoneNum,"admin":0,"password":this.state.password}),
@@ -92,7 +92,8 @@ export default class CreateNewAccount extends React.Component {
 			.catch(error => console.log('error', error));
 
 		//moves user further into application if all parameters are met
-		this.props.navigation.navigate('Homepage');
+		alert('New account has been created, please login now!')
+		this.props.navigation.navigate('Login');
 	}
 
 	render(){
@@ -119,13 +120,6 @@ export default class CreateNewAccount extends React.Component {
 					<View style={styles.newAccountCont}>
 						<Text style={styles.newAccountHead}>Información del Miembro Principal</Text>
 
-						<FlatList
-							data = {this.state.data}
-							renderItem = {({item}) => 
-							<View>
-								<Text>{item.firstname}</Text>
-							</View>
-						}/>
 						{/*first name*/}
 						<TextInput style={styles.newAccountInput}
 							underlineColorAndroid = "transparent"
