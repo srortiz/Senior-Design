@@ -133,12 +133,12 @@ export default class CreateNewWaterQualityReport extends React.Component {
 	}
 	
 	getPermissionAsync = async () => {
-		if (Constants.platform.ios) {
-		  const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
-		  if (status !== 'granted') {
-			alert('Sorry, we need camera roll permissions to make this work!');
-		  }
-		}
+		// if (Constants.platform.ios) {
+		//   const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
+		//   if (status !== 'granted') {
+		// 	alert('Sorry, we need camera roll permissions to make this work!');
+		//   }
+		// }
 	};
 	
 	_pickImage = async () => {
