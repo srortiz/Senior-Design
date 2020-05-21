@@ -1,10 +1,10 @@
 {
   "devToolsPort": 19002,
-  "expoServerPort": null,
-  "packagerPort": null,
-  "packagerPid": null,
-  "expoServerNgrokUrl": null,
-  "packagerNgrokUrl": null,
-  "ngrokPid": null,
+  "expoServerPort": 19000,
+  "packagerPort": 19001,
+  "packagerPid": 67052,
+  "expoServerNgrokUrl": "https://gu-ar7.anonymous.senior-design.exp.direct",
+  "packagerNgrokUrl": "https://packager.gu-ar7.anonymous.senior-design.exp.direct",
+  "ngrokPid": 67075,
   "webpackServerPort": null
 }

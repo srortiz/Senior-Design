@@ -21,31 +21,31 @@ export default class CreateNewAccount extends React.Component {
 		};
 	}
 
-	fetchNumber = async() => {
-		var checkNum = this.state.phoneNum;
+	// fetchNumber = async() => {
+	// 	var checkNum = this.state.phoneNum;
 
-		fetch("http://10.0.0.13:3004/users", {
-			method: 'GET',
-			redirect: 'follow'
-		})
-			.then(response => response.text())
-			.then(result => {console.log(result);
-							})
-			.catch(error => console.log('error', error));
+	// 	fetch("http://10.0.0.13:3004/users", {
+	// 		method: 'GET',
+	// 		redirect: 'follow'
+	// 	})
+	// 		.then(response => response.text())
+	// 		.then(result => {console.log(result);
+	// 						})
+	// 		.catch(error => console.log('error', error));
 
 
-		// const response = await fetch("http://192.168.0.11:3004/users/" + checkNum, {
-		// 	method: 'GET',
-		// 	redirect: 'follow'
-		// })
+	// 	// const response = await fetch("http://192.168.0.11:3004/users/" + checkNum, {
+	// 	// 	method: 'GET',
+	// 	// 	redirect: 'follow'
+	// 	// })
 		
-		// const user = await response.json();
-		// this.setState({data: user});
-	}
+	// 	// const user = await response.json();
+	// 	// this.setState({data: user});
+	// }
 
-	componentDidMount () {
-		this.fetchNumber();
-	}
+	// componentDidMount () {
+	// 	this.fetchNumber();
+	// }
 
 	addNewUser = () => {
 
@@ -81,11 +81,8 @@ export default class CreateNewAccount extends React.Component {
 
 
 		//inserts new user into database
-<<<<<<< HEAD
-		fetch("http://10.0.0.123:3004/users", {
-=======
+
 		fetch("http://10.0.0.13:3004/users", {
->>>>>>> 0ba6edf17f8785c972eac8eeaef770e41887d9e2
 			method: 'POST',
 			headers: {"Content-Type": "application/json"},
 			body: JSON.stringify({"firstname":this.state.firstName,"lastname":this.state.lastName,"community":this.state.community,"phonenumber":this.state.phoneNum,"admin":0,"password":this.state.password}),
