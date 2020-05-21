@@ -89,6 +89,7 @@ export class WaterHome extends React.Component {
                             renderItem={({ item, index }) => 
                             <Button full rounded success style={styles.reportButton} onPress={() => this.props.navigation.navigate('ViewIndividualWaterReport')}>
                                 <Text style={styles.buttonText}>{item.title}</Text>
+                                <Text style={styles.buttonText}>{item.date}</Text>
                                 {item.urgent
                                     ? <Image source={require('../assets/emergency.png')} style={styles.emergency}/>
                                     : <Text></Text>

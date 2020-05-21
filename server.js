@@ -84,7 +84,8 @@ app.post('/users', (req, res) => {
 //get all reports
 app.get('/reports', (req, res) => {
 
-	var sql = 'SELECT * FROM reports';
+	//var sql = 'SELECT * FROM reports';
+	var sql = 'SELECT idreports, title, DATE_FORMAT(date, "%W,%M"), urgent, communities, message, audio, image FROM reports';
 	con.query(sql, (err, rows, fields) => {
 		if (!err)
 			res.send(rows);
