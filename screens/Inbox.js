@@ -43,8 +43,13 @@ export class Inbox extends React.Component {
                     <Text style={styles.title}>Inbox</Text>
                     
                     <View style={styles.inboxBody}>
-                    <ScrollView>
-                        <FlatList inverted data={this.state.mail} renderItem={({ item, index }) =>
+                        <FlatList inverted data={this.state.mail} 
+                            getItemLayout={(data, index) => (
+                                {length: 200, offset: 200 * index, index}
+                            )}
+                            initialScrollIndex={this.state.mail.length - 1}
+                            keyExtractor={(item, index) => index.toString()}
+                            renderItem={({ item, index }) =>
                             <Button style={styles.message} onPress={() => { this.props.navigation.navigate('ViewIndividualMessage'); }}>
                                     <View style={styles.unread}>
                                     {item.read
@@ -61,7 +66,6 @@ export class Inbox extends React.Component {
                                     </View>
                             </Button>}
                         />
-                    </ScrollView>
                     </View>
                 </View>
 

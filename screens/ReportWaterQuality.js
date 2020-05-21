@@ -18,7 +18,7 @@ export default class ReportWaterQuality extends React.Component {
 
 	createIncident = () => {
 		//inserts new incident into database
-		fetch("http://192.168.0.11:3004/incidents", {
+		fetch("http://10.0.0.123:3004/incidents", {
 			method: 'POST',
 			headers: {"Content-Type": "application/json"},
 			body: JSON.stringify({"sender":this.state.sender,"community":this.state.community,"urgent":this.state.urgent,"message":this.state.message,"audio":this.state.audio,"image":this.state.image}),
@@ -131,12 +131,12 @@ export default class ReportWaterQuality extends React.Component {
 	}
 	
 	getPermissionAsync = async () => {
-		if (Constants.platform.ios) {
-		  const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
-		  if (status !== 'granted') {
-			alert('Sorry, we need camera roll permissions to make this work!');
-		  }
-		}
+		// if (Constants.platform.ios) {
+		//   const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
+		//   if (status !== 'granted') {
+		// 	alert('Sorry, we need camera roll permissions to make this work!');
+		//   }
+		// }
 	};
 	
 	_pickImage = async () => {

@@ -81,6 +81,10 @@ export class WaterHome extends React.Component {
                     <Form style={styles.waterForm}>
                         <Text style={styles.subTitle}>Noticias</Text>
                         <FlatList inverted data={this.state.data} 
+                            getItemLayout={(data, index) => (
+                                {length: 200, offset: 200 * index, index}
+                            )}
+                            initialScrollIndex={this.state.data.length - 1}
                             keyExtractor={(item, index) => index.toString()}
                             renderItem={({ item, index }) => 
                             <Button full rounded success style={styles.reportButton} onPress={() => this.props.navigation.navigate('ViewIndividualWaterReport')}>

@@ -81,8 +81,8 @@ export default StyleSheet.create({
     },
 
     newAccountButton: {
-        marginTop: 40,
-        padding: 15,
+        marginTop: 20,
+        padding: 12,
         borderRadius: 20,
         backgroundColor: '#4a8eff',
         width: 118,
@@ -687,4 +687,11 @@ export default StyleSheet.create({
         marginRight: 10
     },
 
+    checkbox: {
+        backgroundColor: 'white',
+        borderWidth: 0,
+        //alignSelf: 'flex-start',
+        //marginLeft: 60,
+        marginTop: 10
+    }
 });
