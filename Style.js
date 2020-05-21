@@ -693,5 +693,10 @@ export default StyleSheet.create({
         //alignSelf: 'flex-start',
         //marginLeft: 60,
         marginTop: 10
-    }
+    },
+
+    row: {
+		flexDirection: 'row',
+		justifyContent: 'space-evenly'
+	}
 });

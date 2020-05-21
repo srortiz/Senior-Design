@@ -109,7 +109,7 @@ export default class CreateNewWaterQualityReport extends React.Component {
 								/>
 
 								<View style={styles.createReportButtons}>
-									<TouchableOpacity style={styles.createReportRecordButton}>
+									<TouchableOpacity style={styles.createReportRecordButton} onPress={() => {this.props.navigation.navigate('RecordMessage')}}>
 										<Image source={require('../assets/mic.png')} style={styles.mic}/>
 										<Text style={{fontSize: 15}}>Recordar un mensaje</Text>
 									</TouchableOpacity>
