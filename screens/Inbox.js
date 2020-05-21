@@ -44,6 +44,10 @@ export class Inbox extends React.Component {
                     
                     <View style={styles.inboxBody}>
                         <FlatList inverted data={this.state.mail} 
+                            getItemLayout={(data, index) => (
+                                {length: 200, offset: 200 * index, index}
+                            )}
+                            initialScrollIndex={this.state.mail.length - 1}
                             keyExtractor={(item, index) => index.toString()}
                             renderItem={({ item, index }) =>
                             <Button style={styles.message} onPress={() => { this.props.navigation.navigate('ViewIndividualMessage'); }}>

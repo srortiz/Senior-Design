@@ -2,7 +2,7 @@ import React from 'react';
 import { Text, View, Image, TextInput, TouchableOpacity, FlatList, ScrollView } from 'react-native';
 import styles from '../Style';
 import { Dropdown } from 'react-native-material-dropdown';
-
+import { CheckBox } from 'react-native-elements';
 
 export default class CreateNewAccount extends React.Component {
 
@@ -16,7 +16,7 @@ export default class CreateNewAccount extends React.Component {
 			phoneNumCon: '',
 			password:'',
 			passwordCon: '',
-			admin: 0,
+			admin: false,
 			data: [],
 		};
 	}
@@ -85,7 +85,7 @@ export default class CreateNewAccount extends React.Component {
 		fetch("http://10.0.0.13:3004/users", {
 			method: 'POST',
 			headers: {"Content-Type": "application/json"},
-			body: JSON.stringify({"firstname":this.state.firstName,"lastname":this.state.lastName,"community":this.state.community,"phonenumber":this.state.phoneNum,"admin":0,"password":this.state.password}),
+			body: JSON.stringify({"firstname":this.state.firstName,"lastname":this.state.lastName,"community":this.state.community,"phonenumber":this.state.phoneNum,"admin":this.state.admin,"password":this.state.password}),
 			redirect: 'follow'
 		})
 			.then(response => response.text())
@@ -98,7 +98,6 @@ export default class CreateNewAccount extends React.Component {
 	}
 
 	render(){
-
 		let community = [{
 			value: 'Communidad 1',
 		}, {
@@ -107,6 +106,24 @@ export default class CreateNewAccount extends React.Component {
 			value: 'Communidad 3',
 		}, {
 			value: 'Communidad 4',
+		},{
+			value: 'Communidad 5',
+		}, {
+			value: 'Communidad 6',
+		}, {
+			value: 'Communidad 7',
+		},{
+			value: 'Communidad 8',
+		}, {
+			value: 'Communidad 9',
+		}, {
+			value: 'Communidad 10',
+		},{
+			value: 'Communidad 11',
+		}, {
+			value: 'Communidad 12',
+		}, {
+			value: 'Communidad 13',
 		}];
 
 		return (
@@ -202,6 +219,16 @@ export default class CreateNewAccount extends React.Component {
 							secureTextEntry = {true}
 							textAlign = "left"
 							onChangeText = {passwordCon => this.setState({passwordCon})}
+						/>
+
+						{/* admin */}
+						<CheckBox
+							title='¿Quieres acceso del administrador?'
+							containerStyle={styles.checkbox}
+							checkedIcon='check-square-o'
+							uncheckedIcon='square-o'
+  							checked={this.state.checked}
+							onPress={() => this.setState({checked: !this.state.checked, admin: !this.state.admin})}
 						/>
 
 						<TouchableOpacity style={styles.newAccountButton}

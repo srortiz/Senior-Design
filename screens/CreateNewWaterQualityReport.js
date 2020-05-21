@@ -3,13 +3,14 @@ import { Text, View, Image, ScrollView, TouchableOpacity, TextInput } from 'reac
 import styles from '../Style';
 import { Dropdown } from 'react-native-material-dropdown'
 import { Form, Button } from 'native-base'
-import * as ImagePicker from 'expo-image-picker';
+import * as ImagePicker from 'expo-image-picker'
+import { CheckBox } from 'react-native-elements'
 
 export default class CreateNewWaterQualityReport extends React.Component {
 	state = {
 		image: null,
 		title: '',
-		urgent: 0,
+		urgent: false,
 		community: '',
 		message: '',
 		audio: null,
@@ -96,6 +97,15 @@ export default class CreateNewWaterQualityReport extends React.Component {
 									autoCapitalize = "none"
 									textAlign = "left"
 									onChangeText = {message => this.setState({message})}
+								/>
+
+								<CheckBox
+									title='¿Es urgente?'
+									containerStyle={styles.checkbox}
+									checkedIcon='check-square-o'
+									uncheckedIcon='square-o'
+									checked={this.state.checked}
+									onPress={() => this.setState({checked: !this.state.checked, urgent: !this.state.urgent})}
 								/>
 
 								<View style={styles.createReportButtons}>
