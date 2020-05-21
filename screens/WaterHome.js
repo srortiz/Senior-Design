@@ -9,15 +9,45 @@ export class WaterHome extends React.Component {
     };
 
     state = {
-        reports: [
-            {"idreports":1,"title":"First Report","date":"2020-05-19 07:00:15","urgent":1,"communities":"comunidad 3","message":"This is a test report","audio":"","image":""},
-            {"idreports":2,"title":"Second Report","date":"2020-05-19 07:00:15","urgent":0,"communities":"comunidad 3","message":"This is a test report","audio":"","image":""},
-            {"idreports":3,"title":"Third Report","date":"2020-05-19 07:00:15","urgent":0,"communities":"comunidad 3","message":"This is a test report","audio":"","image":""},
-            {"idreports":4,"title":"Fourth Report","date":"2020-05-19 07:00:15","urgent":0,"communities":"comunidad 3","message":"This is a test report","audio":"","image":""},
-            {"idreports":5,"title":"Fifth Report","date":"2020-05-19 07:00:15","urgent":0,"communities":"comunidad 3","message":"This is a test report","audio":"","image":""},
-            {"idreports":6,"title":"Sixth Report","date":"2020-05-19 07:00:15","urgent":0,"communities":"comunidad 3","message":"This is a test report","audio":"","image":""}
-        ],
-	};
+        // reports: [
+        //     {"idreports":1,"title":"First Report","date":"2020-05-19 07:00:15","urgent":1,"communities":"comunidad 3","message":"This is a test report","audio":"","image":""},
+        //     {"idreports":2,"title":"Second Report","date":"2020-05-19 07:00:15","urgent":0,"communities":"comunidad 3","message":"This is a test report","audio":"","image":""},
+        //     {"idreports":3,"title":"Third Report","date":"2020-05-19 07:00:15","urgent":0,"communities":"comunidad 3","message":"This is a test report","audio":"","image":""},
+        //     {"idreports":4,"title":"Fourth Report","date":"2020-05-19 07:00:15","urgent":0,"communities":"comunidad 3","message":"This is a test report","audio":"","image":""},
+        //     {"idreports":5,"title":"Fifth Report","date":"2020-05-19 07:00:15","urgent":0,"communities":"comunidad 3","message":"This is a test report","audio":"","image":""},
+        //     {"idreports":6,"title":"Sixth Report","date":"2020-05-19 07:00:15","urgent":0,"communities":"comunidad 3","message":"This is a test report","audio":"","image":""}
+        // ],
+        data: [],
+    };
+
+    fetchData = async() => {
+        const response = await fetch ('http://10.0.0.123:3004/reports');
+        const users = await response.json();
+        this.setState({data: users});
+    }
+
+    componentDidMount() {
+        this.fetchData();
+    }
+
+    // getReports = async() => {
+    //     await fetch("http://10.0.0.123:3004/reports", {
+    //         method: 'GET',
+    //         redirect: 'follow'
+    //     })
+    //         .then(response => response.json())
+    //         .then(result => {   //console.log(result);
+    //                             this.state.reports = result;
+    //                             //console.log(this.state.reports);
+    //                         })
+    //         .catch(error => console.log('error', error));
+    //         console.log(this.state.reports);
+    // }
+
+    // componentDidMount () {
+    //     this.getReports();
+    // }
+
 
     render() {
         return (
@@ -50,7 +80,7 @@ export class WaterHome extends React.Component {
                     <Text style={styles.waterTitle}>AGUA</Text>
                     <Form style={styles.waterForm}>
                         <Text style={styles.subTitle}>Noticias</Text>
-                        <FlatList inverted data={this.state.reports} 
+                        <FlatList inverted data={this.state.data} 
                             keyExtractor={(item, index) => index.toString()}
                             renderItem={({ item, index }) => 
                             <Button full rounded success style={styles.reportButton} onPress={() => this.props.navigation.navigate('ViewIndividualWaterReport')}>

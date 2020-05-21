@@ -81,6 +81,30 @@ app.post('/users', (req, res) => {
 
 
 
+//get all reports
+app.get('/reports', (req, res) => {
+
+	var sql = 'SELECT * FROM reports';
+	con.query(sql, (err, rows, fields) => {
+		if (!err)
+			res.send(rows);
+		else
+			console.log(err);
+	});
+});
+
+//get one report
+// how to call for certain report -> /report/idreports
+app.get('/reports/:idreports', (req, res) => {
+
+	var sql = 'SELECT * FROM reports WHERE idreports = ?';
+	con.query(sql, [req.params.idreports], (err, rows, fields) => {
+		if (!err)
+			res.send(rows);
+		else
+			console.log(err);
+	});
+});
 
 //insert a new water quality report
 app.post('/reports', (req, res) => {

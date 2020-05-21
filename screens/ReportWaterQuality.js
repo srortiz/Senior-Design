@@ -17,8 +17,6 @@ export default class ReportWaterQuality extends React.Component {
 	};
 
 	createIncident = () => {
-		alert('new incident created!');
-
 		//inserts new incident into database
 		fetch("http://192.168.0.11:3004/incidents", {
 			method: 'POST',

@@ -13,14 +13,35 @@ export class Login extends React.Component {
         this.state = {
             phoneNum: "",
             password: "",
+            reports: [],
         };
     }
+
+    // getReports = () => {
+
+    //     fetch("http://10.0.0.123:3004/reports", {
+    //         method: 'GET',
+    //         redirect: 'follow'
+    //     })
+    //         .then(response => response.json())
+    //         .then(result => {   //console.log(result);
+    //                             this.state.reports = result;
+    //                             console.log(this.state.reports);
+    //                             this.props.navigation.navigate('WaterHome', {
+    //                                 report: this.state.reports,
+    //                             })
+    //                         })
+    //         .catch(error => console.log('error', error));    
+    // }
+
+
+
 
     correctLogin = async() => {
 
         var checkNum = this.state.phoneNum;
 
-        await fetch("http://10.0.0.13:3004/users/" + checkNum, {
+        await fetch("http://10.0.0.123:3004/users/" + checkNum, {
             method: 'GET',
             redirect: 'follow'
         })

@@ -82,7 +82,7 @@ export default class CreateNewAccount extends React.Component {
 
 		//inserts new user into database
 
-		fetch("http://10.0.0.13:3004/users", {
+		fetch("http://10.0.0.123:3004/users", {
 			method: 'POST',
 			headers: {"Content-Type": "application/json"},
 			body: JSON.stringify({"firstname":this.state.firstName,"lastname":this.state.lastName,"community":this.state.community,"phonenumber":this.state.phoneNum,"admin":0,"password":this.state.password}),
