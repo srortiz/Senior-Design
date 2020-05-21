@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text, Image, TouchableOpacity } from 'react-native'
+import { View, Text, Image, TouchableOpacity, ScrollView, FlatList } from 'react-native'
 import { Form, Button } from 'native-base'
 import styles from '../Style'
 
@@ -8,6 +8,17 @@ export class Inbox extends React.Component {
         title: 'Inbox',
     };
 
+    state = {
+        mail: [
+            {"idmail":1,"to":"Rachael","from":"Sarah","community":"communidad 3","date":"2020-05-19 07:00:15","read":0,"urgent":1,"subject":"test email","body":"This is a test email","audio":"","image":""},
+            {"idmail":2,"to":"Rachael","from":"Sarah","community":"communidad 3","date":"2020-05-19 07:00:15","read":0,"urgent":1,"subject":"test email","body":"This is a test email","audio":"","image":""},
+            {"idmail":3,"to":"Rachael","from":"Sarah","community":"communidad 3","date":"2020-05-19 07:00:15","read":0,"urgent":1,"subject":"test email","body":"This is a test email","audio":"","image":""},
+            {"idmail":4,"to":"Rachael","from":"Sarah","community":"communidad 3","date":"2020-05-19 07:00:15","read":1,"urgent":1,"subject":"test email","body":"This is a test email","audio":"","image":""},
+            {"idmail":5,"to":"Rachael","from":"Sarah","community":"communidad 3","date":"2020-05-19 07:00:15","read":0,"urgent":1,"subject":"test email","body":"This is a test email","audio":"","image":""},
+            {"idmail":6,"to":"Rachael","from":"Sarah","community":"communidad 3","date":"2020-05-19 07:00:15","read":1,"urgent":1,"subject":"test email","body":"This is a test email","audio":"","image":""}
+        ],
+    };
+    
     render() {
         return (
             <View style={styles.container}>
@@ -23,27 +34,34 @@ export class Inbox extends React.Component {
                     <View style={styles.subheader}>
                         <View style={styles.leftHeader}>
                             <Button style={styles.back}
-                                onPress={() => this.props.navigation.navigate('Homepage')}>
+                                onPress={() => this.props.navigation.navigate('WaterHome')}>
                                 <Text style={styles.backText}>{'<'} Atrás</Text>
                             </Button>
                         </View>
                     </View>
 
                     <Text style={styles.title}>Inbox</Text>
-
-                    <Button
-                        onPress={() => { this.props.navigation.navigate('ViewIndividualMessage'); }}>
-                        <Text>See one message.</Text>
-                    </Button>
-
+                    
                     <View style={styles.inboxBody}>
-                        <View style={styles.message}>
-                            <View style={styles.unread}>
-                                <View style={styles.circle}></View>
-                            </View>
-                            <View style={styles.messageSummary}></View>
-                            <View style={styles.messageDate}></View>
-                        </View>
+                    <ScrollView>
+                        <FlatList inverted data={this.state.mail} renderItem={({ item, index }) =>
+                            <Button style={styles.message} onPress={() => { this.props.navigation.navigate('ViewIndividualMessage'); }}>
+                                    <View style={styles.unread}>
+                                    {item.read
+                                        ? <Text></Text>
+                                        : <Image source={require('../assets/blue-circle.png')} style={styles.circle}/>
+                                    }
+                                    </View>
+                                    <View style={styles.content}>
+                                        <Text style={styles.fromText}>{item.from}</Text>
+                                        <Text>{item.subject}</Text>
+                                    </View>
+                                    <View style={styles.messageDate}>
+                                        <Text>{item.date}</Text>
+                                    </View>
+                            </Button>}
+                        />
+                    </ScrollView>
                     </View>
                 </View>
 

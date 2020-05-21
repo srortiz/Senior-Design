@@ -33,7 +33,7 @@ export default class ViewIndividualMessage extends React.Component {
 					<View style={styles.viewMessCont}>
 
 						<Button style={styles.backButton}
-                            onPress={() => this.props.navigation.navigate('WaterHome')}>
+                            onPress={() => this.props.navigation.navigate('Inbox')}>
                             <Text style={styles.backText}>{'<'} Atrás</Text>
                         </Button>
 

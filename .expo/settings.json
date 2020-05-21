@@ -3,6 +3,11 @@
   "lanType": "ip",
   "dev": true,
   "minify": false,
+<<<<<<< HEAD
   "urlRandomness": "7w-ugx",
   "https": true
+=======
+  "urlRandomness": "mv-yrk",
+  "https": false
+>>>>>>> 0ba6edf17f8785c972eac8eeaef770e41887d9e2
 }
