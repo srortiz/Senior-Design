@@ -3,8 +3,8 @@ import { Text, View, Image, ScrollView, TouchableOpacity, TextInput } from 'reac
 import styles from '../Style';
 import { Dropdown } from 'react-native-material-dropdown'
 import { Form, Button } from 'native-base'
-import * as ImagePicker from 'expo-image-picker';
-//import PhotoUpload from 'react-native-photo-upload'
+import * as ImagePicker from 'expo-image-picker'
+import { CheckBox } from 'react-native-elements'
 
 export default class ReportWaterQuality extends React.Component {
 	state = {
@@ -136,7 +136,7 @@ export default class ReportWaterQuality extends React.Component {
 								/>
 
 								<View style={styles.reportWaterButtons}>
-									<TouchableOpacity style={styles.reportWaterRecordButton}>
+									<TouchableOpacity style={styles.reportWaterRecordButton} onPress={() => {this.props.navigation.navigate('RecordMessageIncident')}}>
 										<Image source={require('../assets/mic.png')} style={styles.mic}/>
 										<Text style={{fontSize: 15}}>Recordar un mensaje</Text>
 									</TouchableOpacity>

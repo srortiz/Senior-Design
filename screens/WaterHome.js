@@ -83,7 +83,7 @@ export class WaterHome extends React.Component {
                         <Text style={styles.subTitle}>Noticias</Text>
                         <FlatList inverted data={this.state.data} 
                             getItemLayout={(data, index) => (
-                                {length: 200, offset: 200 * index, index}
+                                {length: 100, offset: 100 * index, index}
                             )}
                             initialScrollIndex={this.state.data.length - 1}
                             keyExtractor={(item, index) => index.toString()}
