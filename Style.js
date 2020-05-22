@@ -737,5 +737,156 @@ export default StyleSheet.create({
     row: {
 		flexDirection: 'row',
 		justifyContent: 'space-evenly'
-	}
+    },
+
+    emptyContainer: {
+        alignSelf: 'stretch'
+    },
+  
+    audioPageContent: {
+        padding: 20,
+        flex: 6,
+        flexDirection: 'column',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        alignSelf: 'stretch',
+        // minHeight: DEVICE_HEIGHT,
+        // maxHeight: DEVICE_HEIGHT,
+      },
+      noPermissionsText: {
+        textAlign: 'center',
+      },
+      wrapper: {},
+      halfScreenContainer: {
+        flex: 1,
+        flexDirection: 'column',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        alignSelf: 'stretch',
+        // minHeight: DEVICE_HEIGHT / 2.0,
+        // maxHeight: DEVICE_HEIGHT / 2.0,
+      },
+      recordingContainer: {
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        alignSelf: 'stretch',
+        // minHeight: ICON_RECORD_BUTTON.height,
+        // maxHeight: ICON_RECORD_BUTTON.height,
+      },
+      recordingDataContainer: {
+        flex: 1,
+        flexDirection: 'column',
+        justifyContent: 'flex-end',
+        alignItems: 'center',
+        // minHeight: ICON_RECORD_BUTTON.height,
+        // maxHeight: ICON_RECORD_BUTTON.height,
+        // minWidth: ICON_RECORD_BUTTON.width * 3.0,
+        // maxWidth: ICON_RECORD_BUTTON.width * 3.0,
+      },
+      recordingDataRowContainer: {
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        // minHeight: ICON_RECORDING.height,
+        // maxHeight: ICON_RECORDING.height,
+      },
+      playbackContainer: {
+        flex: 1,
+        flexDirection: 'column',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        alignSelf: 'stretch',
+      //   minHeight: ICON_THUMB_1.height * 2.0,
+      //   maxHeight: ICON_THUMB_1.height * 2.0,
+      },
+      playbackSlider: {
+        alignSelf: 'stretch',
+      },
+      liveText: {
+        color: '#FF0000',
+        fontSize: 30
+      },
+      recordingTimestamp: {
+        paddingLeft: 20,
+      },
+      playbackTimestamp: {
+        textAlign: 'right',
+        alignSelf: 'stretch',
+        paddingRight: 20,
+      },
+      micRecord: {
+          height: 100,
+          width: 60
+      },
+      recording: {
+          height: 20,
+          width: 20
+      },
+      mute: {
+          height: 50,
+          width: 50
+      },
+      play: {
+          height: 90,
+          width: 90
+      },
+      stop: {
+          height: 30,
+          width: 30
+      },
+      textButton: {
+        padding: 10,
+      },
+      buttonsContainerBase: {
+        flex: 1,
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+      },
+      buttonsContainerTopRow: {
+        // maxHeight: ICON_MUTED_BUTTON.height,
+        alignSelf: 'stretch',
+        paddingRight: 20,
+      },
+      playStopContainer: {
+        flex: 1,
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'flex-end'
+        // minWidth: (ICON_PLAY_BUTTON.width + ICON_STOP_BUTTON.width) * 3.0 / 2.0,
+        // maxWidth: (ICON_PLAY_BUTTON.width + ICON_STOP_BUTTON.width) * 3.0 / 2.0,
+      },
+      volumeContainer: {
+        flex: 1,
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        // minWidth: DEVICE_WIDTH / 2.0,
+        // maxWidth: DEVICE_WIDTH / 2.0,
+      },
+      volumeSlider: {
+        // width: DEVICE_WIDTH / 2.0 - ICON_MUTED_BUTTON.width,
+      },
+      buttonsContainerBottomRow: {
+        //maxHeight: ICON_THUMB_1.height,
+        alignSelf: 'stretch',
+        paddingRight: 20,
+        paddingLeft: 20,
+      },
+      rateSlider: {
+        // width: DEVICE_WIDTH / 2.0,
+      },
+      uploadAudioButton: {
+        borderRadius: 20,
+        backgroundColor: 'red',
+        width: 100,
+        padding: 10,
+        marginBottom: 40,
+        alignSelf: 'center',
+        alignItems: 'center',
+        fontSize: 10,
+    },
 });

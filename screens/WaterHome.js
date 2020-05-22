@@ -24,6 +24,7 @@ export class WaterHome extends React.Component {
         const response = await fetch ('http://10.0.0.13:3004/reports');
         const users = await response.json();
         this.setState({data: users});
+        console.log(this.state.data[0].date);
     }
 
     componentDidMount() {
@@ -87,15 +88,9 @@ export class WaterHome extends React.Component {
                             initialScrollIndex={this.state.data.length - 1}
                             keyExtractor={(item, index) => index.toString()}
                             renderItem={({ item, index }) => 
-                            <Button full rounded success style={styles.clickReportButton} onPress={() => this.props.navigation.navigate('ViewIndividualWaterReport',
-                                                                                                        {
-                                                                                                            titlePass: item.title,
-                                                                                                            messPass: item.message,
-                                                                                                            datePass: item.date,
-                                                                                                        })}>
-                                <Text style={styles.dateHome}>{item.date}</Text>
-                                <Text style={styles.buttonTextHome}>{item.title}</Text>
-
+                            <Button full rounded success style={styles.reportButton} onPress={() => this.props.navigation.navigate('ViewIndividualWaterReport')}>
+                                <Text style={styles.buttonText}>{item.title} </Text>
+                                <Text style={styles.buttonText}>{item.date}</Text>
                                 {item.urgent
                                     ? <Image source={require('../assets/emergency.png')} style={styles.emergency}/>
                                     : <Text></Text>
