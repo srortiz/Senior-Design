@@ -56,7 +56,7 @@ export class Inbox extends React.Component {
                     <View style={styles.inboxBody}>
                         <FlatList inverted data={this.state.data} 
                             getItemLayout={(data, index) => (
-                                {length: 200, offset: 200 * index, index}
+                                {length: 70, offset: 70 * index, index}
                             )}
                             initialScrollIndex={this.state.data.length - 1}
                             keyExtractor={(item, index) => index.toString()}

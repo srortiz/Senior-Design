@@ -19,6 +19,8 @@ export default class CreateNewWaterQualityReport extends React.Component {
 	createReport = () => {
 		alert('new report created!');
 
+		this.setState({audio: this.props.navigation.state.params.sound});
+
 		//inserts new report into database
 		fetch("http://10.0.0.123:3004/reports", {
 			method: 'POST',

@@ -110,7 +110,7 @@ export default class CreateNewAccount extends React.Component {
 			.catch(error => console.log('error', error));
 
 		//moves user further into application if all parameters are met
-		alert('New account has been created, please login now!')
+		alert('Nueva cuenta se ha creado, ¡iniciar sesión!')
 		this.props.navigation.navigate('Login');
 	}
 
