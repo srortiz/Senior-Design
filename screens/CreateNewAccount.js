@@ -1,8 +1,25 @@
 import React from 'react';
-import { Text, View, Image, TextInput, TouchableOpacity, FlatList, ScrollView } from 'react-native';
+import { Text, View, Image, TextInput, TouchableOpacity, FlatList, ScrollView, YellowBox } from 'react-native';
 import styles from '../Style';
 import { Dropdown } from 'react-native-material-dropdown';
 import { CheckBox } from 'react-native-elements';
+import _ from 'lodash';
+
+YellowBox.ignoreWarnings(['componentWillReceiveProps']);
+const _console = _.clone(console);
+console.warn = message => {
+	if (message.indexOf('componentWillReceiveProps') <= -1) {
+	_console.warn(message);
+	} 
+};
+
+YellowBox.ignoreWarnings(['componentWillUpdate']);
+const _console2 = _.clone(console);
+console.warn = message => {
+	if (message.indexOf('componentWillUpdate') <= -1) {
+	_console2.warn(message);
+	} 
+};
 
 export default class CreateNewAccount extends React.Component {
 

@@ -60,7 +60,10 @@ export class Login extends React.Component {
 
                                     if (result[0].password == this.state.password)
                                     {
-                                        this.props.navigation.navigate('WaterHome');
+                                        this.props.navigation.navigate('WaterHome', {},
+                                            {
+                                                params: {phoneNumPass: this.state.reports}
+                                            });
                                     }
                                     else
                                     {
@@ -91,6 +94,7 @@ export class Login extends React.Component {
                             <Label>Numero de telefono móvil</Label>
                             <Input
                             autoCapitalize="none"
+                            keyboardType = "number-pad"
                             autoCorrect={false}
                             onChangeText={phoneNum => this.setState({ phoneNum })} />
                         </Item>
@@ -111,7 +115,7 @@ export class Login extends React.Component {
 
                         <Button style={[styles.link, { marginTop: 20 }]}
                             onPress={() => this.props.navigation.navigate('Welcome')}>
-                            <Text style={styles.underline}>Forgot my password!</Text>
+                            <Text style={styles.underline}>Olvidé mi contraseña</Text>
                         </Button>
 
                         <Button style={styles.link}

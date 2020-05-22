@@ -6,6 +6,7 @@ import WaterHome from './screens/WaterHome'
 import ConfirmWaterQualityReport from './screens/ConfirmWaterQualityReport'
 import CreateNewAccount from './screens/CreateNewAccount'
 import CreateNewWaterQualityReport from './screens/CreateNewWaterQualityReport'
+import CreateNewWaterQualityReportPub from './screens/CreateNewWaterQualityReportPub'
 import ReportWaterQuality from './screens/ReportWaterQuality'
 import RespondToMessage from './screens/RespondToMessage'
 import ViewIndividualMessage from './screens/ViewIndividualMessage'
@@ -21,11 +22,12 @@ const myStackNavigator = createStackNavigator(
 	WaterHome: WaterHome,
 	ConfirmWaterQualityReport: ConfirmWaterQualityReport,
 	CreateNewWaterQualityReport: CreateNewWaterQualityReport,
-	ViewIndividualMessage: ViewIndividualMessage,
 	ViewIndividualWaterReport: ViewIndividualWaterReport,
 	ReportWaterQuality: ReportWaterQuality,
 	RespondToMessage: RespondToMessage,
 	Inbox: Inbox,
+	ViewIndividualMessage: ViewIndividualMessage,
+	CreateNewWaterQualityReportPub: CreateNewWaterQualityReportPub,
 	RecordMessage: RecordMessage,
 },
 {

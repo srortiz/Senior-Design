@@ -20,11 +20,12 @@ export default class RespondToMessage extends React.Component {
                             <Text style={styles.backText}>{'<'} Atrás</Text>
                         </Button>
 
-						<Text style={styles.respondMessHead}>A: [Nombre]</Text>
+						<Text style={styles.respondMessHead}>A: {this.props.navigation.state.params.toPass}</Text>
 
 						<View style={styles.respondMessBox}>
 							{/*response to message*/}
 							<TextInput style={styles.respondMessInput}
+								multiline
 								underlineColorAndroid = "transparent"
 								placeholder = "Escribir su informe aquí..."
 								placeholderTextColor = "#707070"

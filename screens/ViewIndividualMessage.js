@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, Image, TextInput, ScrollView, TouchableOpacity, Modal } from 'react-native';
+import { Text, View, Image, TextInput, ScrollView, TouchableOpacity, Modal, Linking } from 'react-native';
 import styles from '../Style';
 import { Form, Button } from 'native-base'
 import ImageViewer from 'react-native-image-zoom-viewer'
@@ -37,13 +37,14 @@ export default class ViewIndividualMessage extends React.Component {
                             <Text style={styles.backText}>{'<'} Atrás</Text>
                         </Button>
 
-						<Text style={styles.viewMessDate}>10 de febrario</Text>
-						<Text style={styles.viewMessHead}>De: [Nombre]</Text>
+						<Text style={styles.viewMessDate}>{this.props.navigation.state.params.datePass}</Text>
+						<Text style={styles.viewMessHead}>De: {this.props.navigation.state.params.senderPass}</Text>
 
 						<View style={styles.viewMessBox}>
 							<ScrollView style={styles.viewMessScrollView}>
-								<Text style={styles.viewMessComm}>[comunidad]</Text>
-								<Text style={{fontSize: 16}}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ut tempor nibh, a ultrices enim. Duis et sollicitudin urna. Aliquam mollis, nunc in consequat tincidunt, ipsum libero porttitor nibh, sodales elementum leo purus et metus. Nunc egestas tortor sit amet efficitur tempus. Nullam rutrum eget ex sed viverra. Aliquam vel justo luctus, varius risus in, vehicula erat. Fusce elementum in ante nec luctus. Curabitur vitae egestas odio. Nam vitae tortor eget magna sodales lacinia eget sed libero. Nam iaculis nibh dapibus semper tincidunt. Donec sed eros urna. Ut ac augue tellus. Mauris lobortis metus turpis, eget feugiat nibh hendrerit eget.</Text>
+								<Text style={styles.viewMessComm}>{this.props.navigation.state.params.subjectPass}{"\n"}
+																	{this.props.navigation.state.params.commPass}</Text>
+								<Text style={{fontSize: 16}}>{this.props.navigation.state.params.messPass}</Text>
 								<TouchableOpacity style={styles.viewMessListenButton}>
 									<Image source={require('../assets/mic.png')} style={styles.mic}/>
 									<Text style={{fontSize: 17}}>Escuchar al mensaje</Text>
@@ -80,17 +81,27 @@ export default class ViewIndividualMessage extends React.Component {
 						</View>
 
 						<View style={styles.viewMessButtons}>
-							<TouchableOpacity style={styles.viewMessCallButton}>
+							<TouchableOpacity style={styles.viewMessCallButton}
+								onPress = {() => Linking.openURL('tel:2066602920')}>
 								<Text style={{fontSize: 17, color: 'white'}}>Llamar</Text>
 							</TouchableOpacity> 
 
+
 							<TouchableOpacity style={styles.viewMessRespondButton}
-								onPress={() => this.props.navigation.navigate('RespondToMessage')}>
+								onPress={() => this.props.navigation.navigate('RespondToMessage',
+													{
+														toPass : this.props.navigation.state.params.senderPass,
+													})}>
 								<Text style={{fontSize: 17, color: 'white'}}>Responder</Text>
 							</TouchableOpacity> 
 
 							<TouchableOpacity style={styles.viewMessPublishButton}
-								onPress={() => this.props.navigation.navigate('CreateNewWaterQualityReport')}>
+								onPress={() => this.props.navigation.navigate('CreateNewWaterQualityReportPub',
+													{
+														subjectPass : this.props.navigation.state.params.subjectPass,
+														commPass : this.props.navigation.state.params.commPass,
+														messPass : this.props.navigation.state.params.messPass,
+													})}>
 								<Text style={{fontSize: 17, color: 'white'}}>Publicar</Text>
 							</TouchableOpacity> 
 						</View>

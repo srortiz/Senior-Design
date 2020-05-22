@@ -1,10 +1,10 @@
 {
-  "expoServerPort": 19000,
-  "expoServerNgrokUrl": "https://86-f4p.anonymous.senior-design.exp.direct",
-  "packagerNgrokUrl": "https://packager.86-f4p.anonymous.senior-design.exp.direct",
-  "ngrokPid": 4902,
-  "packagerPort": 19003,
-  "packagerPid": 4880,
+  "expoServerPort": null,
+  "expoServerNgrokUrl": null,
+  "packagerNgrokUrl": null,
+  "ngrokPid": null,
+  "packagerPort": null,
+  "packagerPid": null,
   "webpackServerPort": null,
   "devToolsPort": 19002
 }

@@ -6,7 +6,7 @@ import { Form, Button } from 'native-base'
 import * as ImagePicker from 'expo-image-picker'
 import { CheckBox } from 'react-native-elements'
 
-export default class CreateNewWaterQualityReport extends React.Component {
+export default class CreateNewWaterQualityReportPub extends React.Component {
 	state = {
 		image: null,
 		title: '',
@@ -91,6 +91,7 @@ export default class CreateNewWaterQualityReport extends React.Component {
 									underlineColorAndroid = "transparent"
 									placeholder = "Escribir su titular aquí..."
 									placeholderTextColor = "#707070"
+									defaultValue = {this.props.navigation.state.params.subjectPass}
 									autoCapitalize = "none"
 									textAlign = "left"
 									onChangeText = {title => this.setState({title})}
@@ -100,6 +101,7 @@ export default class CreateNewWaterQualityReport extends React.Component {
 								<Dropdown
 									containerStyle={styles.createReportCommDropdown}
 									label="Eligir su comunidad"
+									defaultValue = {this.props.navigation.state.params.commPass}
 									data={community}
 									dropdownOffset={{'top':7, 'left':0}}
 									inputContainerStyle={{ borderBottomColor: 'transparent' }}
@@ -111,6 +113,7 @@ export default class CreateNewWaterQualityReport extends React.Component {
 								<TextInput style={styles.createReportIncidentInput}
 									multiline
 									underlineColorAndroid = "transparent"
+									defaultValue = {this.props.navigation.state.params.messPass}
 									placeholder = "Escribir su informe aquí..."
 									placeholderTextColor = "#707070"
 									autoCapitalize = "none"

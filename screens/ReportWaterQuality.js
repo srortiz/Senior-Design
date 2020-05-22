@@ -14,6 +14,7 @@ export default class ReportWaterQuality extends React.Component {
 		message: '',
 		audio: null,
 		image: null,
+		subject: '',
 	};
 
 	createIncident = () => {
@@ -21,7 +22,7 @@ export default class ReportWaterQuality extends React.Component {
 		fetch("http://10.0.0.123:3004/incidents", {
 			method: 'POST',
 			headers: {"Content-Type": "application/json"},
-			body: JSON.stringify({"sender":this.state.sender,"community":this.state.community,"urgent":this.state.urgent,"message":this.state.message,"audio":this.state.audio,"image":this.state.image}),
+			body: JSON.stringify({"sender":this.state.sender,"community":this.state.community,"urgent":this.state.urgent,"message":this.state.message,"audio":this.state.audio,"image":this.state.image, "subject":this.state.subject}),
 			redirect: 'follow'
 		})
 			.then(response => response.text())
@@ -40,6 +41,24 @@ export default class ReportWaterQuality extends React.Component {
 			value: 'Communidad 3',
 		}, {
 			value: 'Communidad 4',
+		},{
+			value: 'Communidad 5',
+		}, {
+			value: 'Communidad 6',
+		}, {
+			value: 'Communidad 7',
+		},{
+			value: 'Communidad 8',
+		}, {
+			value: 'Communidad 9',
+		}, {
+			value: 'Communidad 10',
+		},{
+			value: 'Communidad 11',
+		}, {
+			value: 'Communidad 12',
+		}, {
+			value: 'Communidad 13',
 		}];
 
 		return (
@@ -75,12 +94,22 @@ export default class ReportWaterQuality extends React.Component {
 									onChangeText = {sender => this.setState({sender})}
 								/>
 
+								{/*subject*/}
+								<TextInput style={styles.reportWaterSubjectInput}
+									underlineColorAndroid = "transparent"
+									placeholder = "Message Subject"
+									placeholderTextColor = "#707070"
+									autoCapitalize = "none"
+									textAlign = "left"
+									onChangeText = {subject => this.setState({subject})}
+								/>
+
 								{/*community*/}
 								<Dropdown
 									containerStyle={styles.reportWaterCommDropdown}
 									label="Eligir su comunidad"
 									data={community}
-									dropdownOffset={{'top':7}}
+									dropdownOffset={{'top':7, 'left':0}}
 									inputContainerStyle={{ borderBottomColor: 'transparent' }}
 									baseColor='#707070'
 									onChangeText = {community => this.setState({community})}
@@ -88,6 +117,7 @@ export default class ReportWaterQuality extends React.Component {
 
 								{/*description of incident*/}
 								<TextInput style={styles.reportWaterIncidentInput}
+									multiline
 									underlineColorAndroid = "transparent"
 									placeholder = "Escribir su informe aquí..."
 									placeholderTextColor = "#707070"

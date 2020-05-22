@@ -176,7 +176,7 @@ export default StyleSheet.create({
         marginTop: 25,
         marginBottom: 10,
         width: 350,
-        height: 410,
+        height: 460,
         borderColor: 'black',
         borderWidth: 1,
         borderRadius: 30,
@@ -187,6 +187,17 @@ export default StyleSheet.create({
         height: 40,
         width: 250,
         paddingLeft: 10,
+        borderColor: '#707070',
+        borderWidth: 1.25,
+        borderRadius: 20,
+        fontSize: 16,
+    },
+
+    reportWaterSubjectInput: {
+        height: 40,
+        width: 250,
+        paddingLeft: 10,
+        marginTop: 18,
         borderColor: '#707070',
         borderWidth: 1.25,
         borderRadius: 20,
@@ -208,6 +219,9 @@ export default StyleSheet.create({
         height: 200,
         width: 307,
         paddingLeft: 10,
+        paddingTop: 15,
+        paddingRight: 10,
+        paddingBottom: 15,
         borderColor: '#707070',
         borderWidth: 1.25,
         borderRadius: 25,
@@ -332,9 +346,12 @@ export default StyleSheet.create({
 
     createReportIncidentInput: {
         marginTop: 18,
-        height: 225,
+        height: 200,
         width: 307,
         paddingLeft: 10,
+        paddingTop: 15,
+        paddingRight: 10,
+        paddingBottom: 15,
         borderColor: '#707070',
         borderWidth: 1.25,
         borderRadius: 25,
@@ -342,7 +359,6 @@ export default StyleSheet.create({
     },
 
     createReportButtons: {
-        marginTop: 10,
         flex: 1,
         flexDirection: 'row',
         justifyContent: 'space-between',
@@ -673,15 +689,6 @@ export default StyleSheet.create({
         width: 15
     },
 
-    content: {
-        marginTop: 3
-    },
-
-    fromText: {
-        fontSize: 20,
-        fontWeight: "bold"
-    },
-
     messageDate: {
         marginTop: 10,
         marginRight: 10
@@ -693,5 +700,37 @@ export default StyleSheet.create({
         //alignSelf: 'flex-start',
         //marginLeft: 60,
         marginTop: 10
-    }
+    },
+
+    dateHome: {
+        color: 'white',
+        fontSize: 14,
+        alignSelf: 'flex-end',
+        marginRight: 15,
+    },
+
+    clickReportButton: {
+        backgroundColor: '#008bfc',
+        height: 80,
+        marginTop: 20,
+        marginLeft: 20,
+        marginRight: 20,
+        borderRadius: 20,
+        flex: 1,
+        flexDirection: 'column',
+    },
+
+    buttonTextHome: {
+        color: 'white',
+        fontSize: 20
+    },
+
+    content: {
+        marginTop: 3
+    },
+
+    fromText: {
+        fontSize: 20,
+        fontWeight: "bold"
+    },
 });

@@ -46,13 +46,15 @@ export default class ViewIndividualWaterReport extends React.Component {
                             <Text style={styles.backText}>{'<'} Atrás</Text>
                         </Button>
 
-						<Text style={styles.viewReportHead}>Titular</Text>
+                        <Text style={styles.viewMessDate}>{this.props.navigation.state.params.datePass}</Text>
+
+						<Text style={styles.viewReportHead}>{this.props.navigation.state.params.titlePass}</Text>
 
 						<View style={styles.viewReportBox}>
 							<ScrollView style={styles.viewReportScrollView}>
 
 
-								<Text style={{fontSize: 16}}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ut tempor nibh, a ultrices enim. Duis et sollicitudin urna. Aliquam mollis, nunc in consequat tincidunt, ipsum libero porttitor nibh, sodales elementum leo purus et metus. Nunc egestas tortor sit amet efficitur tempus. Nullam rutrum eget ex sed viverra. Aliquam vel justo luctus, varius risus in, vehicula erat. Fusce elementum in ante nec luctus. Curabitur vitae egestas odio. Nam vitae tortor eget magna sodales lacinia eget sed libero. Nam iaculis nibh dapibus semper tincidunt. Donec sed eros urna. Ut ac augue tellus. Mauris lobortis metus turpis, eget feugiat nibh hendrerit eget. Cras lobortis, quam nec tristique elementum, quam velit consequat eros, non maximus nisl ante in arcu. Duis id orci molestie, gravida eros porttitor, lacinia turpis. Phasellus porta vestibulum sapien quis volutpat.</Text>
+								<Text style={{fontSize: 16}}>{this.props.navigation.state.params.messPass}</Text>
 								<TouchableOpacity style={styles.viewReportListenButton}
 									onPress={() => this.props.navigation.navigate('RecordMessage')}>
 									<Image source={require('../assets/mic.png')} style={styles.mic}/>

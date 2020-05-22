@@ -85,7 +85,20 @@ app.post('/users', (req, res) => {
 app.get('/reports', (req, res) => {
 
 	//var sql = 'SELECT * FROM reports';
-	var sql = 'SELECT idreports, title, DATE_FORMAT(date, "%W,%M"), urgent, communities, message, audio, image FROM reports';
+	var sql = 'SELECT idreports, title, DATE_FORMAT(date, "%d/%m/%Y") date, urgent, communities, message, audio, image FROM reports';
+	con.query(sql, (err, rows, fields) => {
+		if (!err)
+			res.send(rows);
+		else
+			console.log(err);
+	});
+});
+
+//get all incidents
+app.get('/incidents', (req, res) => {
+
+	//var sql = 'SELECT * FROM incidents';
+	var sql = 'SELECT idincidents, sender, community, DATE_FORMAT(date, "%d/%m/%Y") date, urgent, message, audio, subject, image, readYn FROM incidents';
 	con.query(sql, (err, rows, fields) => {
 		if (!err)
 			res.send(rows);
@@ -131,11 +144,11 @@ app.post('/incidents', (req, res) => {
 
 	let incident = req.body;
 
-	var sql = 'SET @sender = ?; SET @community = ?; SET @urgent = ?; SET @message = ?; SET @audio = ?; SET @image = ?; \
-				CALL waterdb.AddNewIncident(@sender, @community, @urgent, @message, @audio, @image);';
+	var sql = 'SET @sender = ?; SET @community = ?; SET @urgent = ?; SET @message = ?; SET @audio = ?; SET @image = ?; SET @subject = ?;\
+				CALL waterdb.AddNewIncident(@sender, @community, @urgent, @message, @audio, @image, @subject);';
 	
 
-	con.query(sql, [incident.sender, incident.community, incident.urgent, incident.message, incident.audio, incident.image], (err, rows, fields) => {
+	con.query(sql, [incident.sender, incident.community, incident.urgent, incident.message, incident.audio, incident.image, incident.subject], (err, rows, fields) => {
 		if (!err)
 			res.send('New incident inserted successfully');
 		else
