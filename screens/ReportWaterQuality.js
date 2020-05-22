@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, Image, ScrollView, TouchableOpacity, TextInput } from 'react-native';
+import { Text, View, Image, ScrollView, TouchableOpacity, TextInput, CheckBox } from 'react-native';
 import styles from '../Style';
 import { Dropdown } from 'react-native-material-dropdown'
 import { Form, Button } from 'native-base'

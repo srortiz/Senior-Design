@@ -659,7 +659,7 @@ export default StyleSheet.create({
     emergency: {
         width: 38,
         height: 30,
-        marginLeft: 20
+        marginLeft: 20,
     },
 
     inboxBody: {
@@ -706,7 +706,6 @@ export default StyleSheet.create({
     dateHome: {
         color: 'white',
         fontSize: 14,
-        alignSelf: 'flex-end',
         marginRight: 15,
     },
 
@@ -718,12 +717,13 @@ export default StyleSheet.create({
         marginRight: 20,
         borderRadius: 20,
         flex: 1,
-        flexDirection: 'column',
+        flexDirection: 'row-reverse',
+        justifyContent: 'space-between',
     },
 
     buttonTextHome: {
         color: 'white',
-        fontSize: 20
+        fontSize: 20,
     },
 
     content: {
