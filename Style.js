@@ -703,7 +703,6 @@ export default StyleSheet.create({
         marginTop: 10
     },
 
-<<<<<<< HEAD
     dateHome: {
         color: 'white',
         fontSize: 14,
@@ -735,10 +734,8 @@ export default StyleSheet.create({
         fontSize: 20,
         fontWeight: "bold"
     },
-=======
     row: {
 		flexDirection: 'row',
 		justifyContent: 'space-evenly'
 	}
->>>>>>> 4de9fe217dd09f9a7833aa5309b13024e2e1c97c
 });
