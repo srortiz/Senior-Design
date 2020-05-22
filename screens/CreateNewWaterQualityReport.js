@@ -20,7 +20,7 @@ export default class CreateNewWaterQualityReport extends React.Component {
 		alert('new report created!');
 
 		//inserts new report into database
-		fetch("http://10.0.0.13:3004/reports", {
+		fetch("http://10.0.0.123:3004/reports", {
 			method: 'POST',
 			headers: {"Content-Type": "application/json"},
 			body: JSON.stringify({"title":this.state.title,"urgent":this.state.urgent,"communities":this.state.community,"message":this.state.message,"audio":this.state.audio,"image":this.state.image}),
@@ -128,7 +128,7 @@ export default class CreateNewWaterQualityReport extends React.Component {
 								/>
 
 								<View style={styles.createReportButtons}>
-									<TouchableOpacity style={styles.createReportRecordButton}>
+									<TouchableOpacity style={styles.createReportRecordButton} onPress={() => {this.props.navigation.navigate('RecordMessage')}}>
 										<Image source={require('../assets/mic.png')} style={styles.mic}/>
 										<Text style={{fontSize: 15}}>Recordar un mensaje</Text>
 									</TouchableOpacity>

@@ -126,6 +126,15 @@ export default class ReportWaterQuality extends React.Component {
 									onChangeText = {message => this.setState({message})}
 								/>
 
+								<CheckBox
+									title='¿Es urgente?'
+									containerStyle={styles.checkbox}
+									checkedIcon='check-square-o'
+									uncheckedIcon='square-o'
+									checked={this.state.checked}
+									onPress={() => this.setState({checked: !this.state.checked, urgent: !this.state.urgent})}
+								/>
+
 								<View style={styles.reportWaterButtons}>
 									<TouchableOpacity style={styles.reportWaterRecordButton}>
 										<Image source={require('../assets/mic.png')} style={styles.mic}/>

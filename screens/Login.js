@@ -41,7 +41,7 @@ export class Login extends React.Component {
 
         var checkNum = this.state.phoneNum;
 
-        await fetch("http://10.0.0.123:3004/users/" + checkNum, {
+        await fetch("http://10.0.0.13:3004/users/" + checkNum, {
             method: 'GET',
             redirect: 'follow'
         })
@@ -51,7 +51,7 @@ export class Login extends React.Component {
                                 if (result.length == 0)
                                 {
                                     console.log('no user exists with this phone number, cannot login');
-                                    alert('No user with this phone number, please try again or make account.');
+                                    alert('Existe ningún usuario con este número de teléfono. Volver a intentar o crear una cuenta.');
                                 }
 
                                 else
@@ -67,7 +67,7 @@ export class Login extends React.Component {
                                     }
                                     else
                                     {
-                                        alert('passwords do not match');
+                                        alert('No coinciden la contraseña y el número de teléfono.');
                                         return;
                                     }
                                 }
@@ -115,7 +115,7 @@ export class Login extends React.Component {
 
                         <Button style={[styles.link, { marginTop: 20 }]}
                             onPress={() => this.props.navigation.navigate('Welcome')}>
-                            <Text style={styles.underline}>Olvidé mi contraseña</Text>
+                            <Text style={styles.underline}>¿Olvidó su contraseña?</Text>
                         </Button>
 
                         <Button style={styles.link}
