@@ -17,6 +17,7 @@ export class Login extends React.Component {
             phoneNum: "",
             password: "",
             reports: [],
+            adminRights: '',
         };
     }
 
@@ -63,10 +64,18 @@ export class Login extends React.Component {
 
                                     if (result[0].password == this.state.password)
                                     {
-                                        this.props.navigation.navigate('WaterHome', {},
-                                            {
-                                                params: {phoneNumPass: this.state.reports}
+                                        if (result[0].admin == 0)
+                                        {
+                                            alert(this.state.phoneNum);
+                                            this.props.navigation.navigate('myStackNavigatorGen', {
+                                                screen: 'WaterHomeGen',
+                                                params: { phoneNumPass: this.state.phoneNum}
                                             });
+                                        }
+                                        else
+                                        {
+                                            this.props.navigation.navigate('WaterHomeAdmin');
+                                        }
                                     }
                                     else
                                     {
@@ -145,12 +154,12 @@ export class Login extends React.Component {
 
                         <Button style={[styles.link, { marginTop: 20 }]}
                             onPress={() => this.sendCode()}>
-                            <Text style={styles.underline}>¿Olvidó su contraseña?</Text>
+                            <Text style={styles.loginPageButtons}>¿Olvidó su contraseña?</Text>
                         </Button>
 
                         <Button style={styles.link}
                             onPress={() => this.props.navigation.navigate('CreateNewAccount')}>
-                            <Text style={styles.underline}>¿Es nuevo aquí? ¡Crea una cuenta!</Text>
+                            <Text style={styles.loginPageButtons}>¿Es nuevo aquí? ¡Crea una cuenta!</Text>
                         </Button>
                     </Form>
                     </View>
