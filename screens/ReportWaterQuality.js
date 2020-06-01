@@ -18,6 +18,7 @@ export default class ReportWaterQuality extends React.Component {
 	};
 
 	createIncident = () => {
+		this.setState({audio: this.props.navigation.state.params.sound})
 		//inserts new incident into database
 		fetch("http://10.0.0.123:3004/incidents", {
 			method: 'POST',
