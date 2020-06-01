@@ -1,13 +1,8 @@
 {
-  "hostType": "lan",
-  "lanType": "ip",
   "dev": true,
   "minify": false,
-<<<<<<< HEAD
-  "urlRandomness": "2b-epy",
-  "https": false
-=======
-  "urlRandomness": "fg-nwn",
-  "https": true
->>>>>>> 84e55fa26b6b86573b8d29f13e2304cdcdee02ff
+  "https": false,
+  "hostType": "lan",
+  "lanType": "ip",
+  "urlRandomness": "t7-jkp"
 }
