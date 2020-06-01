@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, Image, TouchableOpacity } from 'react-native';
+import { Text, View, Image, TouchableOpacity, Linking } from 'react-native';
 import styles from '../Style';
 
 export default class CreateNewWaterQualityReport extends React.Component {
@@ -8,7 +8,16 @@ export default class CreateNewWaterQualityReport extends React.Component {
 			<View style={styles.container}>
 			
 				<View style={styles.header}>
-					<Image source={require('../assets/asdenic.png')} style={styles.asdenicLogo}/>
+					<TouchableOpacity
+                        onPress={() => Linking.openURL('https://cluster-nicaragua.net/organizaciones/centro-de-informacion-e-innovacion-asociacion-de-desarrollo-social-de-nicaragua')}>
+                        <Image source={require('../assets/asdenic.png')} style={styles.asdenicLogo}/>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity
+                        onPress={() => Linking.openURL('https://www.scu.edu/engineering/labs--research/labs/frugal-innovation-hub/')}>
+                        <Image source={require('../assets/frugalHub.png')} style={styles.frugalHubLogo}/>
+                    </TouchableOpacity>
+
 					<TouchableOpacity
 						onPress={() => this.props.navigation.navigate('Welcome')}>
 						<Text style={styles.logoutButton}>Cerrar sesión</Text>
@@ -17,7 +26,7 @@ export default class CreateNewWaterQualityReport extends React.Component {
 
 				<View style={styles.pageContent}>
 					<View style={styles.confirmReportCont}>
-						<Text style={styles.confirmReportHead}>Gracias por enviar un incidente del calidad de agua en su comunidad.</Text>
+						<Text style={styles.confirmReportHead}>Gracias por su apoyo y por mandar su mensaje.  Su mensaje será revisado y reenviado a las comunidades.</Text>
 
 								<TouchableOpacity style={styles.confirmReportBackButton}
 									onPress={() => this.props.navigation.navigate('WaterHome')}>

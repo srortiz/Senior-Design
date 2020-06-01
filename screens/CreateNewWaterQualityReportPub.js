@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, Image, ScrollView, TouchableOpacity, TextInput } from 'react-native';
+import { Text, View, Image, ScrollView, TouchableOpacity, TextInput, Linking } from 'react-native';
 import styles from '../Style';
 import { Dropdown } from 'react-native-material-dropdown'
 import { Form, Button } from 'native-base'
@@ -66,7 +66,16 @@ export default class CreateNewWaterQualityReportPub extends React.Component {
 			<View style={styles.container}>
 
 				<View style={styles.header}>
-					<Image source={require('../assets/asdenic.png')} style={styles.asdenicLogo}/>
+					<TouchableOpacity
+                        onPress={() => Linking.openURL('https://cluster-nicaragua.net/organizaciones/centro-de-informacion-e-innovacion-asociacion-de-desarrollo-social-de-nicaragua')}>
+                        <Image source={require('../assets/asdenic.png')} style={styles.asdenicLogo}/>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity
+                        onPress={() => Linking.openURL('https://www.scu.edu/engineering/labs--research/labs/frugal-innovation-hub/')}>
+                        <Image source={require('../assets/frugalHub.png')} style={styles.frugalHubLogo}/>
+                    </TouchableOpacity>
+
 					<TouchableOpacity
 						onPress={() => this.props.navigation.navigate('Welcome')}>
 						<Text style={styles.logoutButton}>Cerrar sesión</Text>
@@ -81,7 +90,7 @@ export default class CreateNewWaterQualityReportPub extends React.Component {
                             <Text style={styles.backText}>{'<'} Atrás</Text>
                         </Button>
 
-						<Text style={styles.createReportHead}>Publicar un reporte sobre el calidad de agua</Text>
+						<Text style={styles.createReportHead}>Publicar un reporte sobre la calidad de agua</Text>
 
 						<View style={styles.createReportBox}>
 							<ScrollView style={styles.createReportScrollView}>
@@ -133,12 +142,12 @@ export default class CreateNewWaterQualityReportPub extends React.Component {
 								<View style={styles.createReportButtons}>
 									<TouchableOpacity style={styles.createReportRecordButton}>
 										<Image source={require('../assets/mic.png')} style={styles.mic}/>
-										<Text style={{fontSize: 15}}>Recordar un mensaje</Text>
+										<Text style={{fontSize: 15}}>Grabar mensaje</Text>
 									</TouchableOpacity>
 
 									<TouchableOpacity style={styles.createReportUploadButton} onPress={this._pickImage}>
 										<Image source={require('../assets/uparrow.png')} style={styles.uparrow}/>
-										<Text style={{fontSize: 15}}>Cargar una foto</Text>
+										<Text style={{fontSize: 15}}>Subir una foto</Text>
 									</TouchableOpacity>
 								</View>
 								<Text>{"\n"}</Text>

@@ -26,7 +26,16 @@ export default class ViewIndividualMessage extends React.Component {
 		return (
 			<View style={styles.container}>
 				<View style={styles.header}>
-					<Image source={require('../assets/asdenic.png')} style={styles.asdenicLogo}/>
+					<TouchableOpacity
+                        onPress={() => Linking.openURL('https://cluster-nicaragua.net/organizaciones/centro-de-informacion-e-innovacion-asociacion-de-desarrollo-social-de-nicaragua')}>
+                        <Image source={require('../assets/asdenic.png')} style={styles.asdenicLogo}/>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity
+                        onPress={() => Linking.openURL('https://www.scu.edu/engineering/labs--research/labs/frugal-innovation-hub/')}>
+                        <Image source={require('../assets/frugalHub.png')} style={styles.frugalHubLogoHome}/>
+                    </TouchableOpacity>
+
 				</View>
 
 				<View style={styles.pageContent}>
@@ -47,7 +56,7 @@ export default class ViewIndividualMessage extends React.Component {
 								<Text style={{fontSize: 16}}>{this.props.navigation.state.params.messPass}</Text>
 								<TouchableOpacity style={styles.viewMessListenButton}>
 									<Image source={require('../assets/mic.png')} style={styles.mic}/>
-									<Text style={{fontSize: 17}}>Escuchar al mensaje</Text>
+									<Text style={{fontSize: 17}}>Escuchar el mensaje</Text>
 								</TouchableOpacity>
 
 								<TouchableOpacity
