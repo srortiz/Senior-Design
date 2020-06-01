@@ -23,7 +23,6 @@ con.connect((err) => {
 
 app.listen(3004, () => console.log('Express server is running at port #3004'));
 
-
 //get all users
 app.get('/users', (req, res) => {
 
@@ -123,8 +122,6 @@ app.post('/reports', (req, res) => {
 			console.log(err);
 	});
 });
-
-
 
 //insert a new incident report
 app.post('/incidents', (req, res) => {

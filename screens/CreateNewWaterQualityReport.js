@@ -17,15 +17,17 @@ export default class CreateNewWaterQualityReport extends React.Component {
 	};
 
 	createReport = () => {
-		alert('new report created!');
+		console.log(this.props.navigation.state.params.sound)
+		//this.setState({ audio: this.props.navigation.state.params.sound })
+		//console.log(this.state.audio)
 
-		this.setState({audio: this.props.navigation.state.params.sound});
+		alert('new report created!');
 
 		//inserts new report into database
 		fetch("http://10.0.0.123:3004/reports", {
 			method: 'POST',
 			headers: {"Content-Type": "application/json"},
-			body: JSON.stringify({"title":this.state.title,"urgent":this.state.urgent,"communities":this.state.community,"message":this.state.message,"audio":this.state.audio,"image":this.state.image}),
+			body: JSON.stringify({"title":this.state.title,"urgent":this.state.urgent,"communities":this.state.community,"message":this.state.message,"audio":this.props.navigation.state.params.sound,"image":this.state.image}),
 			redirect: 'follow'
 		})
 			.then(response => response.text())
@@ -145,7 +147,8 @@ export default class CreateNewWaterQualityReport extends React.Component {
 							</ScrollView>
 						</View>
 						<TouchableOpacity style={styles.createReportPublishButton}
-							onPress={() => {	this.createReport();
+							onPress={() => {	//this.uploadAudio();
+												this.createReport();
 												this.props.navigation.navigate('WaterHome');}}>
 							<Text style={{fontSize: 17, color: 'white', fontWeight: 'bold'}}>Publicar</Text>
 						</TouchableOpacity> 
@@ -189,4 +192,5 @@ export default class CreateNewWaterQualityReport extends React.Component {
 		  console.log(E);
 		}
 	};
+
 }
