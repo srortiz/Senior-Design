@@ -20,12 +20,32 @@ export default StyleSheet.create({
         height: 100,
     },
 
+    headerHome: {
+        backgroundColor: "#4a8eff",
+        flexDirection: 'row',
+        height: 100,
+    },
+
     //logo for header band for all pages
     asdenicLogo: {
         width: 70,
         height: 70,
         marginLeft: 20,
         marginTop: 20,
+    },
+
+    frugalHubLogo: {
+        width: 150,
+        height: 38,
+        marginLeft: 10,
+        marginTop: 45,
+    },
+
+    frugalHubLogoHome: {
+        width: 150,
+        height: 38,
+        marginLeft: 38,
+        marginTop: 45,
     },
 
     logoutButton: {
@@ -653,13 +673,16 @@ export default StyleSheet.create({
         marginTop: 20,
         marginLeft: 20,
         marginRight: 20,
-        borderRadius: 20
+        borderRadius: 20,
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
     },
 
     emergency: {
         width: 38,
         height: 30,
-        marginLeft: 20
+        marginLeft: 20,
     },
 
     inboxBody: {
@@ -706,7 +729,6 @@ export default StyleSheet.create({
     dateHome: {
         color: 'white',
         fontSize: 14,
-        alignSelf: 'flex-end',
         marginRight: 15,
     },
 
@@ -718,12 +740,13 @@ export default StyleSheet.create({
         marginRight: 20,
         borderRadius: 20,
         flex: 1,
-        flexDirection: 'column',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
     },
 
     buttonTextHome: {
         color: 'white',
-        fontSize: 20
+        fontSize: 20,
     },
 
     content: {
@@ -888,5 +911,11 @@ export default StyleSheet.create({
         alignSelf: 'center',
         alignItems: 'center',
         fontSize: 10,
+    },
+
+    incidentButton: {
+        fontSize: 18,
+        fontWeight: 'bold',
+        textDecorationLine: 'underline',
     },
 });

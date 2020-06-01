@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text, Image, TouchableOpacity, ScrollView, FlatList } from 'react-native'
+import { View, Text, Image, TouchableOpacity, ScrollView, FlatList, Linking } from 'react-native'
 import { Form, Button } from 'native-base'
 import styles from '../Style'
 
@@ -21,7 +21,7 @@ export class WaterHome extends React.Component {
     };
 
     fetchData = async() => {
-        const response = await fetch ('http://10.0.0.13:3004/reports');
+        const response = await fetch ('http://10.0.0.123:3004/reports');
         const users = await response.json();
         this.setState({data: users});
         console.log(this.state.data[0].date);
@@ -54,7 +54,16 @@ export class WaterHome extends React.Component {
         return (
             <View style={styles.container}>
                 <View style={styles.header}>
-                    <Image source={require('../assets/asdenic.png')} style={styles.asdenicLogo}/>
+                    <TouchableOpacity
+                        onPress={() => Linking.openURL('https://cluster-nicaragua.net/organizaciones/centro-de-informacion-e-innovacion-asociacion-de-desarrollo-social-de-nicaragua')}>
+                        <Image source={require('../assets/asdenic.png')} style={styles.asdenicLogo}/>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity
+                        onPress={() => Linking.openURL('https://www.scu.edu/engineering/labs--research/labs/frugal-innovation-hub/')}>
+                        <Image source={require('../assets/frugalHub.png')} style={styles.frugalHubLogo}/>
+                    </TouchableOpacity>
+
                     <TouchableOpacity
                         onPress={() => this.props.navigation.navigate('Welcome')}>
                         <Text style={styles.logoutButton}>Cerrar sesión</Text>
@@ -88,9 +97,14 @@ export class WaterHome extends React.Component {
                             initialScrollIndex={this.state.data.length - 1}
                             keyExtractor={(item, index) => index.toString()}
                             renderItem={({ item, index }) => 
-                            <Button full rounded success style={styles.reportButton} onPress={() => this.props.navigation.navigate('ViewIndividualWaterReport')}>
+                            <Button full rounded success style={styles.reportButton} onPress={() => this.props.navigation.navigate('ViewIndividualWaterReport',
+                                                                                                        {           
+                                                                                                            titlePass: item.title,
+                                                                                                            messPass: item.message,
+                                                                                                            datePass: item.date,
+                                                                                                        })}>
+                                <Text style={styles.dateHome}>{item.date}</Text>
                                 <Text style={styles.buttonText}>{item.title} </Text>
-                                <Text style={styles.buttonText}>{item.date}</Text>
                                 {item.urgent
                                     ? <Image source={require('../assets/emergency.png')} style={styles.emergency}/>
                                     : <Text></Text>
@@ -100,7 +114,7 @@ export class WaterHome extends React.Component {
                     </Form>
                     <Button style={styles.link}
                             onPress={() => this.props.navigation.navigate('ReportWaterQuality')}>
-                            <Text style={styles.underline}>¿Tienes algo que reportar? Haz clic aquí.</Text>
+                            <Text style={styles.incidentButton}>¿Tienes algo que reportar? Haz clic aquí.</Text>
                     </Button>
                 </View>
 

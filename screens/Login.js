@@ -1,7 +1,10 @@
 import React from 'react'
-import { View, Text, Image } from 'react-native'
+import { View, Text, Image, TouchableOpacity, Linking } from 'react-native'
 import { Item, Form, Input, Button, Label } from "native-base"
 import styles from '../Style'
+import SendSMS from 'react-native-sms'
+import * as SMS from 'expo-sms';
+import Expo from 'expo';
 
 export class Login extends React.Component {
     static navigationOptions = {
@@ -41,7 +44,7 @@ export class Login extends React.Component {
 
         var checkNum = this.state.phoneNum;
 
-        await fetch("http://10.0.0.13:3004/users/" + checkNum, {
+        await fetch("http://10.0.0.123:3004/users/" + checkNum, {
             method: 'GET',
             redirect: 'follow'
         })
@@ -76,6 +79,24 @@ export class Login extends React.Component {
 
     }
 
+    sendCode = async() => {
+        // SendSMS.send({
+        //     //Message body
+        //     body: '12495',
+        //     //Recipients Number
+        //     recipients: ['2066602920'],
+        //     //An array of types that would trigger a "completed" response when using android
+        //     successTypes: ['sent', 'queued']
+        // }, (completed, cancelled, error) => {
+        //     console.log('SMS Callback: completed: ' + completed + ' cancelled: ' + cancelled + 'error: ' + error);
+        // });
+
+        const isAvailable = await Expo.SMS.isAvailableAsync();
+            if (isAvailable) {
+              const { result } = await Expo.SMS.sendSMSAsync(['123456789'], 'test1234');
+            }
+    }
+
     // componentDidMount () {
     //     this.correctLogin();
     // }
@@ -83,8 +104,17 @@ export class Login extends React.Component {
     render() {
         return (
             <View style={styles.container}>
-                <View style={styles.header}>
-                    <Image source={require('../assets/asdenic.png')} style={styles.asdenicLogo}/>
+                <View style={styles.headerHome}>
+                    <TouchableOpacity
+                        onPress={() => Linking.openURL('https://cluster-nicaragua.net/organizaciones/centro-de-informacion-e-innovacion-asociacion-de-desarrollo-social-de-nicaragua')}>
+                        <Image source={require('../assets/asdenic.png')} style={styles.asdenicLogo}/>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity
+                        onPress={() => Linking.openURL('https://www.scu.edu/engineering/labs--research/labs/frugal-innovation-hub/')}>
+                        <Image source={require('../assets/frugalHub.png')} style={styles.frugalHubLogoHome}/>
+                    </TouchableOpacity>
+
                 </View>
 
                 <View style={styles.pageContent}>
@@ -114,13 +144,13 @@ export class Login extends React.Component {
                         </Button>
 
                         <Button style={[styles.link, { marginTop: 20 }]}
-                            onPress={() => this.props.navigation.navigate('Welcome')}>
+                            onPress={() => this.sendCode()}>
                             <Text style={styles.underline}>¿Olvidó su contraseña?</Text>
                         </Button>
 
                         <Button style={styles.link}
                             onPress={() => this.props.navigation.navigate('CreateNewAccount')}>
-                            <Text style={styles.underline}>¿Es nuevo aquí? Cree una cuenta.</Text>
+                            <Text style={styles.underline}>¿Es nuevo aquí? ¡Crea una cuenta!</Text>
                         </Button>
                     </Form>
                     </View>

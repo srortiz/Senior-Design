@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, Image, ScrollView, TouchableOpacity, TextInput } from 'react-native';
+import { Text, View, Image, ScrollView, TouchableOpacity, TextInput, Linking } from 'react-native';
 import styles from '../Style';
 import { Dropdown } from 'react-native-material-dropdown'
 import { Form, Button } from 'native-base'
@@ -60,13 +60,24 @@ export default class ReportWaterQuality extends React.Component {
 			value: 'Communidad 12',
 		}, {
 			value: 'Communidad 13',
+		}, {
+			value: 'Communidad 14'
 		}];
 
 		return (
 			<View style={styles.container}>
 
 				<View style={styles.header}>
-					<Image source={require('../assets/asdenic.png')} style={styles.asdenicLogo}/>
+					<TouchableOpacity
+                        onPress={() => Linking.openURL('https://cluster-nicaragua.net/organizaciones/centro-de-informacion-e-innovacion-asociacion-de-desarrollo-social-de-nicaragua')}>
+                        <Image source={require('../assets/asdenic.png')} style={styles.asdenicLogo}/>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity
+                        onPress={() => Linking.openURL('https://www.scu.edu/engineering/labs--research/labs/frugal-innovation-hub/')}>
+                        <Image source={require('../assets/frugalHub.png')} style={styles.frugalHubLogo}/>
+                    </TouchableOpacity>
+
 					<TouchableOpacity
 						onPress={() => this.props.navigation.navigate('Welcome')}>
 						<Text style={styles.logoutButton}>Cerrar sesión</Text>
@@ -81,14 +92,14 @@ export default class ReportWaterQuality extends React.Component {
                             <Text style={styles.backText}>{'<'} Atrás</Text>
                         </Button>
 
-						<Text style={styles.reportWaterHead}>Informar sobre incidentes del calidad de agua en su comunidad</Text>
+						<Text style={styles.reportWaterHead}>Informar sobre incidentes de calidad de agua en su comunidad</Text>
 
 						<View style={styles.reportWaterBox}>
 							<ScrollView style={styles.reportWaterScrollView}>
 								{/*name*/}
 								<TextInput style={styles.reportWaterNameInput}
 									underlineColorAndroid = "transparent"
-									placeholder = "Nombre y apellido"
+									placeholder = "Nombre y apellidos"
 									placeholderTextColor = "#707070"
 									autoCapitalize = "none"
 									textAlign = "left"
@@ -98,7 +109,7 @@ export default class ReportWaterQuality extends React.Component {
 								{/*subject*/}
 								<TextInput style={styles.reportWaterSubjectInput}
 									underlineColorAndroid = "transparent"
-									placeholder = "Message Subject"
+									placeholder = "Asunto"
 									placeholderTextColor = "#707070"
 									autoCapitalize = "none"
 									textAlign = "left"
@@ -139,12 +150,12 @@ export default class ReportWaterQuality extends React.Component {
 								<View style={styles.reportWaterButtons}>
 									<TouchableOpacity style={styles.reportWaterRecordButton} onPress={() => {this.props.navigation.navigate('RecordMessageIncident')}}>
 										<Image source={require('../assets/mic.png')} style={styles.mic}/>
-										<Text style={{fontSize: 15}}>Recordar un mensaje</Text>
+										<Text style={{fontSize: 15}}>Grabar mensaje</Text>
 									</TouchableOpacity>
 
 									<TouchableOpacity style={styles.reportWaterUploadButton} onPress={this._pickImage}>
 										<Image source={require('../assets/mic.png')} style={styles.mic}/>
-										<Text style={{fontSize: 15}}>Cargar una foto</Text>
+										<Text style={{fontSize: 15}}>Subir una foto</Text>
 									</TouchableOpacity>
 								</View>
 								<Text>{"\n"}</Text>

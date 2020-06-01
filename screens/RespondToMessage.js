@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, Image, TextInput, TouchableOpacity } from 'react-native';
+import { Text, View, Image, TextInput, TouchableOpacity, Linking } from 'react-native';
 import styles from '../Style';
 import { Form, Button } from 'native-base'
 
@@ -9,7 +9,16 @@ export default class RespondToMessage extends React.Component {
 			<View style={styles.container}>
 
 				<View style={styles.header}>
-					<Image source={require('../assets/asdenic.png')} style={styles.asdenicLogo}/>
+					<TouchableOpacity
+                        onPress={() => Linking.openURL('https://cluster-nicaragua.net/organizaciones/centro-de-informacion-e-innovacion-asociacion-de-desarrollo-social-de-nicaragua')}>
+                        <Image source={require('../assets/asdenic.png')} style={styles.asdenicLogo}/>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity
+                        onPress={() => Linking.openURL('https://www.scu.edu/engineering/labs--research/labs/frugal-innovation-hub/')}>
+                        <Image source={require('../assets/frugalHub.png')} style={styles.frugalHubLogoHome}/>
+                    </TouchableOpacity>
+
 				</View>
 
 				<View style={styles.pageContent}>
@@ -35,7 +44,7 @@ export default class RespondToMessage extends React.Component {
 
 							<TouchableOpacity style={styles.respondMessRecordButton}>
 								<Image source={require('../assets/mic.png')} style={styles.mic}/>
-								<Text style={{fontSize: 16}}>Recordar un mensaje</Text>
+								<Text style={{fontSize: 16}}>Grabar mensaje</Text>
 							</TouchableOpacity>
 						</View>
 

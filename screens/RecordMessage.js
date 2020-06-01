@@ -1,5 +1,5 @@
 import React from 'react';
-import { Dimensions, Image, TouchableOpacity, Slider, Text, TouchableHighlight, View } from 'react-native';
+import { Dimensions, Image, TouchableOpacity, Slider, Text, TouchableHighlight, View, Linking } from 'react-native';
 import styles from '../Style';
 import { Asset } from 'expo-asset';
 import { Audio } from 'expo-av';
@@ -329,7 +329,16 @@ export default class App extends React.Component {
     return (
 		<View style={styles.container}>
 			<View style={styles.header}>
-				<Image source={require('../assets/asdenic.png')} style={styles.asdenicLogo}/>
+				<TouchableOpacity
+              onPress={() => Linking.openURL('https://cluster-nicaragua.net/organizaciones/centro-de-informacion-e-innovacion-asociacion-de-desarrollo-social-de-nicaragua')}>
+              <Image source={require('../assets/asdenic.png')} style={styles.asdenicLogo}/>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+              onPress={() => Linking.openURL('https://www.scu.edu/engineering/labs--research/labs/frugal-innovation-hub/')}>
+              <Image source={require('../assets/frugalHub.png')} style={styles.frugalHubLogo}/>
+          </TouchableOpacity>
+
 				<TouchableOpacity
 					onPress={() => this.props.navigation.navigate('Welcome')}>
 					<Text style={styles.logoutButton}>Cerrar sesión</Text>

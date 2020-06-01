@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, Image, TextInput, TouchableOpacity, FlatList, ScrollView, YellowBox } from 'react-native';
+import { Text, View, Image, TextInput, TouchableOpacity, FlatList, ScrollView, YellowBox, Linking } from 'react-native';
 import styles from '../Style';
 import { Dropdown } from 'react-native-material-dropdown';
 import { CheckBox } from 'react-native-elements';
@@ -38,80 +38,169 @@ export default class CreateNewAccount extends React.Component {
 		};
 	}
 
-	// fetchNumber = async() => {
+	// fetchNumber = () => {
+	// 	console.log('fetching number');
 	// 	var checkNum = this.state.phoneNum;
+	// 	console.log('number is: ' + checkNum);
+ //        fetch("http://10.0.0.123:3004/users/" + checkNum, {
+ //            method: 'GET',
+ //            redirect: 'follow'
+ //        })
+ //            .then(response => response.json())
+ //            .then(result => {   console.log(result);
+ //                                if (result.length == 0)
+ //                                {
+ //                                    //console.log('no user exists with this phone number, can create new account');
+ //                                    //can create new account
+ //                                    this.setState({findNum: true});
+ //                                    return;
+ //                                }
 
-	// 	fetch("http://10.0.0.13:3004/users", {
-	// 		method: 'GET',
-	// 		redirect: 'follow'
-	// 	})
-	// 		.then(response => response.text())
-	// 		.then(result => {console.log(result);
-	// 						})
-	// 		.catch(error => console.log('error', error));
-
-
-	// 	// const response = await fetch("http://192.168.0.11:3004/users/" + checkNum, {
-	// 	// 	method: 'GET',
-	// 	// 	redirect: 'follow'
-	// 	// })
-		
-	// 	// const user = await response.json();
-	// 	// this.setState({data: user});
+ //                                else
+ //                                {
+ //                                    alert('account already exists with this phone number, please use another number');
+ //                                    //need to use another number
+ //                                    this.setState({findNum: false});
+ //                                    return;
+ //                                }
+ //                            })
+ //            .catch(error => console.log('error', error));
 	// }
 
-	// componentDidMount () {
-	// 	this.fetchNumber();
-	// }
+
 
 	addNewUser = () => {
 
-		//checks to make sure phone number is unique
-		//var result = this.getNumber();
-		//console.log(result.firstname);
+		console.log('fetching number');
+		var checkNum = this.state.phoneNum;
+		console.log('number is: ' + checkNum);
+        fetch("http://10.0.0.123:3004/users/" + checkNum, {
+            method: 'GET',
+            redirect: 'follow'
+        })
+            .then(response => response.json())
+            .then(result => {   console.log(result);
+                                if (result.length == 0)
+                                {
+                                    //console.log('no user exists with this phone number, can create new account');
+                                    //can create new account
+                                    
+                                    //check that information is entered in first name, last name, community, phone, and password
+                                    if (this.state.firstName == '')
+                                    {
+                                    	alert('no first name has been entered');
+                                    	return;
+                                    }
+                                    if (this.state.lastName == '')
+                                    {
+                                    	alert('no last name has been entered');
+                                    	return;
+                                    }
+                                    if (this.state.community == '')
+                                    {
+                                    	alert('no community has been selected');
+                                    	return;
+                                    }
+                                    if (this.state.phoneNum == '')
+                                    {
+                                    	alert('no phone number has been entered');
+                                    	return;
+                                    }
+                                    if (this.state.phoneNumCon == '')
+                                    {
+                                    	alert('please confirm password');
+                                    	return;
+                                    }
+                                    if (this.state.password == '' )
+                                    {
+                                    	alert('no password has been entered');
+                                    	return;
+                                    }
+                                    if (this.state.password.length < 5)
+                                    {
+                                    	alert('please enter a password that is at least 5 characters');
+                                    	return;
+                                    }
+                                    if (this.state.passwordCon == '')
+                                    {
+                                    	alert('please confirm password');
+                                    	return;
+                                    }
 
-		// if (uniqueNum != null)
+                                    //checks to make sure phone numbers entered are the same - does not create new user if not same
+									if (this.state.phoneNum != this.state.phoneNumCon)
+									{
+										alert('phone numbers do not match, please try again');
+										return;
+									}
+
+
+									//checks to make sure passwords entered are the same - does not create new user if not same
+									if (this.state.password != this.state.passwordCon)
+									{
+										alert('passwords do not match, please try again');
+										return;
+									}
+
+									//inserts new user into database
+
+									fetch("http://10.0.0.123:3004/users", {
+										method: 'POST',
+										headers: {"Content-Type": "application/json"},
+										body: JSON.stringify({"firstname":this.state.firstName,"lastname":this.state.lastName,"community":this.state.community,"phonenumber":this.state.phoneNum,"admin":this.state.admin,"password":this.state.password}),
+										redirect: 'follow'
+									})
+										.then(response => response.text())
+										.then(result => console.log(result))
+										.catch(error => console.log('error', error));
+
+									//moves user further into application if all parameters are met
+									alert('Nueva cuenta se ha creado. ¡Iniciar sesión!')
+									this.props.navigation.navigate('Login');
+                                }
+
+                                else
+                                {
+                                    alert('account already exists with this phone number, please use another number');
+                                    //need to use another number
+                                    return;
+                                }
+                            })
+            .catch(error => console.log('error', error));
+
+
+
+
+		// //checks to make sure phone numbers entered are the same - does not create new user if not same
+		// if (this.state.phoneNum != this.state.phoneNumCon)
 		// {
-		// 	alert('number is already in use');
+		// 	alert('phone numbers do not match, please try again');
 		// 	return;
 		// }
-		//alert(uniqueNum);
-
-		//checks to make sure phone numbers entered are the same - does not create new user if not same
-		if (this.state.phoneNum != this.state.phoneNumCon)
-		{
-			//alert('phone numbers do not match, please try again');
-			return;
-		}
-		else
-			//alert('phone numbers do match');
 
 
-		//checks to make sure passwords entered are the same - does not create new user if not same
-		if (this.state.password != this.state.passwordCon)
-		{
-			//alert('passwords do not match, please try again');
-			return;
-		}
-		else
-			//alert('passwords numbers do match');
+		// //checks to make sure passwords entered are the same - does not create new user if not same
+		// if (this.state.password != this.state.passwordCon)
+		// {
+		// 	alert('passwords do not match, please try again');
+		// 	return;
+		// }
 
+		// //inserts new user into database
 
-		//inserts new user into database
+		// fetch("http://10.0.0.123:3004/users", {
+		// 	method: 'POST',
+		// 	headers: {"Content-Type": "application/json"},
+		// 	body: JSON.stringify({"firstname":this.state.firstName,"lastname":this.state.lastName,"community":this.state.community,"phonenumber":this.state.phoneNum,"admin":this.state.admin,"password":this.state.password}),
+		// 	redirect: 'follow'
+		// })
+		// 	.then(response => response.text())
+		// 	.then(result => console.log(result))
+		// 	.catch(error => console.log('error', error));
 
-		fetch("http://10.0.0.123:3004/users", {
-			method: 'POST',
-			headers: {"Content-Type": "application/json"},
-			body: JSON.stringify({"firstname":this.state.firstName,"lastname":this.state.lastName,"community":this.state.community,"phonenumber":this.state.phoneNum,"admin":this.state.admin,"password":this.state.password}),
-			redirect: 'follow'
-		})
-			.then(response => response.text())
-			.then(result => console.log(result))
-			.catch(error => console.log('error', error));
-
-		//moves user further into application if all parameters are met
-		alert('Nueva cuenta se ha creado, ¡iniciar sesión!')
-		this.props.navigation.navigate('Login');
+		// //moves user further into application if all parameters are met
+		// alert('Nueva cuenta se ha creado. ¡Iniciar sesión!')
+		// this.props.navigation.navigate('Login');
 	}
 
 	render(){
@@ -141,13 +230,24 @@ export default class CreateNewAccount extends React.Component {
 			value: 'Communidad 12',
 		}, {
 			value: 'Communidad 13',
+		}, {
+			value: 'Communidad 14'
 		}];
 
 		return (
 			<View style={styles.container}>
 
-				<View style={styles.header}>
-					<Image source={require('../assets/asdenic.png')} style={styles.asdenicLogo}/>
+				<View style={styles.headerHome}>
+					<TouchableOpacity
+                        onPress={() => Linking.openURL('https://cluster-nicaragua.net/organizaciones/centro-de-informacion-e-innovacion-asociacion-de-desarrollo-social-de-nicaragua')}>
+                        <Image source={require('../assets/asdenic.png')} style={styles.asdenicLogo}/>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity
+                        onPress={() => Linking.openURL('https://www.scu.edu/engineering/labs--research/labs/frugal-innovation-hub/')}>
+                        <Image source={require('../assets/frugalHub.png')} style={styles.frugalHubLogoHome}/>
+                    </TouchableOpacity>
+
 				</View>
 
 				<View style={styles.pageContent}>
@@ -162,23 +262,25 @@ export default class CreateNewAccount extends React.Component {
 							placeholderTextColor = "#707070"
 							autoCapitalize = "none"
 							textAlign = "left"
+							maxLength = {40}
 							onChangeText = {firstName => this.setState({firstName})}
 						/>
 
 						{/*last name*/}
 						<TextInput style={styles.newAccountInput}
 							underlineColorAndroid = "transparent"
-							placeholder = "Apellido"
+							placeholder = "Apellidos"
 							placeholderTextColor = "#707070"
 							autoCapitalize = "none"
 							textAlign = "left"
+							maxLength = {40}
 							onChangeText = {lastName => this.setState({lastName})}
 						/>
 
 						{/*community*/}
 						<Dropdown
 							containerStyle={styles.newAccountDropdown}
-							placeholder="Eligir su comunidad"
+							placeholder="Elegir su comunidad"
 							data={community}
 							placeholderTextColor={"#707070"}
 							dropdownOffset={{'top':7, 'left':0}}
@@ -192,6 +294,7 @@ export default class CreateNewAccount extends React.Component {
 							placeholderTextColor = "#707070"
 							autoCapitalize = "none"
 							textAlign = "left"
+							maxLength = "40"
 						/>*/}
 
 						{/*phone number*/}
@@ -202,6 +305,7 @@ export default class CreateNewAccount extends React.Component {
 							autoCapitalize = "none"
 							keyboardType = "number-pad"
 							textAlign = "left"
+							maxLength = {10}
 							onChangeText = {phoneNum => this.setState({phoneNum})}
 						/>
 
@@ -213,6 +317,7 @@ export default class CreateNewAccount extends React.Component {
 							autoCapitalize = "none"
 							keyboardType = "number-pad"
 							textAlign = "left"
+							maxLength = {10}
 							onChangeText = {phoneNumCon => this.setState({phoneNumCon})}
 						/>
 
@@ -224,23 +329,25 @@ export default class CreateNewAccount extends React.Component {
 							autoCapitalize = "none"
 							secureTextEntry = {true}
 							textAlign = "left"
+							maxLength = {40}
 							onChangeText = {password => this.setState({password})}
 						/>
 
 						{/*confirm password*/}
 						<TextInput style={styles.newAccountInput}
 							underlineColorAndroid = "transparent"
-							placeholder = "Confirmas contraseña"
+							placeholder = "Confirmar contraseña"
 							placeholderTextColor = "#707070"
 							autoCapitalize = "none"
 							secureTextEntry = {true}
 							textAlign = "left"
+							maxLength = {40}
 							onChangeText = {passwordCon => this.setState({passwordCon})}
 						/>
 
 						{/* admin */}
 						<CheckBox
-							title='¿Quieres acceso del administrador?'
+							title='¿Necesitas derechos de administrador?'
 							containerStyle={styles.checkbox}
 							checkedIcon='check-square-o'
 							uncheckedIcon='square-o'

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, Image, ScrollView, TouchableOpacity, Modal } from 'react-native';
+import { Text, View, Image, ScrollView, TouchableOpacity, Modal, Linking } from 'react-native';
 import { Form, Button } from 'native-base'
 import ImageViewer from 'react-native-image-zoom-viewer'
 import styles from '../Style'
@@ -30,7 +30,16 @@ export default class ViewIndividualWaterReport extends React.Component {
 			<View style={styles.container}>
 			
 				<View style={styles.header}>
-					<Image source={require('../assets/asdenic.png')} style={styles.asdenicLogo}/>
+					<TouchableOpacity
+                        onPress={() => Linking.openURL('https://cluster-nicaragua.net/organizaciones/centro-de-informacion-e-innovacion-asociacion-de-desarrollo-social-de-nicaragua')}>
+                        <Image source={require('../assets/asdenic.png')} style={styles.asdenicLogo}/>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity
+                        onPress={() => Linking.openURL('https://www.scu.edu/engineering/labs--research/labs/frugal-innovation-hub/')}>
+                        <Image source={require('../assets/frugalHub.png')} style={styles.frugalHubLogo}/>
+                    </TouchableOpacity>
+
 					<TouchableOpacity
 						onPress={() => this.props.navigation.navigate('Welcome')}>
 						<Text style={styles.logoutButton}>Cerrar sesión</Text>
@@ -58,7 +67,7 @@ export default class ViewIndividualWaterReport extends React.Component {
 								<TouchableOpacity style={styles.viewReportListenButton}
 									onPress={() => this.props.navigation.navigate('RecordMessage')}>
 									<Image source={require('../assets/mic.png')} style={styles.mic}/>
-									<Text style={{fontSize: 17}}>Escuchar al mensaje</Text>
+									<Text style={{fontSize: 17}}>Escuchar el mensaje</Text>
 								</TouchableOpacity>
 
 								<TouchableOpacity
