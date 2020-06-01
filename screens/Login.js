@@ -2,6 +2,9 @@ import React from 'react'
 import { View, Text, Image, TouchableOpacity, Linking } from 'react-native'
 import { Item, Form, Input, Button, Label } from "native-base"
 import styles from '../Style'
+import SendSMS from 'react-native-sms'
+import * as SMS from 'expo-sms';
+import Expo from 'expo';
 
 export class Login extends React.Component {
     static navigationOptions = {
@@ -76,6 +79,24 @@ export class Login extends React.Component {
 
     }
 
+    sendCode = async() => {
+        // SendSMS.send({
+        //     //Message body
+        //     body: '12495',
+        //     //Recipients Number
+        //     recipients: ['2066602920'],
+        //     //An array of types that would trigger a "completed" response when using android
+        //     successTypes: ['sent', 'queued']
+        // }, (completed, cancelled, error) => {
+        //     console.log('SMS Callback: completed: ' + completed + ' cancelled: ' + cancelled + 'error: ' + error);
+        // });
+
+        const isAvailable = await Expo.SMS.isAvailableAsync();
+            if (isAvailable) {
+              const { result } = await Expo.SMS.sendSMSAsync(['123456789'], 'test1234');
+            }
+    }
+
     // componentDidMount () {
     //     this.correctLogin();
     // }
@@ -123,7 +144,7 @@ export class Login extends React.Component {
                         </Button>
 
                         <Button style={[styles.link, { marginTop: 20 }]}
-                            onPress={() => this.props.navigation.navigate('Welcome')}>
+                            onPress={() => this.sendCode()}>
                             <Text style={styles.underline}>¿Olvidó su contraseña?</Text>
                         </Button>
 
