@@ -3,20 +3,12 @@ import { View, Text, Image, TouchableOpacity, ScrollView, FlatList, Linking } fr
 import { Form, Button } from 'native-base'
 import styles from '../Style'
 
-export class WaterHome extends React.Component {
+export class WaterHomeAdmin extends React.Component {
     static navigationOptions = {
-        title: 'WaterHome',
+        title: 'WaterHomeAdmin',
     };
 
     state = {
-        // reports: [
-        //     {"idreports":1,"title":"First Report","date":"2020-05-19 07:00:15","urgent":1,"communities":"comunidad 3","message":"This is a test report","audio":"","image":""},
-        //     {"idreports":2,"title":"Second Report","date":"2020-05-19 07:00:15","urgent":0,"communities":"comunidad 3","message":"This is a test report","audio":"","image":""},
-        //     {"idreports":3,"title":"Third Report","date":"2020-05-19 07:00:15","urgent":0,"communities":"comunidad 3","message":"This is a test report","audio":"","image":""},
-        //     {"idreports":4,"title":"Fourth Report","date":"2020-05-19 07:00:15","urgent":0,"communities":"comunidad 3","message":"This is a test report","audio":"","image":""},
-        //     {"idreports":5,"title":"Fifth Report","date":"2020-05-19 07:00:15","urgent":0,"communities":"comunidad 3","message":"This is a test report","audio":"","image":""},
-        //     {"idreports":6,"title":"Sixth Report","date":"2020-05-19 07:00:15","urgent":0,"communities":"comunidad 3","message":"This is a test report","audio":"","image":""}
-        // ],
         data: [],
     };
 
@@ -30,24 +22,6 @@ export class WaterHome extends React.Component {
     componentDidMount() {
         this.fetchData();
     }
-
-    // getReports = async() => {
-    //     await fetch("http://10.0.0.123:3004/reports", {
-    //         method: 'GET',
-    //         redirect: 'follow'
-    //     })
-    //         .then(response => response.json())
-    //         .then(result => {   //console.log(result);
-    //                             this.state.reports = result;
-    //                             //console.log(this.state.reports);
-    //                         })
-    //         .catch(error => console.log('error', error));
-    //         console.log(this.state.reports);
-    // }
-
-    // componentDidMount () {
-    //     this.getReports();
-    // }
 
 
     render() {
@@ -87,7 +61,7 @@ export class WaterHome extends React.Component {
 
                     </View>
 
-                    <Text style={styles.waterTitle}>AGUA</Text>
+                    <Text style={styles.waterTitle}>AGUA ADMIN</Text>
                     <Form style={styles.waterForm}>
                         <Text style={styles.subTitle}>Noticias</Text>
                         <FlatList inverted data={this.state.data} 
@@ -103,19 +77,16 @@ export class WaterHome extends React.Component {
                                                                                                             messPass: item.message,
                                                                                                             datePass: item.date,
                                                                                                         })}>
-                                <Text style={styles.dateHome}>{item.date}</Text>
-                                <Text style={styles.buttonText}>{item.title} </Text>
                                 {item.urgent
                                     ? <Image source={require('../assets/emergency.png')} style={styles.emergency}/>
                                     : <Text></Text>
                                 }
+                                <Text style={styles.buttonText}>{item.title} </Text>
+                                <Text style={styles.dateHome}>{item.date}</Text>
+                                
                             </Button>}
                         />
                     </Form>
-                    <Button style={styles.link}
-                            onPress={() => this.props.navigation.navigate('ReportWaterQuality')}>
-                            <Text style={styles.incidentButton}>¿Tienes algo que reportar? Haz clic aquí.</Text>
-                    </Button>
                 </View>
 
                 <View style={styles.footer}>
@@ -126,4 +97,4 @@ export class WaterHome extends React.Component {
     }
 }
 
-export default WaterHome;
+export default WaterHomeAdmin;

@@ -106,6 +106,11 @@ export default class CreateNewAccount extends React.Component {
                                     	alert('no phone number has been entered');
                                     	return;
                                     }
+                                    if (this.state.phoneNum.length < 7)
+                                    {
+                                    	alert('please enter a valid phone number of proper length');
+                                    	return;
+                                    }
                                     if (this.state.phoneNumCon == '')
                                     {
                                     	alert('please confirm password');

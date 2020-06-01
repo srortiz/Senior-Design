@@ -664,7 +664,8 @@ export default StyleSheet.create({
 
     subTitle: {
         textAlign: 'center',
-        fontSize: 24
+        fontSize: 24,
+        marginBottom: 5,
     },
 
     reportButton: {
@@ -680,8 +681,8 @@ export default StyleSheet.create({
     },
 
     emergency: {
-        width: 38,
-        height: 30,
+        width: 29,
+        height: 23,
         marginLeft: 20,
     },
 
@@ -918,4 +919,9 @@ export default StyleSheet.create({
         fontWeight: 'bold',
         textDecorationLine: 'underline',
     },
+
+    loginPageButtons: {
+        fontSize: 18,
+        textDecorationLine: 'underline',
+    }
 });
