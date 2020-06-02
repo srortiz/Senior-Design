@@ -63,13 +63,13 @@ export class Login extends React.Component {
 
                                     if (result[0].password == this.state.password)
                                     {
-                                        if (this.state.phoneNum == '2066602920')
+                                        if (result[0].mainAdmin == 1)
                                         {
                                             this.props.navigation.navigate('WaterHomeBigAdmin');
                                         }
                                         else if (result[0].givenAdminRights == 0)
                                         {
-                                            alert(this.state.phoneNum);
+                                            //alert(this.state.phoneNum);
                                             this.props.navigation.navigate('WaterHomeGen');
                                         }
                                         else
