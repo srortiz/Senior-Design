@@ -17,14 +17,12 @@ export default class CreateNewWaterQualityReport extends React.Component {
 	};
 
 	createReport = () => {
-<<<<<<< HEAD
 		let audioFile = null
 		if(audio) {
 			console.log(this.props.navigation.state.params.sound)
 			audioFile = this.props.navigation.state.params.sound
 		}
 		
-=======
 		if (this.state.title == '')
         {
         	alert('please add a title');
@@ -40,20 +38,13 @@ export default class CreateNewWaterQualityReport extends React.Component {
         	alert('please write message of report');
         	return;
         }
-		//console.log(this.props.navigation.state.params.sound)
->>>>>>> 55f5ec079410ba59e78ad5968283057869bbbdc6
-		//this.setState({ audio: this.props.navigation.state.params.sound })
-		//console.log(this.state.audio)
+
 
 		//inserts new report into database
 		fetch("http://10.0.0.123:3004/reports", {
 			method: 'POST',
 			headers: {"Content-Type": "application/json"},
-<<<<<<< HEAD
 			body: JSON.stringify({"title":this.state.title,"urgent":this.state.urgent,"communities":this.state.community,"message":this.state.message,"audio":audioFile,"image":this.state.image}),
-=======
-			body: JSON.stringify({"title":this.state.title,"urgent":this.state.urgent,"communities":this.state.community,"message":this.state.message,"audio":this.state.audio,"image":this.state.image}),
->>>>>>> 55f5ec079410ba59e78ad5968283057869bbbdc6
 			redirect: 'follow'
 		})
 			.then(response => response.text())
@@ -184,13 +175,7 @@ export default class CreateNewWaterQualityReport extends React.Component {
 							</ScrollView>
 						</View>
 						<TouchableOpacity style={styles.createReportPublishButton}
-<<<<<<< HEAD
-							onPress={() => {	this.createReport();
-												this.props.navigation.navigate('WaterHome');}}>
-=======
-
-							onPress={() =>	this.createReport() }>
->>>>>>> 55f5ec079410ba59e78ad5968283057869bbbdc6
+							onPress={() => {this.createReport()}}>
 							<Text style={{fontSize: 17, color: 'white', fontWeight: 'bold'}}>Publicar</Text>
 						</TouchableOpacity> 
 					</View>
