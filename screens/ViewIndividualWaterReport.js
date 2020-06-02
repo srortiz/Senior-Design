@@ -51,7 +51,7 @@ export default class ViewIndividualWaterReport extends React.Component {
 					<View style={styles.viewReportCont}>
 
                         <Button style={styles.backButton}
-                            onPress={() => this.props.navigation.navigate('WaterHome')}>
+                            onPress={() => this.props.navigation.navigate('WaterHomeAdmin')}>
                             <Text style={styles.backText}>{'<'} Atrás</Text>
                         </Button>
 

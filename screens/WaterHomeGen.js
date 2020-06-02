@@ -57,7 +57,7 @@ export class WaterHomeGen extends React.Component {
 
                     </View>
 
-                    <Text style={styles.waterTitle}>{this.props.navigation.state.params.phoneNumPass}</Text>
+                    <Text style={styles.waterTitle}>AGUA GEN</Text>
                     <Form style={styles.waterForm}>
                         <Text style={styles.subTitle}>Noticias</Text>
                         <FlatList inverted data={this.state.data} 

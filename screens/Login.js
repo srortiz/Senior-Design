@@ -17,7 +17,6 @@ export class Login extends React.Component {
             phoneNum: "",
             password: "",
             reports: [],
-            adminRights: '',
         };
     }
 
@@ -64,13 +63,14 @@ export class Login extends React.Component {
 
                                     if (result[0].password == this.state.password)
                                     {
-                                        if (result[0].admin == 0)
+                                        if (this.state.phoneNum == '2066602920')
+                                        {
+                                            this.props.navigation.navigate('WaterHomeBigAdmin');
+                                        }
+                                        else if (result[0].givenAdminRights == 0)
                                         {
                                             alert(this.state.phoneNum);
-                                            this.props.navigation.navigate('myStackNavigatorGen', {
-                                                screen: 'WaterHomeGen',
-                                                params: { phoneNumPass: this.state.phoneNum}
-                                            });
+                                            this.props.navigation.navigate('WaterHomeGen');
                                         }
                                         else
                                         {

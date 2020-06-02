@@ -33,7 +33,7 @@ export default class CreateNewAccount extends React.Component {
 			phoneNumCon: '',
 			password:'',
 			passwordCon: '',
-			admin: false,
+			requestedAdminRights: false,
 			data: [],
 		};
 	}
@@ -152,7 +152,7 @@ export default class CreateNewAccount extends React.Component {
 									fetch("http://10.0.0.123:3004/users", {
 										method: 'POST',
 										headers: {"Content-Type": "application/json"},
-										body: JSON.stringify({"firstname":this.state.firstName,"lastname":this.state.lastName,"community":this.state.community,"phonenumber":this.state.phoneNum,"admin":this.state.admin,"password":this.state.password}),
+										body: JSON.stringify({"firstname":this.state.firstName,"lastname":this.state.lastName,"community":this.state.community,"phonenumber":this.state.phoneNum,"requestedAdminRights":this.state.requestedAdminRights,"password":this.state.password}),
 										redirect: 'follow'
 									})
 										.then(response => response.text())
@@ -172,40 +172,6 @@ export default class CreateNewAccount extends React.Component {
                                 }
                             })
             .catch(error => console.log('error', error));
-
-
-
-
-		// //checks to make sure phone numbers entered are the same - does not create new user if not same
-		// if (this.state.phoneNum != this.state.phoneNumCon)
-		// {
-		// 	alert('phone numbers do not match, please try again');
-		// 	return;
-		// }
-
-
-		// //checks to make sure passwords entered are the same - does not create new user if not same
-		// if (this.state.password != this.state.passwordCon)
-		// {
-		// 	alert('passwords do not match, please try again');
-		// 	return;
-		// }
-
-		// //inserts new user into database
-
-		// fetch("http://10.0.0.123:3004/users", {
-		// 	method: 'POST',
-		// 	headers: {"Content-Type": "application/json"},
-		// 	body: JSON.stringify({"firstname":this.state.firstName,"lastname":this.state.lastName,"community":this.state.community,"phonenumber":this.state.phoneNum,"admin":this.state.admin,"password":this.state.password}),
-		// 	redirect: 'follow'
-		// })
-		// 	.then(response => response.text())
-		// 	.then(result => console.log(result))
-		// 	.catch(error => console.log('error', error));
-
-		// //moves user further into application if all parameters are met
-		// alert('Nueva cuenta se ha creado. ¡Iniciar sesión!')
-		// this.props.navigation.navigate('Login');
 	}
 
 	render(){
@@ -357,7 +323,7 @@ export default class CreateNewAccount extends React.Component {
 							checkedIcon='check-square-o'
 							uncheckedIcon='square-o'
   							checked={this.state.checked}
-							onPress={() => this.setState({checked: !this.state.checked, admin: !this.state.admin})}
+							onPress={() => this.setState({checked: !this.state.checked, requestedAdminRights: !this.state.requestedAdminRights})}
 						/>
 
 						<TouchableOpacity style={styles.newAccountButton}
