@@ -33,9 +33,11 @@ const DISABLED_OPACITY = 0.5;
 const RATE_SCALE = 3.0;
 
 export default class App extends React.Component {
+  
   constructor(props) {
     super(props);
     this.recording = null;
+    this.uri = null;
     this.sound = null;
     this.isSeeking = false;
     this.shouldPlayAtEndOfSeek = false;
@@ -163,6 +165,7 @@ export default class App extends React.Component {
       // Do nothing -- we are already unloaded.
     }
     const info = await FileSystem.getInfoAsync(this.recording.getURI());
+    this.uri = info;
     console.log(`FILE INFO: ${JSON.stringify(info)}`);
     await Audio.setAudioModeAsync({
       allowsRecordingIOS: false,
@@ -456,10 +459,11 @@ export default class App extends React.Component {
 
 			<View>
 				<TouchableOpacity style={styles.uploadAudioButton}
-					onPress={() => { this.props.navigation.navigate('CreateNewWaterQualityReport', { 
-											sound: this.sound, 
-										});
-									}}>
+          onPress={() => { //this.uploadAudio,
+                            this.props.navigation.navigate('CreateNewWaterQualityReport', { 
+											        sound: this.uri, 
+										        });
+									        }}>
 					<Text style={{fontSize: 17, color: 'white', fontWeight: 'bold'}}>Cargar</Text>
 				</TouchableOpacity> 
 			</View>

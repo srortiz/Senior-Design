@@ -32,6 +32,9 @@ export default class CreateNewWaterQualityReport extends React.Component {
         	alert('please write message of report');
         	return;
         }
+		//console.log(this.props.navigation.state.params.sound)
+		//this.setState({ audio: this.props.navigation.state.params.sound })
+		//console.log(this.state.audio)
 
 		//inserts new report into database
 		fetch("http://10.0.0.123:3004/reports", {
@@ -168,7 +171,8 @@ export default class CreateNewWaterQualityReport extends React.Component {
 							</ScrollView>
 						</View>
 						<TouchableOpacity style={styles.createReportPublishButton}
-							onPress={() =>	this.createReport()}>
+
+							onPress={() =>	this.createReport() }>
 							<Text style={{fontSize: 17, color: 'white', fontWeight: 'bold'}}>Publicar</Text>
 						</TouchableOpacity> 
 					</View>
@@ -211,4 +215,5 @@ export default class CreateNewWaterQualityReport extends React.Component {
 		  console.log(E);
 		}
 	};
+
 }
