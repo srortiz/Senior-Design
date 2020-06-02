@@ -22,7 +22,6 @@ export default class CreateNewWaterQualityReport extends React.Component {
 			console.log(this.props.navigation.state.params.sound)
 			audioFile = this.props.navigation.state.params.sound
 		}
-		
 		if (this.state.title == '')
         {
         	alert('please add a title');
@@ -38,7 +37,6 @@ export default class CreateNewWaterQualityReport extends React.Component {
         	alert('please write message of report');
         	return;
         }
-
 
 		//inserts new report into database
 		fetch("http://10.0.0.123:3004/reports", {
@@ -175,7 +173,7 @@ export default class CreateNewWaterQualityReport extends React.Component {
 							</ScrollView>
 						</View>
 						<TouchableOpacity style={styles.createReportPublishButton}
-							onPress={() => {this.createReport()}}>
+							onPress={() =>	this.createReport() }>
 							<Text style={{fontSize: 17, color: 'white', fontWeight: 'bold'}}>Publicar</Text>
 						</TouchableOpacity> 
 					</View>

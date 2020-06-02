@@ -1,12 +1,8 @@
 {
-  "dev": true,
-  "minify": false,
-<<<<<<< HEAD
-=======
-  "https": true,
->>>>>>> 55f5ec079410ba59e78ad5968283057869bbbdc6
   "hostType": "lan",
   "lanType": "ip",
-  "urlRandomness": "t7-jkp",
+  "dev": true,
+  "minify": false,
+  "urlRandomness": null,
   "https": false
 }
