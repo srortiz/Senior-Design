@@ -17,7 +17,21 @@ export default class CreateNewWaterQualityReportPub extends React.Component {
 	};
 
 	createReport = () => {
-		alert('new report created!');
+		if (this.state.title == '')
+        {
+        	alert('please add a title');
+        	return;
+        }
+        if (this.state.community == '')
+        {
+        	alert('please select community');
+        	return;
+        }
+        if (this.state.message == '')
+        {
+        	alert('please write message of report');
+        	return;
+        }
 
 		//inserts new report into database
 		fetch("http://10.0.0.123:3004/reports", {
@@ -29,6 +43,8 @@ export default class CreateNewWaterQualityReportPub extends React.Component {
 			.then(response => response.text())
 			.then(result => console.log(result))
 			.catch(error => console.log('error', error));
+
+		this.props.navigation.navigate('ConfirmNewReport');
 	}
 
 	render(){
@@ -86,7 +102,7 @@ export default class CreateNewWaterQualityReportPub extends React.Component {
 					<View style={styles.createReportCont}>
 
 						<Button style={styles.backButton}
-                            onPress={() => this.props.navigation.navigate('WaterHome')}>
+                            onPress={() => this.props.navigation.navigate('WaterHomeAdmin')}>
                             <Text style={styles.backText}>{'<'} Atrás</Text>
                         </Button>
 
@@ -155,8 +171,7 @@ export default class CreateNewWaterQualityReportPub extends React.Component {
 							</ScrollView>
 						</View>
 						<TouchableOpacity style={styles.createReportPublishButton}
-							onPress={() => {	this.createReport();
-												this.props.navigation.navigate('WaterHome');}}>
+							onPress={() =>	this.createReport() }>
 							<Text style={{fontSize: 17, color: 'white', fontWeight: 'bold'}}>Publicar</Text>
 						</TouchableOpacity> 
 					</View>

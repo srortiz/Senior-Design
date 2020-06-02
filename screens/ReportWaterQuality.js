@@ -18,7 +18,28 @@ export default class ReportWaterQuality extends React.Component {
 	};
 
 	createIncident = () => {
-		//this.setState({audio: this.props.navigation.state.params.sound})
+
+		if (this.state.sender == '')
+        {
+        	alert('please add name');
+        	return;
+        }
+        if (this.state.subject == '')
+        {
+        	alert('please add subject');
+        	return;
+        }
+        if (this.state.community == '')
+        {
+        	alert('please select community');
+        	return;
+        }
+        if (this.state.message == '')
+        {
+        	alert('please write message of incident');
+        	return;
+        }
+
 		//inserts new incident into database
 		fetch("http://10.0.0.123:3004/incidents", {
 			method: 'POST',
@@ -29,6 +50,8 @@ export default class ReportWaterQuality extends React.Component {
 			.then(response => response.text())
 			.then(result => console.log(result))
 			.catch(error => console.log('error', error));
+
+		this.props.navigation.navigate('ConfirmWaterQualityReport');
 	}
 
 	render(){
@@ -88,7 +111,7 @@ export default class ReportWaterQuality extends React.Component {
 					<View style={styles.reportWaterCont}>
 
 						<Button style={styles.backButton}
-                            onPress={() => this.props.navigation.navigate('WaterHome')}>
+                            onPress={() => this.props.navigation.navigate('WaterHomeGen')}>
                             <Text style={styles.backText}>{'<'} Atrás</Text>
                         </Button>
 
@@ -163,8 +186,7 @@ export default class ReportWaterQuality extends React.Component {
 							</ScrollView>
 						</View>
 						<TouchableOpacity style={styles.createReportPublishButton}
-							onPress={() => {	this.createIncident();
-												this.props.navigation.navigate('ConfirmWaterQualityReport');}}>
+							onPress={() => 	this.createIncident() }>
 							<Text style={{fontSize: 17, color: 'white', fontWeight: 'bold'}}>Enviar</Text>
 						</TouchableOpacity>
 					</View>

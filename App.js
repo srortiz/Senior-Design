@@ -4,7 +4,10 @@ import Welcome from './screens/Welcome'
 import Login from './screens/Login'
 import WaterHomeGen from './screens/WaterHomeGen'
 import WaterHomeAdmin from './screens/WaterHomeAdmin'
+import WaterHomeBigAdmin from './screens/WaterHomeBigAdmin'
+import WaterHomeAdminRefresh from './screens/WaterHomeAdminRefresh'
 import ConfirmWaterQualityReport from './screens/ConfirmWaterQualityReport'
+import ConfirmNewReport from './screens/ConfirmNewReport'
 import CreateNewAccount from './screens/CreateNewAccount'
 import CreateNewWaterQualityReport from './screens/CreateNewWaterQualityReport'
 import CreateNewWaterQualityReportPub from './screens/CreateNewWaterQualityReportPub'
@@ -14,6 +17,7 @@ import ViewIndividualMessage from './screens/ViewIndividualMessage'
 import ViewIndividualWaterReport from './screens/ViewIndividualWaterReport'
 import Inbox from './screens/Inbox'
 import RecordMessage from './screens/RecordMessage'
+import GiveAdminRights from './screens/GiveAdminRights'
 
 import { createStackNavigator } from 'react-navigation-stack';
 import { createSwitchNavigator, createAppContainer } from 'react-navigation';
@@ -41,7 +45,8 @@ const myStackNavigatorGen = createStackNavigator(
 const myStackNavigatorAdmin = createStackNavigator(
 {
 	WaterHomeAdmin: WaterHomeAdmin,
-	ConfirmWaterQualityReport: ConfirmWaterQualityReport,
+	WaterHomeAdminRefresh: WaterHomeAdminRefresh,
+	ConfirmNewReport: ConfirmNewReport,
 	CreateNewWaterQualityReport: CreateNewWaterQualityReport,
 	ViewIndividualWaterReport: ViewIndividualWaterReport,
 	RespondToMessage: RespondToMessage,
@@ -59,6 +64,29 @@ const myStackNavigatorAdmin = createStackNavigator(
 }
 );
 
+const myStackNavigatorBigAdmin = createStackNavigator(
+{
+	WaterHomeBigAdmin: WaterHomeBigAdmin,
+	WaterHomeAdminRefresh: WaterHomeAdminRefresh,
+	ConfirmNewReport: ConfirmNewReport,
+	CreateNewWaterQualityReport: CreateNewWaterQualityReport,
+	ViewIndividualWaterReport: ViewIndividualWaterReport,
+	RespondToMessage: RespondToMessage,
+	Inbox: Inbox,
+	ViewIndividualMessage: ViewIndividualMessage,
+	CreateNewWaterQualityReportPub: CreateNewWaterQualityReportPub,
+	RecordMessage: RecordMessage,
+	GiveAdminRights: GiveAdminRights,
+},
+{
+	initialRouteName: 'WaterHomeBigAdmin',
+	headerMode: 'none',
+	navigationOptions: {
+		headerVisible: false,
+	}
+}
+);
+
 const mySwitchNavigator = createSwitchNavigator(
 {
 	Welcome: { screen: Welcome },
@@ -66,6 +94,7 @@ const mySwitchNavigator = createSwitchNavigator(
 	Login: { screen: Login },
 	WaterHomeGen: { screen: myStackNavigatorGen },
 	WaterHomeAdmin: { screen: myStackNavigatorAdmin },
+	WaterHomeBigAdmin: { screen: myStackNavigatorBigAdmin },
 },
 {
 	initialRouteName: 'Welcome'

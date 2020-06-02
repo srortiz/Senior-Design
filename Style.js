@@ -647,7 +647,8 @@ export default StyleSheet.create({
     waterTitle: {
         textAlign: 'center',
         fontSize: 30,
-        height: 30
+        height: 30,
+        marginTop: 20,
     },
 
     waterForm: {
@@ -923,5 +924,58 @@ export default StyleSheet.create({
     loginPageButtons: {
         fontSize: 18,
         textDecorationLine: 'underline',
-    }
+    },
+
+    adminRightsTitle: {
+        textAlign: 'center',
+        fontSize: 30,
+        marginTop: 30,
+    },
+
+    adminRightsUsers: {
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        borderColor: '#707070',
+        borderWidth: 1,
+        marginBottom: 10,
+        alignItems: 'center',
+    },
+
+    adminRightsUserName: {
+        fontSize: 15,
+    },
+
+    names: {
+        flexDirection: 'row',
+        marginLeft: 10,
+    },
+
+    checkBoxes: {
+        flexDirection: 'row',
+
+    },
+
+    subsubTitle: {
+        flexDirection: 'row',
+        justifyContent: 'flex-end',
+    },
+
+    requestedAccess: {
+        marginRight: 30,
+    },
+
+    giveAccess: {
+        marginRight: 30,
+    },
+
+    GiveAdminRightsSubmit: {
+        borderRadius: 20,
+        backgroundColor: '#008bfc',
+        width: 150,
+        padding: 10,
+        alignItems: 'center',
+        fontSize: 10,
+        alignSelf: 'center',
+    },
 });

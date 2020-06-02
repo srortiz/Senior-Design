@@ -48,29 +48,30 @@ app.get('/users/:phonenumber', (req, res) => {
 	});
 });
 
-//delete a user
-// how to delete certain user -> /users/phonenumber
-app.delete('/users/:phonenumber', (req, res) => {
 
-	var sql = 'DELETE FROM users WHERE phonenumber = ?';
-	con.query(sql, [req.params.phonenumber], (err, rows, fields) => {
-		if (!err)
-			res.send('Deleted successfully');
-		else
-			console.log(err);
-	});
-});
+// //delete a user
+// // how to delete certain user -> /users/phonenumber
+// app.delete('/users/:phonenumber', (req, res) => {
+
+// 	var sql = 'DELETE FROM users WHERE phonenumber = ?';
+// 	con.query(sql, [req.params.phonenumber], (err, rows, fields) => {
+// 		if (!err)
+// 			res.send('Deleted successfully');
+// 		else
+// 			console.log(err);
+// 	});
+// });
 
 //insert a user
 app.post('/users', (req, res) => {
 
 	let user = req.body;
 
-	var sql = 'SET @firstname = ?; SET @lastname = ?; SET @community = ?; SET @phonenumber = ?; SET @admin = ?; SET @password = ?; \
-				CALL waterdb.AddNewUser(@firstname, @lastname, @community, @phonenumber, @admin, @password);';
+	var sql = 'SET @firstname = ?; SET @lastname = ?; SET @community = ?; SET @phonenumber = ?; SET @requestedAdminRights = ?; SET @password = ?; \
+				CALL waterdb.AddNewUser(@firstname, @lastname, @community, @phonenumber, @requestedAdminRights, @password);';
 	
 
-	con.query(sql, [user.firstname, user.lastname, user.community, user.phonenumber, user.admin, user.password], (err, rows, fields) => {
+	con.query(sql, [user.firstname, user.lastname, user.community, user.phonenumber, user.requestedAdminRights, user.password], (err, rows, fields) => {
 		if (!err)
 			res.send('Inserted successfully');
 		else

@@ -1,10 +1,10 @@
 {
-  "expoServerPort": null,
-  "expoServerNgrokUrl": null,
-  "packagerNgrokUrl": null,
-  "ngrokPid": null,
-  "packagerPort": null,
-  "packagerPid": null,
+  "expoServerPort": 19000,
+  "expoServerNgrokUrl": "https://t7-jkp.anonymous.senior-design.exp.direct",
+  "packagerNgrokUrl": "https://packager.t7-jkp.anonymous.senior-design.exp.direct",
+  "ngrokPid": 17994,
+  "packagerPort": 19001,
+  "packagerPid": 17976,
   "webpackServerPort": null,
   "devToolsPort": 19002
 }
