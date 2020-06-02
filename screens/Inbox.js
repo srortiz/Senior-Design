@@ -2,6 +2,8 @@ import React from 'react'
 import { View, Text, Image, TouchableOpacity, ScrollView, FlatList, Linking } from 'react-native'
 import { Form, Button } from 'native-base'
 import styles from '../Style'
+import UserProfile from '../UserProfile'
+//import console = require('console')
 
 export class Inbox extends React.Component {
     static navigationOptions = {
@@ -18,16 +20,24 @@ export class Inbox extends React.Component {
         //     {"idmail":6,"to":"Rachael","from":"Sarah","community":"communidad 3","date":"2020-05-19 07:00:15","read":1,"urgent":1,"subject":"test email","body":"This is a test email","audio":"","image":""}
         // ],
         data: [],
+        number: '',
     };
 
     fetchData = async() => {
-        const response = await fetch ('http://10.0.0.123:3004/incidents');
+        const response = await fetch ('http://10.0.0.13:3004/incidents');
         const users = await response.json();
         this.setState({data: users});
     }
 
+    fetchNumber = async() => {
+        let num = UserProfile.getNumber();
+        console.log(UserProfile.getNumber());
+        this.setState({number: num});
+    }
+
     componentDidMount() {
         this.fetchData();
+        this.fetchNumber();
     }
     
     render() {
