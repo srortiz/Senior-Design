@@ -13,11 +13,16 @@ export default class CreateNewWaterQualityReport extends React.Component {
 		urgent: false,
 		community: '',
 		message: '',
-		audio: null,
+		audio: false,
 	};
 
 	createReport = () => {
-		console.log(this.props.navigation.state.params.sound)
+		let audioFile = null
+		if(audio) {
+			console.log(this.props.navigation.state.params.sound)
+			audioFile = this.props.navigation.state.params.sound
+		}
+		
 		//this.setState({ audio: this.props.navigation.state.params.sound })
 		//console.log(this.state.audio)
 
@@ -25,7 +30,7 @@ export default class CreateNewWaterQualityReport extends React.Component {
 		fetch("http://10.0.0.123:3004/reports", {
 			method: 'POST',
 			headers: {"Content-Type": "application/json"},
-			body: JSON.stringify({"title":this.state.title,"urgent":this.state.urgent,"communities":this.state.community,"message":this.state.message,"audio":this.props.navigation.state.params.sound,"image":this.state.image}),
+			body: JSON.stringify({"title":this.state.title,"urgent":this.state.urgent,"communities":this.state.community,"message":this.state.message,"audio":audioFile,"image":this.state.image}),
 			redirect: 'follow'
 		})
 			.then(response => response.text())
@@ -139,7 +144,7 @@ export default class CreateNewWaterQualityReport extends React.Component {
 								/>
 
 								<View style={styles.createReportButtons}>
-									<TouchableOpacity style={styles.createReportRecordButton} onPress={() => {this.props.navigation.navigate('RecordMessage')}}>
+									<TouchableOpacity style={styles.createReportRecordButton} onPress={() => { this.setState({audio: true}); {this.props.navigation.navigate('RecordMessage')};}}>
 										<Image source={require('../assets/mic.png')} style={styles.mic}/>
 										<Text style={{fontSize: 15}}>Grabar mensaje</Text>
 									</TouchableOpacity>
@@ -154,8 +159,7 @@ export default class CreateNewWaterQualityReport extends React.Component {
 							</ScrollView>
 						</View>
 						<TouchableOpacity style={styles.createReportPublishButton}
-							onPress={() => {	//this.uploadAudio();
-												this.createReport();
+							onPress={() => {	this.createReport();
 												this.props.navigation.navigate('WaterHome');}}>
 							<Text style={{fontSize: 17, color: 'white', fontWeight: 'bold'}}>Publicar</Text>
 						</TouchableOpacity> 

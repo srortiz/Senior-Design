@@ -5,6 +5,7 @@ import styles from '../Style'
 import SendSMS from 'react-native-sms'
 import * as SMS from 'expo-sms';
 import Expo from 'expo';
+import UserProfile from '../UserProfile';
 
 export class Login extends React.Component {
     static navigationOptions = {
@@ -45,7 +46,7 @@ export class Login extends React.Component {
 
         var checkNum = this.state.phoneNum;
 
-        await fetch("http://10.0.0.123:3004/users/" + checkNum, {
+        await fetch("http://10.0.0.13:3004/users/" + checkNum, {
             method: 'GET',
             redirect: 'follow'
         })
@@ -67,6 +68,7 @@ export class Login extends React.Component {
                                         if (result[0].admin == 0)
                                         {
                                             alert(this.state.phoneNum);
+                                            this._saveInfo();
                                             this.props.navigation.navigate('myStackNavigatorGen', {
                                                 screen: 'WaterHomeGen',
                                                 params: { phoneNumPass: this.state.phoneNum}
@@ -74,6 +76,7 @@ export class Login extends React.Component {
                                         }
                                         else
                                         {
+                                            this._saveInfo();
                                             this.props.navigation.navigate('WaterHomeAdmin');
                                         }
                                     }
@@ -106,6 +109,10 @@ export class Login extends React.Component {
             }
     }
 
+    _saveInfo() {
+        console.log(this.state.phoneNum);
+        UserProfile.setNumber(this.state.phoneNum);
+    }
     // componentDidMount () {
     //     this.correctLogin();
     // }
