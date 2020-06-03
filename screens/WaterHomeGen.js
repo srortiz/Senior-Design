@@ -13,7 +13,7 @@ export class WaterHomeGen extends React.Component {
     };
 
     fetchData = async() => {
-        const response = await fetch ('http://10.0.0.13:3004/reports');
+        const response = await fetch ('http://10.0.0.123:3004/reports');
         const users = await response.json();
         this.setState({data: users});
         console.log(this.state.data[0].date);
@@ -50,7 +50,7 @@ export class WaterHomeGen extends React.Component {
 
                         <View style={styles.rightHeader}>
                             <Button style={styles.mail}
-                                onPress={() => this.props.navigation.navigate('Inbox')}>
+                                onPress={() => this.props.navigation.navigate('InboxGen')}>
                                 <Image source={require('../assets/mail.png')} style={styles.mailPicture}/>
                             </Button>
                         </View>

@@ -15,9 +15,11 @@ import ReportWaterQuality from './screens/ReportWaterQuality'
 import RespondToMessage from './screens/RespondToMessage'
 import ViewIndividualMessage from './screens/ViewIndividualMessage'
 import ViewIndividualWaterReport from './screens/ViewIndividualWaterReport'
-import Inbox from './screens/Inbox'
+import InboxGen from './screens/InboxGen'
+import InboxAdmin from './screens/InboxAdmin'
 import RecordMessage from './screens/RecordMessage'
 import GiveAdminRights from './screens/GiveAdminRights'
+import ViewMailMessage from './screens/ViewMailMessage'
 
 import { createStackNavigator } from 'react-navigation-stack';
 import { createSwitchNavigator, createAppContainer } from 'react-navigation';
@@ -29,8 +31,8 @@ const myStackNavigatorGen = createStackNavigator(
 	ViewIndividualWaterReport: ViewIndividualWaterReport,
 	ReportWaterQuality: ReportWaterQuality,
 	RespondToMessage: RespondToMessage,
-	Inbox: Inbox,
-	ViewIndividualMessage: ViewIndividualMessage,
+	InboxGen: InboxGen,
+	ViewMailMessage: ViewMailMessage,
 	RecordMessage: RecordMessage,
 },
 {
@@ -50,7 +52,7 @@ const myStackNavigatorAdmin = createStackNavigator(
 	CreateNewWaterQualityReport: CreateNewWaterQualityReport,
 	ViewIndividualWaterReport: ViewIndividualWaterReport,
 	RespondToMessage: RespondToMessage,
-	Inbox: Inbox,
+	InboxAdmin: InboxAdmin,
 	ViewIndividualMessage: ViewIndividualMessage,
 	CreateNewWaterQualityReportPub: CreateNewWaterQualityReportPub,
 	RecordMessage: RecordMessage,
@@ -72,7 +74,7 @@ const myStackNavigatorBigAdmin = createStackNavigator(
 	CreateNewWaterQualityReport: CreateNewWaterQualityReport,
 	ViewIndividualWaterReport: ViewIndividualWaterReport,
 	RespondToMessage: RespondToMessage,
-	Inbox: Inbox,
+	InboxAdmin: InboxAdmin,
 	ViewIndividualMessage: ViewIndividualMessage,
 	CreateNewWaterQualityReportPub: CreateNewWaterQualityReportPub,
 	RecordMessage: RecordMessage,

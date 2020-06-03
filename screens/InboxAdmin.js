@@ -5,9 +5,9 @@ import styles from '../Style'
 import UserProfile from '../UserProfile'
 //import console = require('console')
 
-export class Inbox extends React.Component {
+export class InboxAdmin extends React.Component {
     static navigationOptions = {
-        title: 'Inbox',
+        title: 'InboxAdmin',
     };
 
     state = {
@@ -21,23 +21,22 @@ export class Inbox extends React.Component {
         // ],
         data: [],
         number: '',
+        incidentNum: '',
+        readYn: '',
     };
 
     fetchData = async() => {
-        const response = await fetch ('http://10.0.0.13:3004/incidents');
+        const response = await fetch ('http://10.0.0.123:3004/incidents');
         const users = await response.json();
         this.setState({data: users});
-    }
-
-    fetchNumber = async() => {
-        let num = UserProfile.getNumber();
-        console.log(UserProfile.getNumber());
-        this.setState({number: num});
+        console.log('this is fetching data');
     }
 
     componentDidMount() {
         this.fetchData();
-        this.fetchNumber();
+    }
+
+    setRead () {
     }
     
     render() {
@@ -80,14 +79,19 @@ export class Inbox extends React.Component {
                             initialScrollIndex={this.state.data.length - 1}
                             keyExtractor={(item, index) => index.toString()}
                             renderItem={({ item, index }) =>
-                            <Button style={styles.message} onPress={() => this.props.navigation.navigate('ViewIndividualMessage',
+                            <Button style={styles.message} onPress={() => {     this.props.navigation.navigate('ViewIndividualMessage',
                                                                                 {
                                                                                     senderPass: item.sender,
                                                                                     datePass: item.date,
                                                                                     commPass: item.community,
                                                                                     messPass: item.message,
                                                                                     subjectPass: item.subject,
-                                                                                })}>
+                                                                                    idNumPass: item.idincidents,
+                                                                                    phoneNumPass: item.phoneNumber,
+                                                                                });
+                                                                                this.setState({incidentNum: item.idincidents});
+                                                                                this.setRead();
+                                                                    }}>
                                     <View style={styles.unread}>
                                     {item.readYn
                                         ? <Text></Text>
@@ -114,4 +118,4 @@ export class Inbox extends React.Component {
     }
 }
 
-export default Inbox;
+export default InboxAdmin;

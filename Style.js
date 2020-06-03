@@ -978,4 +978,13 @@ export default StyleSheet.create({
         fontSize: 10,
         alignSelf: 'center',
     },
+
+    viewOldMessage: {
+        marginTop: 20,
+        alignItems: 'center',
+    },
+
+    oldMessTitle: {
+        fontSize: 18,
+    },
 });

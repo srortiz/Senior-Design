@@ -5,6 +5,7 @@ import { Dropdown } from 'react-native-material-dropdown'
 import { Form, Button } from 'native-base'
 import * as ImagePicker from 'expo-image-picker'
 import { CheckBox } from 'react-native-elements'
+import UserProfile from '../UserProfile'
 
 export default class ReportWaterQuality extends React.Component {
 	state = {
@@ -15,7 +16,19 @@ export default class ReportWaterQuality extends React.Component {
 		audio: null,
 		image: null,
 		subject: '',
+		number: '',
 	};
+
+	fetchNumber = async() => {
+        let num = UserProfile.getNumber();
+        console.log("calling user prof " + UserProfile.getNumber());
+        this.setState({number: num});
+    }
+
+    componentDidMount() {
+		this.getPermissionAsync();
+		this.fetchNumber();
+	}
 
 	createIncident = () => {
 
@@ -39,12 +52,13 @@ export default class ReportWaterQuality extends React.Component {
         	alert('please write message of incident');
         	return;
         }
+        console.log('This is the number stored: ' + this.state.number);
 
 		//inserts new incident into database
 		fetch("http://10.0.0.123:3004/incidents", {
 			method: 'POST',
 			headers: {"Content-Type": "application/json"},
-			body: JSON.stringify({"sender":this.state.sender,"community":this.state.community,"urgent":this.state.urgent,"message":this.state.message,"audio":this.state.audio,"image":this.state.image, "subject":this.state.subject}),
+			body: JSON.stringify({"sender":this.state.sender,"community":this.state.community,"urgent":this.state.urgent,"message":this.state.message,"audio":this.state.audio,"image":this.state.image, "subject":this.state.subject, "phoneNumber":this.state.number}),
 			redirect: 'follow'
 		})
 			.then(response => response.text())
@@ -197,10 +211,6 @@ export default class ReportWaterQuality extends React.Component {
 
 			</View>
 		);
-	}
-
-	componentDidMount() {
-		this.getPermissionAsync();
 	}
 	
 	getPermissionAsync = async () => {
