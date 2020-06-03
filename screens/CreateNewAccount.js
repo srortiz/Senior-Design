@@ -88,54 +88,54 @@ export default class CreateNewAccount extends React.Component {
                                     //check that information is entered in first name, last name, community, phone, and password
                                     if (this.state.firstName == '')
                                     {
-                                    	alert('no first name has been entered');
+                                    	alert('Por favor escriba su nombre');
                                     	return;
                                     }
                                     if (this.state.lastName == '')
                                     {
-                                    	alert('no last name has been entered');
+                                    	alert('Por favor escriba su apellidos');
                                     	return;
                                     }
                                     if (this.state.community == '')
                                     {
-                                    	alert('no community has been selected');
+                                    	alert('Por favor seleccione su comunidad');
                                     	return;
                                     }
                                     if (this.state.phoneNum == '')
                                     {
-                                    	alert('no phone number has been entered');
+                                    	alert('Por favor escriba su número');
                                     	return;
                                     }
                                     if (this.state.phoneNum.length < 7)
                                     {
-                                    	alert('please enter a valid phone number of proper length');
+                                    	alert('Por favor escriba un número valido');
                                     	return;
                                     }
                                     if (this.state.phoneNumCon == '')
                                     {
-                                    	alert('please confirm password');
+                                    	alert('Por favor confirme su número');
                                     	return;
                                     }
                                     if (this.state.password == '' )
                                     {
-                                    	alert('no password has been entered');
+                                    	alert('Por favor escriba una contraseña');
                                     	return;
                                     }
                                     if (this.state.password.length < 5)
                                     {
-                                    	alert('please enter a password that is at least 5 characters');
+                                    	alert('Por favor escriba una contraseña de al menos cinco caracteres');
                                     	return;
                                     }
                                     if (this.state.passwordCon == '')
                                     {
-                                    	alert('please confirm password');
+                                    	alert('Por favor confirme una contraseña');
                                     	return;
                                     }
 
                                     //checks to make sure phone numbers entered are the same - does not create new user if not same
 									if (this.state.phoneNum != this.state.phoneNumCon)
 									{
-										alert('phone numbers do not match, please try again');
+										alert('Los números no coinciden.  Inténtalo de nuevo.');
 										return;
 									}
 
@@ -143,7 +143,7 @@ export default class CreateNewAccount extends React.Component {
 									//checks to make sure passwords entered are the same - does not create new user if not same
 									if (this.state.password != this.state.passwordCon)
 									{
-										alert('passwords do not match, please try again');
+										alert('Las contraseñas no coinciden.  Inténtalo de nuevo.');
 										return;
 									}
 
@@ -166,7 +166,7 @@ export default class CreateNewAccount extends React.Component {
 
                                 else
                                 {
-                                    alert('account already exists with this phone number, please use another number');
+                                    alert('Ya existe una cuenta con este número.');
                                     //need to use another number
                                     return;
                                 }

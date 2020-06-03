@@ -18,7 +18,7 @@ export default class RespondToMessage extends React.Component {
 
 		if (this.state.body == '')
         {
-        	alert('please add a message');
+        	alert('Por favor escribe un mensaje');
         	return;
         }
         console.log('this is the old message: ' + this.props.navigation.state.params.oldMessPass)
