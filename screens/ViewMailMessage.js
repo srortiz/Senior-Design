@@ -12,7 +12,7 @@ const images = [{
 	}
 }]
 
-export default class ViewIndividualMessage extends React.Component {
+export default class ViewMailMessage extends React.Component {
 	state = {
 		modalVisible: false,
 		number: '',
@@ -59,13 +59,11 @@ export default class ViewIndividualMessage extends React.Component {
                         </Button>
 
 						<Text style={styles.viewMessDate}>{this.props.navigation.state.params.datePass}</Text>
-						<Text style={styles.viewMessHead}>De: {this.props.navigation.state.params.senderPass}</Text>
 
 						<View style={styles.viewMessBox}>
 							<ScrollView style={styles.viewMessScrollView}>
-								<Text style={styles.viewMessComm}>{this.props.navigation.state.params.subjectPass}{"\n"}
-																	{this.props.navigation.state.params.commPass}</Text>
-								<Text style={{fontSize: 16}}>{this.props.navigation.state.params.messPass}</Text>
+								<Text style={styles.viewMessComm}>{this.props.navigation.state.params.subjectPass}</Text>
+								<Text style={{fontSize: 16}}>{this.props.navigation.state.params.bodyPass}</Text>
 								<TouchableOpacity style={styles.viewMessListenButton}>
 									<Image source={require('../assets/mic.png')} style={styles.mic}/>
 									<Text style={{fontSize: 17}}>Escuchar el mensaje</Text>
@@ -74,8 +72,7 @@ export default class ViewIndividualMessage extends React.Component {
 								<TouchableOpacity
 									onPress={() => {
 										this.setModalVisible(true);
-									}}
-								>
+									}}>
 									<Image source={require('../assets/water.jpg')} style={styles.waterImage}/>
 								</TouchableOpacity>
 
@@ -95,39 +92,19 @@ export default class ViewIndividualMessage extends React.Component {
 									<ImageViewer imageUrls={images}/>
 										
 								</Modal>
-								
 
+								<View style={styles.viewOldMessage}>
+									<Text style={styles.oldMessTitle}>Old Message</Text>
+									<Text style={{fontSize: 16}}>{this.props.navigation.state.params.oldMessPass}</Text>
+								</View>
 
 							</ScrollView>
 						</View>
 
 						<View style={styles.viewMessButtons}>
-							<TouchableOpacity style={styles.viewMessCallButton}
-								onPress = {() => Linking.openURL('tel:' + this.props.navigation.state.params.phoneNumPass)}>
-								<Text style={{fontSize: 17, color: 'white'}}>Llamar</Text>
-							</TouchableOpacity> 
 
-
-							<TouchableOpacity style={styles.viewMessRespondButton}
-								onPress={() => this.props.navigation.navigate('RespondToMessage',
-													{
-														toPass : this.props.navigation.state.params.senderPass,
-														idNumPass : this.props.navigation.state.params.idNumPass,
-														phoneNumPass: this.props.navigation.state.params.phoneNumPass,
-														subjectPass : this.props.navigation.state.params.subjectPass,
-														oldMessPass : this.props.navigation.state.params.messPass,
-													})}>
-								<Text style={{fontSize: 17, color: 'white'}}>Responder</Text>
-							</TouchableOpacity> 
-
-							<TouchableOpacity style={styles.viewMessPublishButton}
-								onPress={() => this.props.navigation.navigate('CreateNewWaterQualityReportPub',
-													{
-														subjectPass : this.props.navigation.state.params.subjectPass,
-														commPass : this.props.navigation.state.params.commPass,
-														messPass : this.props.navigation.state.params.messPass,
-													})}>
-								<Text style={{fontSize: 17, color: 'white'}}>Publicar</Text>
+							<TouchableOpacity style={styles.viewMessPublishButton}>
+								<Text style={{fontSize: 17, color: 'white'}}>Back</Text>
 							</TouchableOpacity> 
 						</View>
 

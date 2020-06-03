@@ -1,14 +1,46 @@
 import React from 'react';
-import { Text, View, Image, TextInput, TouchableOpacity, Linking } from 'react-native';
+import { Text, View, Image, TextInput, TouchableOpacity, Linking, Keyboard } from 'react-native';
 import styles from '../Style';
 import { Form, Button } from 'native-base'
 
 export default class RespondToMessage extends React.Component {
+
+	state = {
+		body: '',
+		audio: null,
+	};
+
+//id num to store in db: this.props.navigation.state.params.idNumPass
+
+//phone num to store in db: this.props.navigation.state.params.phoneNumPass
+
+	addMail = () => {
+
+		if (this.state.body == '')
+        {
+        	alert('Por favor escribe un mensaje');
+        	return;
+        }
+        console.log('this is the old message: ' + this.props.navigation.state.params.oldMessPass)
+		//inserts new mail into database
+		fetch("http://10.0.0.123:3004/mail", {
+			method: 'POST',
+			headers: {"Content-Type": "application/json"},
+			body: JSON.stringify({"body":this.state.body,"audio":this.state.audio,"phoneNumber":this.props.navigation.state.params.phoneNumPass,"incidentIdNum":this.props.navigation.state.params.idNumPass, "subject":this.props.navigation.state.params.subjectPass, "oldMessage":this.props.navigation.state.params.oldMessPass}),
+			redirect: 'follow'
+		})
+			.then(response => response.text())
+			.then(result => console.log(result))
+			.catch(error => console.log('error', error));
+
+		this.props.navigation.navigate('ViewIndividualMessage');
+	}
+
 	render(){
 		return (
 			<View style={styles.container}>
 
-				<View style={styles.header}>
+				<View style={styles.headerHome}>
 					<TouchableOpacity
                         onPress={() => Linking.openURL('https://cluster-nicaragua.net/organizaciones/centro-de-informacion-e-innovacion-asociacion-de-desarrollo-social-de-nicaragua')}>
                         <Image source={require('../assets/asdenic.png')} style={styles.asdenicLogo}/>
@@ -40,6 +72,10 @@ export default class RespondToMessage extends React.Component {
 								placeholderTextColor = "#707070"
 								autoCapitalize = "none"
 								textAlign = "left"
+								returnKeyType="done"
+								blurOnSubmit={true}
+							    onSubmitEditing={()=>{Keyboard.dismiss()}}
+								onChangeText = {body => this.setState({body})}
 							/>
 
 							<TouchableOpacity style={styles.respondMessRecordButton}>
@@ -49,7 +85,7 @@ export default class RespondToMessage extends React.Component {
 						</View>
 
 						<TouchableOpacity style={styles.respondMessSendButton}
-							onPress={() => this.props.navigation.navigate('ViewIndividualMessage')}>
+							onPress={() => this.addMail()	}>
 							<Text style={{fontSize: 17, color: 'white', fontWeight: 'bold'}}>Enviar</Text>
 						</TouchableOpacity> 
 

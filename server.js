@@ -97,7 +97,7 @@ app.get('/reports', (req, res) => {
 app.get('/incidents', (req, res) => {
 
 	//var sql = 'SELECT * FROM incidents';
-	var sql = 'SELECT idincidents, sender, community, DATE_FORMAT(date, "%d/%m/%Y") date, urgent, message, audio, subject, image, readYn FROM incidents';
+	var sql = 'SELECT idincidents, sender, community, DATE_FORMAT(date, "%d/%m/%Y") date, urgent, message, audio, subject, image, readYn, phoneNumber FROM incidents';
 	con.query(sql, (err, rows, fields) => {
 		if (!err)
 			res.send(rows);
@@ -105,6 +105,21 @@ app.get('/incidents', (req, res) => {
 			console.log(err);
 	});
 });
+
+//get one incident
+// how to call for certain user -> /users/incidentID
+app.get('/incidents/:idincidents', (req, res) => {
+
+	var sql = 'SELECT * FROM incidents WHERE idincidents = ?';
+	con.query(sql, [req.params.idincident], (err, rows, fields) => {
+		if (!err)
+			res.send(rows);
+		else
+			console.log(err);
+	});
+});
+
+
 
 //get one report
 // how to call for certain report -> /report/idreports
@@ -141,13 +156,43 @@ app.post('/incidents', (req, res) => {
 
 	let incident = req.body;
 
-	var sql = 'SET @sender = ?; SET @community = ?; SET @urgent = ?; SET @message = ?; SET @audio = ?; SET @image = ?; SET @subject = ?;\
-				CALL waterdb.AddNewIncident(@sender, @community, @urgent, @message, @audio, @image, @subject);';
+	var sql = 'SET @sender = ?; SET @community = ?; SET @urgent = ?; SET @message = ?; SET @audio = ?; SET @image = ?; SET @subject = ?; SET @phoneNumber = ?;\
+				CALL waterdb.AddNewIncident(@sender, @community, @urgent, @message, @audio, @image, @subject, @phoneNumber);';
 	
 
-	con.query(sql, [incident.sender, incident.community, incident.urgent, incident.message, incident.audio, incident.image, incident.subject], (err, rows, fields) => {
+	con.query(sql, [incident.sender, incident.community, incident.urgent, incident.message, incident.audio, incident.image, incident.subject, incident.phoneNumber], (err, rows, fields) => {
 		if (!err)
 			res.send('New incident inserted successfully');
+		else
+			console.log(err);
+	});
+});
+
+//insert a new mail message
+app.post('/mail', (req, res) => {
+
+	let mail = req.body;
+
+	var sql = 'SET @body = ?; SET @audio = ?; SET @phoneNumber = ?; SET @incidentIdNum = ?; SET @subject = ?; SET @oldMessage = ?;\
+				CALL waterdb.AddNewMail(@body, @audio, @phoneNumber, @incidentIdNum, @subject, @oldMessage);';
+	
+
+	con.query(sql, [mail.body, mail.audio, mail.phoneNumber, mail.incidentIdNum, mail.subject, mail.oldMessage], (err, rows, fields) => {
+		if (!err)
+			res.send('New mail inserted successfully');
+		else
+			console.log(err);
+	});
+});
+
+//get all mail for one user
+// how to call for certain user -> /mail/phonenumber
+app.get('/mail/:phoneNumber', (req, res) => {
+
+	var sql = 'SELECT DATE_FORMAT(date, "%d/%m/%Y") date, body, incidentIdNum, subject, oldMessage FROM mail WHERE phoneNumber = ?';
+	con.query(sql, [req.params.phoneNumber], (err, rows, fields) => {
+		if (!err)
+			res.send(rows);
 		else
 			console.log(err);
 	});

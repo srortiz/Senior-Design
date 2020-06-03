@@ -54,7 +54,7 @@ export class WaterHomeAdminRefresh extends React.Component {
                                 <Text style={styles.addText}>+</Text>
                             </Button>
                             <Button style={styles.mail}
-                                onPress={() => this.props.navigation.navigate('Inbox')}>
+                                onPress={() => this.props.navigation.navigate('InboxAdmin')}>
                                 <Image source={require('../assets/mail.png')} style={styles.mailPicture}/>
                             </Button>
                         </View>

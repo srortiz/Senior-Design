@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, Image, ScrollView, TouchableOpacity, TextInput, Linking } from 'react-native';
+import { Text, View, Image, ScrollView, TouchableOpacity, TextInput, Linking, Keyboard } from 'react-native';
 import styles from '../Style';
 import { Dropdown } from 'react-native-material-dropdown'
 import { Form, Button } from 'native-base'
@@ -24,17 +24,17 @@ export default class CreateNewWaterQualityReport extends React.Component {
 		}
 		if (this.state.title == '')
         {
-        	alert('please add a title');
+        	alert('Por favor escribe un título');
         	return;
         }
         if (this.state.community == '')
         {
-        	alert('please select community');
+        	alert('Por favor seleccione su comunidad');
         	return;
         }
         if (this.state.message == '')
         {
-        	alert('please write message of report');
+        	alert('Por favor escribe un mensaje');
         	return;
         }
 
@@ -145,6 +145,9 @@ export default class CreateNewWaterQualityReport extends React.Component {
 									placeholderTextColor = "#707070"
 									autoCapitalize = "none"
 									textAlign = "left"
+									returnKeyType="done"
+									blurOnSubmit={true}
+								    onSubmitEditing={()=>{Keyboard.dismiss()}}
 									onChangeText = {message => this.setState({message})}
 								/>
 
