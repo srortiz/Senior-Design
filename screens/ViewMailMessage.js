@@ -64,34 +64,6 @@ export default class ViewMailMessage extends React.Component {
 							<ScrollView style={styles.viewMessScrollView}>
 								<Text style={styles.viewMessComm}>{this.props.navigation.state.params.subjectPass}</Text>
 								<Text style={{fontSize: 16}}>{this.props.navigation.state.params.bodyPass}</Text>
-								<TouchableOpacity style={styles.viewMessListenButton}>
-									<Image source={require('../assets/mic.png')} style={styles.mic}/>
-									<Text style={{fontSize: 17}}>Escuchar el mensaje</Text>
-								</TouchableOpacity>
-
-								<TouchableOpacity
-									onPress={() => {
-										this.setModalVisible(true);
-									}}>
-									<Image source={require('../assets/water.jpg')} style={styles.waterImage}/>
-								</TouchableOpacity>
-
-								<Modal
-									transparent={false}
-									visible={modalVisible}
-									onRequestClose={() => this.setModalVisible()}
-								>
-									
-									<TouchableOpacity style={styles.viewReportCloseImg}
-										onPress={() => {
-											this.setModalVisible(!modalVisible);
-										}}
-									>
-										<Text style={styles.viewReportCloseText}>Go back to report</Text>
-									</TouchableOpacity>
-									<ImageViewer imageUrls={images}/>
-										
-								</Modal>
 
 								<View style={styles.viewOldMessage}>
 									<Text style={styles.oldMessTitle}>Old Message</Text>

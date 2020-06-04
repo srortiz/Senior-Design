@@ -64,37 +64,6 @@ export default class ViewIndividualWaterReport extends React.Component {
 
 
 								<Text style={{fontSize: 16}}>{this.props.navigation.state.params.messPass}</Text>
-								<TouchableOpacity style={styles.viewReportListenButton}
-									onPress={() => this.props.navigation.navigate('RecordMessage')}>
-									<Image source={require('../assets/mic.png')} style={styles.mic}/>
-									<Text style={{fontSize: 17}}>Escuchar el mensaje</Text>
-								</TouchableOpacity>
-
-								<TouchableOpacity
-									onPress={() => {
-										this.setModalVisible(true);
-									}}
-								>
-									<Image source={require('../assets/water.jpg')} style={styles.waterImage}/>
-								</TouchableOpacity>
-
-								<Modal
-									transparent={false}
-									visible={modalVisible}
-									onRequestClose={() => this.setModalVisible()}
-								>
-									
-									<TouchableOpacity style={styles.viewReportCloseImg}
-										onPress={() => {
-											this.setModalVisible(!modalVisible);
-										}}
-									>
-										<Text style={styles.viewReportCloseText}>Go back to report</Text>
-									</TouchableOpacity>
-									<ImageViewer imageUrls={images}/>
-										
-								</Modal>
-								
 
 							</ScrollView>
 						</View>

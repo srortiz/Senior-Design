@@ -77,11 +77,6 @@ export default class RespondToMessage extends React.Component {
 							    onSubmitEditing={()=>{Keyboard.dismiss()}}
 								onChangeText = {body => this.setState({body})}
 							/>
-
-							<TouchableOpacity style={styles.respondMessRecordButton}>
-								<Image source={require('../assets/mic.png')} style={styles.mic}/>
-								<Text style={{fontSize: 16}}>Grabar mensaje</Text>
-							</TouchableOpacity>
 						</View>
 
 						<TouchableOpacity style={styles.respondMessSendButton}

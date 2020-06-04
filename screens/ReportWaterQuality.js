@@ -186,20 +186,6 @@ export default class ReportWaterQuality extends React.Component {
 									checked={this.state.checked}
 									onPress={() => this.setState({checked: !this.state.checked, urgent: !this.state.urgent})}
 								/>
-
-								<View style={styles.reportWaterButtons}>
-									<TouchableOpacity style={styles.reportWaterRecordButton} onPress={() => {this.props.navigation.navigate('RecordMessageIncident')}}>
-										<Image source={require('../assets/mic.png')} style={styles.mic}/>
-										<Text style={{fontSize: 15}}>Grabar mensaje</Text>
-									</TouchableOpacity>
-
-									<TouchableOpacity style={styles.reportWaterUploadButton} onPress={this._pickImage}>
-										<Image source={require('../assets/mic.png')} style={styles.mic}/>
-										<Text style={{fontSize: 15}}>Subir una foto</Text>
-									</TouchableOpacity>
-								</View>
-								<Text>{"\n"}</Text>
-								{image && <Image source={{ uri: image }} style={{ width: 200, height: 200 }} />}
 							</ScrollView>
 						</View>
 						<TouchableOpacity style={styles.createReportPublishButton}
