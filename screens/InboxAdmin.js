@@ -26,7 +26,7 @@ export class InboxAdmin extends React.Component {
     };
 
     fetchData = async() => {
-        const response = await fetch ('http://10.0.0.123:3004/incidents');
+        const response = await fetch ('http://10.0.0.13:3004/incidents');
         const users = await response.json();
         this.setState({data: users});
         console.log('this is fetching data');
@@ -63,7 +63,7 @@ export class InboxAdmin extends React.Component {
                     <View style={styles.subheader}>
                         <View style={styles.leftHeader}>
                             <Button style={styles.back}
-                                onPress={() => this.props.navigation.navigate('WaterHome')}>
+                                onPress={() => this.props.navigation.navigate('WaterHomeAdmin')}>
                                 <Text style={styles.backText}>{'<'} Atrás</Text>
                             </Button>
                         </View>

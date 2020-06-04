@@ -14,16 +14,40 @@ export class GiveAdminRights extends React.Component {
     };
 
     fetchData = async() => {
-        const response = await fetch ('http://10.0.0.123:3004/users');
+        const response = await fetch ('http://10.0.0.13:3004/users');
         const users = await response.json();
         this.setState({data: users});
-        console.log(this.state.data[0].date);
+    }
+
+    saveChanges = async() => {
+        for(let i = 0; i < this.state.data.length; i++) {
+            if(this.state.data[i].givenAdminRights == true) {
+                //updates users in database
+                fetch("http://10.0.0.13:3004/users", {
+                    method: 'POST',
+                    headers: {"Content-Type": "application/json"},
+                    body: JSON.stringify({"phonenumber":this.state.data[i].phonenumber}),
+                    redirect: 'follow'
+                })
+                    .then(response => response.text())
+                    .then(result => console.log(result))
+                    .catch(error => console.log('error', error));
+            }  
+        }
+
+		this.props.navigation.navigate('WaterHomeBigAdmin');
     }
 
     componentDidMount() {
         this.fetchData();
     }
 
+    checkThisBox=(itemID)=>{
+        let data=this.state.data
+        data[itemID].givenAdminRights=!data[itemID].givenAdminRights
+        data[itemID].checked=!data[itemID].checked
+        this.setState({data:data})
+    }
 
     render() {
         return (
@@ -67,29 +91,32 @@ export class GiveAdminRights extends React.Component {
                                     <Text style={styles.adminRightsUserName}>{item.firstname} </Text>
                                     <Text style={styles.adminRightsUserName}>{item.lastname}</Text>
                                 </View>
-                                <View style={styles.checkBoxes}>
-                                    <CheckBox
-                                        containerStyle={styles.checkbox}
-                                        checkedIcon='check-square-o'
-                                        uncheckedIcon='square-o'
-                                        checked={this.state.checked}
-                                        onPress={() => this.setState({checked: !this.state.checked, adminRights: !this.state.adminRights})}
-                                    />
 
+
+                                <View style={styles.checkRights}>
+                                    {item.requestedAdminRights
+                                        ? <Image source={require('../assets/check.png')} style={styles.check_x}/>
+                                        : <Image source={require('../assets/no.png')} style={styles.check_x}/>
+                                    }
+                                </View>
+
+                                <View style={styles.checkBox}>
                                     <CheckBox
-                                        containerStyle={styles.checkbox}
-                                        checkedIcon='check-square-o'
-                                        uncheckedIcon='square-o'
-                                        checked={this.state.checked}
-                                        onPress={() => this.setState({checked: !this.state.checked, adminRights: !this.state.adminRights})}
+                                            containerStyle={styles.checkbox}
+                                            checkedIcon='check-square-o'
+                                            uncheckedIcon='square-o'
+                                            // checked={this.state.checked}
+                                            checked={this.state.data[index].checked}
+                                            onPress={() => this.checkThisBox(index)}
                                     />
                                 </View>
+                            
                             </View>}
                         />
                     </Form>
 
                     <TouchableOpacity style={styles.GiveAdminRightsSubmit}
-                            onPress={() =>  this.props.navigation.navigate('WaterHomeBigAdmin')}>
+                            onPress={() =>  this.saveChanges() }>
                             <Text style={{fontSize: 17, color: 'white', fontWeight: 'bold'}}>Save Changes</Text>
                     </TouchableOpacity> 
                 </View>

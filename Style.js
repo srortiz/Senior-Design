@@ -935,7 +935,7 @@ export default StyleSheet.create({
     adminRightsUsers: {
         flex: 1,
         flexDirection: 'row',
-        justifyContent: 'space-between',
+        //justifyContent: 'space-between',
         borderColor: '#707070',
         borderWidth: 1,
         marginBottom: 10,
@@ -949,11 +949,18 @@ export default StyleSheet.create({
     names: {
         flexDirection: 'row',
         marginLeft: 10,
+        flexGrow: 1.5,
+        width: 50
     },
 
-    checkBoxes: {
-        flexDirection: 'row',
+    checkRights: {
+        flex: 1,
+        flexDirection: 'row'
+    },
 
+    checkBox: {
+        flex: 1,
+        flexDirection: 'row'
     },
 
     subsubTitle: {
@@ -967,6 +974,13 @@ export default StyleSheet.create({
 
     giveAccess: {
         marginRight: 30,
+    },
+
+    check_x: {
+        width: 30,
+        height: 30,
+        marginTop: 3,
+        alignSelf: 'center'
     },
 
     GiveAdminRightsSubmit: {

@@ -67,17 +67,45 @@ app.post('/users', (req, res) => {
 
 	let user = req.body;
 
-	var sql = 'SET @firstname = ?; SET @lastname = ?; SET @community = ?; SET @phonenumber = ?; SET @requestedAdminRights = ?; SET @password = ?; \
+	if(typeof user.firstname != "undefined") {
+		var sql = 'SET @firstname = ?; SET @lastname = ?; SET @community = ?; SET @phonenumber = ?; SET @requestedAdminRights = ?; SET @password = ?; \
 				CALL waterdb.AddNewUser(@firstname, @lastname, @community, @phonenumber, @requestedAdminRights, @password);';
 	
 
-	con.query(sql, [user.firstname, user.lastname, user.community, user.phonenumber, user.requestedAdminRights, user.password], (err, rows, fields) => {
-		if (!err)
-			res.send('Inserted successfully');
-		else
-			console.log(err);
-	});
+		con.query(sql, [user.firstname, user.lastname, user.community, user.phonenumber, user.requestedAdminRights, user.password], (err, rows, fields) => {
+			if (!err)
+				res.send('Inserted successfully');
+			else
+				console.log(err);
+		});
+	}
+	else {
+		var sql = 'UPDATE users SET givenAdminRights = ? WHERE phonenumber = ?'; 
+	
+		con.query(sql, [1, user.phonenumber], (err, rows, fields) => {
+			if (!err)
+				res.send('Updated successfully');
+			else
+				console.log(err);
+		});
+	}	
 });
+
+// update users' admin rights
+// app.post('/users', (req, res) => {
+
+// 	let user = req.body;
+
+// 	var sql = 'SET @givenAdminRights = ?; WHERE @phonenumber = ?; \
+// 					CALL waterdb.UpdateAdminRights(@givenAdminRights, @phonenumber);'; 
+	
+// 	con.query(sql, [1, user.phonenumber], (err, rows, fields) => {
+// 		if (!err)
+// 			res.send('Updated successfully');
+// 		else
+// 			console.log(err);
+// 	});
+// });
 
 
 //get all reports
