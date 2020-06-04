@@ -18,7 +18,7 @@ export default class CreateNewWaterQualityReport extends React.Component {
 
 	createReport = () => {
 		let audioFile = null
-		if(audio) {
+		if(this.state.audio) {
 			console.log(this.props.navigation.state.params.sound)
 			audioFile = this.props.navigation.state.params.sound
 		}
