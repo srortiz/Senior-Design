@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "practice",
-    "slug": "practice",
+    "name": "Water Quality App",
+    "slug": "WaterQualityApp",
     "platforms": [
       "ios",
       "android",
@@ -10,6 +10,7 @@
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
+    "description": "Senior Design Project",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
@@ -22,7 +23,11 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.sarahandrachael.waterweatherapp"
+    },
+    "android": {
+      "package": "com.sarahandrachael.waterweatherapp"
     }
   }
 }

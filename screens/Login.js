@@ -45,7 +45,7 @@ export class Login extends React.Component {
 
         var checkNum = this.state.phoneNum;
 
-        await fetch("http://10.0.0.123:3004/users/" + checkNum, {
+        await fetch("http://10.0.0.13:3004/users/" + checkNum, {
             method: 'GET',
             redirect: 'follow'
         })
