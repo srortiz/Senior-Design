@@ -71,12 +71,11 @@ export default StyleSheet.create({
 
     newAccountCont: {
         alignItems: 'center',
-        marginTop: 70,
+        marginTop: 40,
     },
 
     newAccountHead: {
         fontSize: 25,
-        marginBottom: 15,
     },
 
     newAccountInput: {
@@ -101,7 +100,6 @@ export default StyleSheet.create({
     },
 
     newAccountButton: {
-        marginTop: 20,
         padding: 12,
         borderRadius: 20,
         backgroundColor: '#4a8eff',
@@ -111,7 +109,42 @@ export default StyleSheet.create({
         alignItems: 'center',
     },
 
+    hm: {
+        height: 130,
+        marginTop: 15,
+        marginLeft: 58,
+        alignSelf: 'flex-start',
+        borderColor: '#707070',
+        borderWidth: 1.25,
+        borderRadius: 20,
+        paddingLeft: 10,
+        paddingTop: 15,
+        width: 300,
+        paddingRight: 10,
+        paddingBottom: 15,
 
+    },
+
+    hmReport: {
+        height: 130,
+        marginTop: 15,
+        alignSelf: 'flex-start',
+        borderColor: '#707070',
+        borderWidth: 1.25,
+        borderRadius: 20,
+        paddingLeft: 10,
+        paddingTop: 15,
+        width: 300,
+        paddingRight: 10,
+        paddingBottom: 15,
+
+    },
+
+    chooseCom: {
+        fontSize: 16,
+        color: '#707070',
+        marginBottom: 5,
+    },
 
 
     viewReportCont: {
@@ -236,7 +269,7 @@ export default StyleSheet.create({
 
     reportWaterIncidentInput: {
         marginTop: 18,
-        height: 200,
+        height: 120,
         width: 307,
         paddingLeft: 10,
         paddingTop: 15,
@@ -725,7 +758,7 @@ export default StyleSheet.create({
         borderWidth: 0,
         //alignSelf: 'flex-start',
         //marginLeft: 60,
-        marginTop: 10
+        marginTop: 5
     },
 
     dateHome: {

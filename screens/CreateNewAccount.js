@@ -1,9 +1,10 @@
-import React from 'react';
-import { Text, View, Image, TextInput, TouchableOpacity, FlatList, ScrollView, YellowBox, Linking } from 'react-native';
+import React, { Component } from 'react';
+import { Text, View, Image, TextInput, TouchableOpacity, FlatList, ScrollView, YellowBox, Linking, SafeAreaView } from 'react-native';
 import styles from '../Style';
 import { Dropdown } from 'react-native-material-dropdown';
 import { CheckBox } from 'react-native-elements';
 import _ from 'lodash';
+import SelectMultiple from 'react-native-select-multiple'
 
 YellowBox.ignoreWarnings(['componentWillReceiveProps']);
 const _console = _.clone(console);
@@ -21,6 +22,16 @@ console.warn = message => {
 	} 
 };
 
+const communities = [
+	{ label: 'Communidad 1', value: '1' },
+	{ label: 'Communidad 2', value: '2' },
+	{ label: 'Communidad 3', value: '3' },
+	{ label: 'Communidad 4', value: '4' },
+	{ label: 'Communidad 5', value: '5' },
+	{ label: 'All', value: '6' },
+
+]
+
 export default class CreateNewAccount extends React.Component {
 
 	constructor(props){
@@ -35,39 +46,56 @@ export default class CreateNewAccount extends React.Component {
 			passwordCon: '',
 			requestedAdminRights: false,
 			data: [],
+			//holds array of communities that have been selected
+			selectedComm: [],
+			comm1: '',
+			comm2: '',
+			comm3: '',
+			comm4: '',
+			comm5: '',
+			allcomm: '',
 		};
 	}
 
-	// fetchNumber = () => {
-	// 	console.log('fetching number');
-	// 	var checkNum = this.state.phoneNum;
-	// 	console.log('number is: ' + checkNum);
- //        fetch("http://10.0.0.123:3004/users/" + checkNum, {
- //            method: 'GET',
- //            redirect: 'follow'
- //        })
- //            .then(response => response.json())
- //            .then(result => {   console.log(result);
- //                                if (result.length == 0)
- //                                {
- //                                    //console.log('no user exists with this phone number, can create new account');
- //                                    //can create new account
- //                                    this.setState({findNum: true});
- //                                    return;
- //                                }
-
- //                                else
- //                                {
- //                                    alert('account already exists with this phone number, please use another number');
- //                                    //need to use another number
- //                                    this.setState({findNum: false});
- //                                    return;
- //                                }
- //                            })
- //            .catch(error => console.log('error', error));
-	// }
-
-
+	onSelectionsChange = (selectedComm) => {
+		// selectedFruits is array of { label, value }
+		this.setState({ selectedComm });
+		var i = selectedComm.length;
+		for (i; i > 0; i--)
+		{
+			if (selectedComm[i-1].value == 1)
+			{
+				this.state.comm1 = 1;
+				console.log('comm1 is set to ' + this.state.comm1)
+			}
+			if (selectedComm[i-1].value == 2)
+			{
+				this.state.comm2 = 1;
+				console.log('comm2 is set to ' + this.state.comm2)
+			}
+			if (selectedComm[i-1].value == 3)
+			{
+				this.state.comm3 = 1;
+				console.log('comm3 is set to ' + this.state.comm3)
+			}
+			if (selectedComm[i-1].value == 4)
+			{
+				this.state.comm4 = 1;
+				console.log('comm4 is set to ' + this.state.comm4)
+			}
+			if (selectedComm[i-1].value == 5)
+			{
+				this.state.comm5 = 1;
+				console.log('comm5 is set to ' + this.state.comm5)
+			}
+			if (selectedComm[i-1].value == 6)
+			{
+				this.state.allcomm = 1;
+				console.log('all is set to ' + this.state.allcomm)
+			}
+		}
+		// console.log(selectedComm[0].value);
+	}
 
 	addNewUser = () => {
 
@@ -94,11 +122,6 @@ export default class CreateNewAccount extends React.Component {
                                     if (this.state.lastName == '')
                                     {
                                     	alert('Por favor escriba su apellidos');
-                                    	return;
-                                    }
-                                    if (this.state.community == '')
-                                    {
-                                    	alert('Por favor seleccione su comunidad');
                                     	return;
                                     }
                                     if (this.state.phoneNum == '')
@@ -149,10 +172,11 @@ export default class CreateNewAccount extends React.Component {
 
 									//inserts new user into database
 
+									console.log('this is comm1: ' + this.state.comm1);
 									fetch("http://10.0.0.123:3004/users", {
 										method: 'POST',
 										headers: {"Content-Type": "application/json"},
-										body: JSON.stringify({"firstname":this.state.firstName,"lastname":this.state.lastName,"community":this.state.community,"phonenumber":this.state.phoneNum,"requestedAdminRights":this.state.requestedAdminRights,"password":this.state.password}),
+										body: JSON.stringify({"firstname":this.state.firstName,"lastname":this.state.lastName,"phonenumber":this.state.phoneNum,"requestedAdminRights":this.state.requestedAdminRights,"password":this.state.password, "comm1":this.state.comm1, "comm2":this.state.comm2, "comm3":this.state.comm3, "comm4":this.state.comm4, "comm5":this.state.comm5, "allcomm":this.state.allcomm}),
 										redirect: 'follow'
 									})
 										.then(response => response.text())
@@ -175,35 +199,6 @@ export default class CreateNewAccount extends React.Component {
 	}
 
 	render(){
-		let community = [{
-			value: 'Communidad 1',
-		}, {
-			value: 'Communidad 2',
-		}, {
-			value: 'Communidad 3',
-		}, {
-			value: 'Communidad 4',
-		},{
-			value: 'Communidad 5',
-		}, {
-			value: 'Communidad 6',
-		}, {
-			value: 'Communidad 7',
-		},{
-			value: 'Communidad 8',
-		}, {
-			value: 'Communidad 9',
-		}, {
-			value: 'Communidad 10',
-		},{
-			value: 'Communidad 11',
-		}, {
-			value: 'Communidad 12',
-		}, {
-			value: 'Communidad 13',
-		}, {
-			value: 'Communidad 14'
-		}];
 
 		return (
 			<View style={styles.container}>
@@ -222,7 +217,6 @@ export default class CreateNewAccount extends React.Component {
 				</View>
 
 				<View style={styles.pageContent}>
-					<ScrollView>
 					<View style={styles.newAccountCont}>
 						<Text style={styles.newAccountHead}>Información del Miembro Principal</Text>
 
@@ -249,7 +243,7 @@ export default class CreateNewAccount extends React.Component {
 						/>
 
 						{/*community*/}
-						<Dropdown
+						{/*<Dropdown
 							containerStyle={styles.newAccountDropdown}
 							placeholder="Elegir su comunidad"
 							data={community}
@@ -258,15 +252,15 @@ export default class CreateNewAccount extends React.Component {
 							inputContainerStyle={{ borderBottomColor: 'transparent' }}
 							baseColor='#707070'
 							onChangeText = {community => this.setState({community})}
-						/>
-						{/*<TextInput style={styles.newAccountInput}
-							underlineColorAndroid = "transparent"
-							placeholder = "Eligir su comunidad"
-							placeholderTextColor = "#707070"
-							autoCapitalize = "none"
-							textAlign = "left"
-							maxLength = "40"
 						/>*/}
+
+						<View style={styles.hm}>
+							<Text style={styles.chooseCom}>Elegir su comunidad:</Text>
+							<SelectMultiple
+								items={communities}
+								selectedItems={this.state.selectedComm}
+								onSelectionsChange={this.onSelectionsChange} />
+						</View>
 
 						{/*phone number*/}
 						<TextInput style={styles.newAccountInput}
@@ -332,7 +326,6 @@ export default class CreateNewAccount extends React.Component {
 						</TouchableOpacity>
 
 					</View>
-					</ScrollView>
 				</View>
 
 				<View style={styles.footer}>

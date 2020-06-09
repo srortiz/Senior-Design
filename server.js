@@ -68,11 +68,11 @@ app.post('/users', (req, res) => {
 	let user = req.body;
 
 	if(typeof user.firstname != "undefined") {
-		var sql = 'SET @firstname = ?; SET @lastname = ?; SET @community = ?; SET @phonenumber = ?; SET @requestedAdminRights = ?; SET @password = ?; \
-				CALL waterdb.AddNewUser(@firstname, @lastname, @community, @phonenumber, @requestedAdminRights, @password);';
+		var sql = 'SET @firstname = ?; SET @lastname = ?; SET @phonenumber = ?; SET @requestedAdminRights = ?; SET @password = ?; SET @comm1 = ?; SET @comm2 = ?; SET @comm3 = ?; SET @comm4 = ?; SET @comm5 = ?; SET @allcomm = ?;\
+				CALL waterdb.AddNewUser(@firstname, @lastname, @phonenumber, @requestedAdminRights, @password, @comm1, @comm2, @comm3, @comm4, @comm5, @allcomm);';
 	
 
-		con.query(sql, [user.firstname, user.lastname, user.community, user.phonenumber, user.requestedAdminRights, user.password], (err, rows, fields) => {
+		con.query(sql, [user.firstname, user.lastname, user.phonenumber, user.requestedAdminRights, user.password, user.comm1, user.comm2, user.comm3, user.comm4, user.comm5, user.allcomm], (err, rows, fields) => {
 			if (!err)
 				res.send('Inserted successfully');
 			else
@@ -184,11 +184,11 @@ app.post('/incidents', (req, res) => {
 
 	let incident = req.body;
 
-	var sql = 'SET @sender = ?; SET @community = ?; SET @urgent = ?; SET @message = ?; SET @audio = ?; SET @image = ?; SET @subject = ?; SET @phoneNumber = ?;\
-				CALL waterdb.AddNewIncident(@sender, @community, @urgent, @message, @audio, @image, @subject, @phoneNumber);';
+	var sql = 'SET @sender = ?; SET @community = ?; SET @urgent = ?; SET @message = ?; SET @audio = ?; SET @image = ?; SET @subject = ?; SET @phoneNumber = ?; SET @comm1 = ?; SET @comm2 = ?; SET @comm3 = ?; SET @comm4 = ?; SET @comm5 = ?; SET @allcomm = ?;\
+				CALL waterdb.AddNewIncident(@sender, @community, @urgent, @message, @audio, @image, @subject, @phoneNumber, @comm1, @comm2, @comm3, @comm4, @comm5, @allcomm);';
 	
 
-	con.query(sql, [incident.sender, incident.community, incident.urgent, incident.message, incident.audio, incident.image, incident.subject, incident.phoneNumber], (err, rows, fields) => {
+	con.query(sql, [incident.sender, incident.community, incident.urgent, incident.message, incident.audio, incident.image, incident.subject, incident.phoneNumber, incident.comm1, incident.comm2, incident.comm3, incident.comm4, incident.comm5, incident.allcomm], (err, rows, fields) => {
 		if (!err)
 			res.send('New incident inserted successfully');
 		else

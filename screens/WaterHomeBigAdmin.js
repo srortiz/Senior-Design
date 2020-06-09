@@ -13,7 +13,7 @@ export class WaterHomeBigAdmin extends React.Component {
     };
 
     fetchData = async() => {
-        const response = await fetch ('http://10.0.0.13:3004/reports');
+        const response = await fetch ('http://10.0.0.123:3004/reports');
         const users = await response.json();
         this.setState({data: users});
         console.log(this.state.data[0].date);

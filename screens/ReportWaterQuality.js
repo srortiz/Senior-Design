@@ -6,6 +6,17 @@ import { Form, Button } from 'native-base'
 import * as ImagePicker from 'expo-image-picker'
 import { CheckBox } from 'react-native-elements'
 import UserProfile from '../UserProfile'
+import SelectMultiple from 'react-native-select-multiple'
+
+const communities = [
+	{ label: 'Communidad 1', value: '1' },
+	{ label: 'Communidad 2', value: '2' },
+	{ label: 'Communidad 3', value: '3' },
+	{ label: 'Communidad 4', value: '4' },
+	{ label: 'Communidad 5', value: '5' },
+	{ label: 'All', value: '6' },
+
+]
 
 export default class ReportWaterQuality extends React.Component {
 	state = {
@@ -17,7 +28,56 @@ export default class ReportWaterQuality extends React.Component {
 		image: null,
 		subject: '',
 		number: '',
+		//holds array of communities that have been selected
+		selectedComm: [],
+		comm1: '',
+		comm2: '',
+		comm3: '',
+		comm4: '',
+		comm5: '',
+		allcomm: '',
 	};
+
+
+	onSelectionsChange = (selectedComm) => {
+		// selectedFruits is array of { label, value }
+		this.setState({ selectedComm });
+		var i = selectedComm.length;
+		for (i; i > 0; i--)
+		{
+			if (selectedComm[i-1].value == 1)
+			{
+				this.state.comm1 = 1;
+				console.log('comm1 is set to ' + this.state.comm1)
+			}
+			if (selectedComm[i-1].value == 2)
+			{
+				this.state.comm2 = 1;
+				console.log('comm2 is set to ' + this.state.comm2)
+			}
+			if (selectedComm[i-1].value == 3)
+			{
+				this.state.comm3 = 1;
+				console.log('comm3 is set to ' + this.state.comm3)
+			}
+			if (selectedComm[i-1].value == 4)
+			{
+				this.state.comm4 = 1;
+				console.log('comm4 is set to ' + this.state.comm4)
+			}
+			if (selectedComm[i-1].value == 5)
+			{
+				this.state.comm5 = 1;
+				console.log('comm5 is set to ' + this.state.comm5)
+			}
+			if (selectedComm[i-1].value == 6)
+			{
+				this.state.allcomm = 1;
+				console.log('all is set to ' + this.state.allcomm)
+			}
+		}
+		// console.log(selectedComm[0].value);
+	}
 
 	fetchNumber = async() => {
         let num = UserProfile.getNumber();
@@ -58,7 +118,7 @@ export default class ReportWaterQuality extends React.Component {
 		fetch("http://10.0.0.123:3004/incidents", {
 			method: 'POST',
 			headers: {"Content-Type": "application/json"},
-			body: JSON.stringify({"sender":this.state.sender,"community":this.state.community,"urgent":this.state.urgent,"message":this.state.message,"audio":this.state.audio,"image":this.state.image, "subject":this.state.subject, "phoneNumber":this.state.number}),
+			body: JSON.stringify({"sender":this.state.sender,"community":this.state.community,"urgent":this.state.urgent,"message":this.state.message,"audio":this.state.audio,"image":this.state.image, "subject":this.state.subject, "phoneNumber":this.state.number, "comm1":this.state.comm1, "comm2":this.state.comm2, "comm3":this.state.comm3, "comm4":this.state.comm4, "comm5":this.state.comm5, "allcomm":this.state.allcomm}),
 			redirect: 'follow'
 		})
 			.then(response => response.text())
@@ -132,7 +192,6 @@ export default class ReportWaterQuality extends React.Component {
 						<Text style={styles.reportWaterHead}>Informar sobre incidentes de calidad de agua en su comunidad</Text>
 
 						<View style={styles.reportWaterBox}>
-							<ScrollView style={styles.reportWaterScrollView}>
 								{/*name*/}
 								<TextInput style={styles.reportWaterNameInput}
 									underlineColorAndroid = "transparent"
@@ -154,7 +213,7 @@ export default class ReportWaterQuality extends React.Component {
 								/>
 
 								{/*community*/}
-								<Dropdown
+								{/*<Dropdown
 									containerStyle={styles.reportWaterCommDropdown}
 									label="Eligir su comunidad"
 									data={community}
@@ -162,7 +221,15 @@ export default class ReportWaterQuality extends React.Component {
 									inputContainerStyle={{ borderBottomColor: 'transparent' }}
 									baseColor='#707070'
 									onChangeText = {community => this.setState({community})}
-								/>
+								/>*/}
+
+								<View style={styles.hmReport}>
+									<Text style={styles.chooseCom}>Elegir su comunidad:</Text>
+									<SelectMultiple
+										items={communities}
+										selectedItems={this.state.selectedComm}
+										onSelectionsChange={this.onSelectionsChange} />
+								</View>
 
 								{/*description of incident*/}
 								<TextInput style={styles.reportWaterIncidentInput}
@@ -186,7 +253,6 @@ export default class ReportWaterQuality extends React.Component {
 									checked={this.state.checked}
 									onPress={() => this.setState({checked: !this.state.checked, urgent: !this.state.urgent})}
 								/>
-							</ScrollView>
 						</View>
 						<TouchableOpacity style={styles.createReportPublishButton}
 							onPress={() => 	this.createIncident() }>
