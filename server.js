@@ -112,7 +112,7 @@ app.post('/users', (req, res) => {
 app.get('/reports', (req, res) => {
 
 	//var sql = 'SELECT * FROM reports';
-	var sql = 'SELECT idreports, title, DATE_FORMAT(date, "%d/%m/%Y") date, urgent, communities, message, audio, image FROM reports';
+	var sql = 'SELECT idreports, title, DATE_FORMAT(date, "%d/%m/%Y") date, urgent, message, audio, image FROM reports';
 	con.query(sql, (err, rows, fields) => {
 		if (!err)
 			res.send(rows);
@@ -167,11 +167,11 @@ app.post('/reports', (req, res) => {
 
 	let report = req.body;
 
-	var sql = 'SET @title = ?; SET @urgent = ?; SET @communities = ?; SET @message = ?; SET @audio = ?; SET @image = ?; \
-				CALL waterdb.AddNewReport(@title, @urgent, @communities, @message, @audio, @image);';
+	var sql = 'SET @title = ?; SET @urgent = ?; SET @message = ?; SET @audio = ?; SET @image = ?; SET @comm1 = ?; SET @comm2 = ?; SET @comm3 = ?; SET @comm4 = ?; SET @comm5 = ?; SET @allcomm = ?;\
+				CALL waterdb.AddNewReport(@title, @urgent, @message, @audio, @image, @comm1, @comm2, @comm3, @comm4, @comm5, @allcomm);';
 	
 
-	con.query(sql, [report.title, report.urgent, report.communities, report.message, report.audio, report.image], (err, rows, fields) => {
+	con.query(sql, [report.title, report.urgent, report.message, report.audio, report.image, report.comm1, report.comm2, report.comm3, report.comm4, report.comm5, report.allcomm], (err, rows, fields) => {
 		if (!err)
 			res.send('New report inserted successfully');
 		else

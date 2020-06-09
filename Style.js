@@ -379,7 +379,7 @@ export default StyleSheet.create({
 
     createReportIncidentTitle: {
         height: 40,
-        marginBottom: 18,
+        marginBottom: 5,
         width: 250,
         paddingLeft: 10,
         borderColor: '#707070',
@@ -399,7 +399,7 @@ export default StyleSheet.create({
 
     createReportIncidentInput: {
         marginTop: 18,
-        height: 200,
+        height: 150,
         width: 307,
         paddingLeft: 10,
         paddingTop: 15,
