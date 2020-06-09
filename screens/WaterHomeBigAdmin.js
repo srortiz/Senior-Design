@@ -13,7 +13,7 @@ export class WaterHomeBigAdmin extends React.Component {
     };
 
     fetchData = async() => {
-        const response = await fetch ('http://10.0.0.13:3004/reports');
+        const response = await fetch ('http://10.0.0.123:3004/reports');
         const users = await response.json();
         this.setState({data: users});
         console.log(this.state.data[0].date);
@@ -29,7 +29,7 @@ export class WaterHomeBigAdmin extends React.Component {
             <View style={styles.container}>
                 <View style={styles.header}>
                     <TouchableOpacity
-                        onPress={() => Linking.openURL('https://cluster-nicaragua.net/organizaciones/centro-de-informacion-e-innovacion-asociacion-de-desarrollo-social-de-nicaragua')}>
+                        onPress={() => Linking.openURL('https://www.asdenic.org')}>
                         <Image source={require('../assets/asdenic.png')} style={styles.asdenicLogo}/>
                     </TouchableOpacity>
 
@@ -61,7 +61,7 @@ export class WaterHomeBigAdmin extends React.Component {
 
                     </View>
 
-                    <Text style={styles.waterTitle}>AGUA BIG ADMIN</Text>
+                    <Text style={styles.waterTitle}>AGUA</Text>
                     <Form style={styles.waterForm}>
                         <Text style={styles.subTitle}>Noticias</Text>
                         <FlatList inverted data={this.state.data} 

@@ -83,7 +83,7 @@ export default class CreateNewWaterQualityReportPub extends React.Component {
 
 				<View style={styles.header}>
 					<TouchableOpacity
-                        onPress={() => Linking.openURL('https://cluster-nicaragua.net/organizaciones/centro-de-informacion-e-innovacion-asociacion-de-desarrollo-social-de-nicaragua')}>
+                        onPress={() => Linking.openURL('https://www.asdenic.org')}>
                         <Image source={require('../assets/asdenic.png')} style={styles.asdenicLogo}/>
                     </TouchableOpacity>
 
@@ -157,20 +157,6 @@ export default class CreateNewWaterQualityReportPub extends React.Component {
 									checked={this.state.checked}
 									onPress={() => this.setState({checked: !this.state.checked, urgent: !this.state.urgent})}
 								/>
-
-								<View style={styles.createReportButtons}>
-									<TouchableOpacity style={styles.createReportRecordButton}>
-										<Image source={require('../assets/mic.png')} style={styles.mic}/>
-										<Text style={{fontSize: 15}}>Grabar mensaje</Text>
-									</TouchableOpacity>
-
-									<TouchableOpacity style={styles.createReportUploadButton} onPress={this._pickImage}>
-										<Image source={require('../assets/uparrow.png')} style={styles.uparrow}/>
-										<Text style={{fontSize: 15}}>Subir una foto</Text>
-									</TouchableOpacity>
-								</View>
-								<Text>{"\n"}</Text>
-								{image && <Image source={{ uri: image }} style={{ width: 200, height: 200 }} />}
 							</ScrollView>
 						</View>
 						<TouchableOpacity style={styles.createReportPublishButton}

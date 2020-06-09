@@ -6,7 +6,6 @@ import SendSMS from 'react-native-sms'
 import * as SMS from 'expo-sms';
 import Expo from 'expo';
 import UserProfile from '../UserProfile';
-//import MyBcrypt from '../MyBcrypt';
 
 export class Login extends React.Component {
     static navigationOptions = {
@@ -125,7 +124,7 @@ export class Login extends React.Component {
             <View style={styles.container}>
                 <View style={styles.headerHome}>
                     <TouchableOpacity
-                        onPress={() => Linking.openURL('https://cluster-nicaragua.net/organizaciones/centro-de-informacion-e-innovacion-asociacion-de-desarrollo-social-de-nicaragua')}>
+                        onPress={() => Linking.openURL('https://www.asdenic.org')}>
                         <Image source={require('../assets/asdenic.png')} style={styles.asdenicLogo}/>
                     </TouchableOpacity>
 

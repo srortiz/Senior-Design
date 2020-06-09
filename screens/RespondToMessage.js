@@ -42,7 +42,7 @@ export default class RespondToMessage extends React.Component {
 
 				<View style={styles.headerHome}>
 					<TouchableOpacity
-                        onPress={() => Linking.openURL('https://cluster-nicaragua.net/organizaciones/centro-de-informacion-e-innovacion-asociacion-de-desarrollo-social-de-nicaragua')}>
+                        onPress={() => Linking.openURL('https://www.asdenic.org')}>
                         <Image source={require('../assets/asdenic.png')} style={styles.asdenicLogo}/>
                     </TouchableOpacity>
 
@@ -77,11 +77,6 @@ export default class RespondToMessage extends React.Component {
 							    onSubmitEditing={()=>{Keyboard.dismiss()}}
 								onChangeText = {body => this.setState({body})}
 							/>
-
-							<TouchableOpacity style={styles.respondMessRecordButton}>
-								<Image source={require('../assets/mic.png')} style={styles.mic}/>
-								<Text style={{fontSize: 16}}>Grabar mensaje</Text>
-							</TouchableOpacity>
 						</View>
 
 						<TouchableOpacity style={styles.respondMessSendButton}

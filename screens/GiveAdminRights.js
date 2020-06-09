@@ -54,7 +54,7 @@ export class GiveAdminRights extends React.Component {
             <View style={styles.container}>
                 <View style={styles.header}>
                     <TouchableOpacity
-                        onPress={() => Linking.openURL('https://cluster-nicaragua.net/organizaciones/centro-de-informacion-e-innovacion-asociacion-de-desarrollo-social-de-nicaragua')}>
+                        onPress={() => Linking.openURL('https://www.asdenic.org')}>
                         <Image source={require('../assets/asdenic.png')} style={styles.asdenicLogo}/>
                     </TouchableOpacity>
 

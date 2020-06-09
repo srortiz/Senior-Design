@@ -8,19 +8,12 @@ export class Welcome extends React.Component {
         title: 'Welcome',
     };
 
-    // <TouchableHighlight 
-    //   onPress={() => LinkingIOS.openURL('https://website.com')}>
-    //   <Image 
-    //     source={{uri: 'http://cf.ltkcdn.net/socialnetworking/images/std/168796-281x281-girl-swear-icon.png'}} 
-    //     style={{height:50, width:50}} />
-    // </TouchableHighlight>
-
     render() {
         return (
             <View style={styles.container}>
                 <View style={styles.headerHome}>
                     <TouchableOpacity
-                        onPress={() => Linking.openURL('https://cluster-nicaragua.net/organizaciones/centro-de-informacion-e-innovacion-asociacion-de-desarrollo-social-de-nicaragua')}>
+                        onPress={() => Linking.openURL('https://www.asdenic.org')}>
                         <Image source={require('../assets/asdenic.png')} style={styles.asdenicLogo}/>
                     </TouchableOpacity>
 

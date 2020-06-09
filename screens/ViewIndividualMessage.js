@@ -39,7 +39,7 @@ export default class ViewIndividualMessage extends React.Component {
 			<View style={styles.container}>
 				<View style={styles.headerHome}>
 					<TouchableOpacity
-                        onPress={() => Linking.openURL('https://cluster-nicaragua.net/organizaciones/centro-de-informacion-e-innovacion-asociacion-de-desarrollo-social-de-nicaragua')}>
+                        onPress={() => Linking.openURL('https://www.asdenic.org')}>
                         <Image source={require('../assets/asdenic.png')} style={styles.asdenicLogo}/>
                     </TouchableOpacity>
 
@@ -66,38 +66,6 @@ export default class ViewIndividualMessage extends React.Component {
 								<Text style={styles.viewMessComm}>{this.props.navigation.state.params.subjectPass}{"\n"}
 																	{this.props.navigation.state.params.commPass}</Text>
 								<Text style={{fontSize: 16}}>{this.props.navigation.state.params.messPass}</Text>
-								<TouchableOpacity style={styles.viewMessListenButton}>
-									<Image source={require('../assets/mic.png')} style={styles.mic}/>
-									<Text style={{fontSize: 17}}>Escuchar el mensaje</Text>
-								</TouchableOpacity>
-
-								<TouchableOpacity
-									onPress={() => {
-										this.setModalVisible(true);
-									}}
-								>
-									<Image source={require('../assets/water.jpg')} style={styles.waterImage}/>
-								</TouchableOpacity>
-
-								<Modal
-									transparent={false}
-									visible={modalVisible}
-									onRequestClose={() => this.setModalVisible()}
-								>
-									
-									<TouchableOpacity style={styles.viewReportCloseImg}
-										onPress={() => {
-											this.setModalVisible(!modalVisible);
-										}}
-									>
-										<Text style={styles.viewReportCloseText}>Go back to report</Text>
-									</TouchableOpacity>
-									<ImageViewer imageUrls={images}/>
-										
-								</Modal>
-								
-
-
 							</ScrollView>
 						</View>
 

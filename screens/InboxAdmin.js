@@ -26,7 +26,7 @@ export class InboxAdmin extends React.Component {
     };
 
     fetchData = async() => {
-        const response = await fetch ('http://10.0.0.13:3004/incidents');
+        const response = await fetch ('http://10.0.0.123:3004/incidents');
         const users = await response.json();
         this.setState({data: users});
         console.log('this is fetching data');
@@ -44,7 +44,7 @@ export class InboxAdmin extends React.Component {
             <View style={styles.container}>
                 <View style={styles.header}>
                     <TouchableOpacity
-                        onPress={() => Linking.openURL('https://cluster-nicaragua.net/organizaciones/centro-de-informacion-e-innovacion-asociacion-de-desarrollo-social-de-nicaragua')}>
+                        onPress={() => Linking.openURL('https://www.asdenic.org')}>
                         <Image source={require('../assets/asdenic.png')} style={styles.asdenicLogo}/>
                     </TouchableOpacity>
 
