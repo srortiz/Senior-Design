@@ -102,11 +102,6 @@ export default class ReportWaterQuality extends React.Component {
         	alert('Por favor escribe un asunto');
         	return;
         }
-        if (this.state.community == '')
-        {
-        	alert('Por favor seleccione su comunidad');
-        	return;
-        }
         if (this.state.message == '')
         {
         	alert('Por favor escribe un mensaje');
@@ -118,7 +113,7 @@ export default class ReportWaterQuality extends React.Component {
 		fetch("http://10.0.0.123:3004/incidents", {
 			method: 'POST',
 			headers: {"Content-Type": "application/json"},
-			body: JSON.stringify({"sender":this.state.sender,"community":this.state.community,"urgent":this.state.urgent,"message":this.state.message,"audio":this.state.audio,"image":this.state.image, "subject":this.state.subject, "phoneNumber":this.state.number, "comm1":this.state.comm1, "comm2":this.state.comm2, "comm3":this.state.comm3, "comm4":this.state.comm4, "comm5":this.state.comm5, "allcomm":this.state.allcomm}),
+			body: JSON.stringify({"sender":this.state.sender,"urgent":this.state.urgent,"message":this.state.message,"audio":this.state.audio,"image":this.state.image, "subject":this.state.subject, "phoneNumber":this.state.number, "comm1":this.state.comm1, "comm2":this.state.comm2, "comm3":this.state.comm3, "comm4":this.state.comm4, "comm5":this.state.comm5, "allcomm":this.state.allcomm}),
 			redirect: 'follow'
 		})
 			.then(response => response.text())

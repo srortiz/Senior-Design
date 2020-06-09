@@ -63,8 +63,7 @@ export default class ViewIndividualMessage extends React.Component {
 
 						<View style={styles.viewMessBox}>
 							<ScrollView style={styles.viewMessScrollView}>
-								<Text style={styles.viewMessComm}>{this.props.navigation.state.params.subjectPass}{"\n"}
-																	{this.props.navigation.state.params.commPass}</Text>
+								<Text style={styles.viewMessComm}>{this.props.navigation.state.params.subjectPass}</Text>
 								<Text style={{fontSize: 16}}>{this.props.navigation.state.params.messPass}</Text>
 							</ScrollView>
 						</View>
@@ -92,7 +91,6 @@ export default class ViewIndividualMessage extends React.Component {
 								onPress={() => this.props.navigation.navigate('CreateNewWaterQualityReportPub',
 													{
 														subjectPass : this.props.navigation.state.params.subjectPass,
-														commPass : this.props.navigation.state.params.commPass,
 														messPass : this.props.navigation.state.params.messPass,
 													})}>
 								<Text style={{fontSize: 17, color: 'white'}}>Publicar</Text>
