@@ -2,6 +2,7 @@ const mysql = require('mysql');
 const express = require('express');
 var app = express();
 const bodyparser = require('body-parser');
+const bcrypt = require("bcryptjs");
 
 app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({ extended: false}));
@@ -37,12 +38,35 @@ app.get('/users', (req, res) => {
 
 //get one user
 // how to call for certain user -> /users/phonenumber
-app.get('/users/:phonenumber', (req, res) => {
-
+app.get('/users/:phonenumber/:password', (req, res) => {
+	console.log("get one user");
 	var sql = 'SELECT * FROM users WHERE phonenumber = ?';
 	con.query(sql, [req.params.phonenumber], (err, rows, fields) => {
-		if (!err)
-			res.send(rows);
+		if (!err) {
+			console.log(req.params.password);
+			if(req.params.password != "none") {
+				if(rows.length == 0) {
+					console.log("user does not exist");
+				}
+				else {
+					console.log(rows[0].password);
+					console.log(req.params.password);
+					bcrypt.compare(req.params.password, rows[0].password, function(err, isMatch) {
+						if (err) {
+							throw err;
+						} else if (!isMatch) {
+							console.log("Password doesn't match!");
+						} else {
+							console.log("Password matches!");
+							res.send(rows);
+						}
+					})
+				}
+			}
+			else {
+				res.send(rows);
+			}
+		}
 		else
 			console.log(err);
 	});
@@ -67,16 +91,31 @@ app.post('/users', (req, res) => {
 
 	let user = req.body;
 
-	if(typeof user.firstname != "undefined") {
-		var sql = 'SET @firstname = ?; SET @lastname = ?; SET @community = ?; SET @phonenumber = ?; SET @requestedAdminRights = ?; SET @password = ?; \
-				CALL waterdb.AddNewUser(@firstname, @lastname, @community, @phonenumber, @requestedAdminRights, @password);';
-	
+	console.log(typeof user.firstname);
 
-		con.query(sql, [user.firstname, user.lastname, user.community, user.phonenumber, user.requestedAdminRights, user.password], (err, rows, fields) => {
-			if (!err)
-				res.send('Inserted successfully');
-			else
-				console.log(err);
+	if(typeof user.firstname != "undefined") {
+		bcrypt.genSalt(10, function (err, salt) {
+			if (err) {
+			  throw err
+			} else {
+				bcrypt.hash(user.password, salt, function(err, hash) {
+					if(err) {
+						throw err;
+					}
+					else {
+						var sql = 'SET @firstname = ?; SET @lastname = ?; SET @community = ?; SET @phonenumber = ?; SET @requestedAdminRights = ?; SET @password = ?; \
+						CALL waterdb.AddNewUser(@firstname, @lastname, @community, @phonenumber, @requestedAdminRights, @password);';
+			
+
+						con.query(sql, [user.firstname, user.lastname, user.community, user.phonenumber, user.requestedAdminRights, hash], (err, rows, fields) => {
+							if (!err)
+								res.send('Inserted successfully');
+							else
+								console.log(err);
+						});
+					}
+				});
+			}
 		});
 	}
 	else {
