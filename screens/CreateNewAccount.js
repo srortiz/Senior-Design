@@ -101,8 +101,10 @@ export default class CreateNewAccount extends React.Component {
 
 		console.log('fetching number');
 		var checkNum = this.state.phoneNum;
+		var checkPass = "none";
 		console.log('number is: ' + checkNum);
-        fetch("http://10.0.0.123:3004/users/" + checkNum, {
+
+        fetch("http://10.0.0.13:3004/users/" + checkNum + "/" + checkPass, {
             method: 'GET',
             redirect: 'follow'
         })
@@ -173,7 +175,7 @@ export default class CreateNewAccount extends React.Component {
 									//inserts new user into database
 
 									console.log('this is comm1: ' + this.state.comm1);
-									fetch("http://10.0.0.123:3004/users", {
+									fetch("http://10.0.0.13:3004/users", {
 										method: 'POST',
 										headers: {"Content-Type": "application/json"},
 										body: JSON.stringify({"firstname":this.state.firstName,"lastname":this.state.lastName,"phonenumber":this.state.phoneNum,"requestedAdminRights":this.state.requestedAdminRights,"password":this.state.password, "comm1":this.state.comm1, "comm2":this.state.comm2, "comm3":this.state.comm3, "comm4":this.state.comm4, "comm5":this.state.comm5, "allcomm":this.state.allcomm}),

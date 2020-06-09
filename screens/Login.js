@@ -44,8 +44,9 @@ export class Login extends React.Component {
     correctLogin = async() => {
 
         var checkNum = this.state.phoneNum;
+        var checkPass = this.state.password;
 
-        await fetch("http://10.0.0.123:3004/users/" + checkNum, {
+        await fetch("http://10.0.0.13:3004/users/" + checkNum + "/" + checkPass, {
             method: 'GET',
             redirect: 'follow'
         })
@@ -54,16 +55,18 @@ export class Login extends React.Component {
                                 //console.log(typeof result);
                                 if (result.length == 0)
                                 {
-                                    console.log('no user exists with this phone number, cannot login');
-                                    alert('Existe ningún usuario con este número de teléfono. Volver a intentar o crear una cuenta.');
+                                    alert('No coinciden la contraseña y el número de teléfono.');
+                                    return;
+                                    // console.log('no user exists with this phone number, cannot login');
+                                    // alert('Existe ningún usuario con este número de teléfono. Volver a intentar o crear una cuenta.');
                                 }
-
                                 else
                                 {
                                     console.log('user exists');
 
-                                    if (result[0].password == this.state.password)
-                                    {
+                                    // if (MyBcrypt.comparePass(this.state.password, result[0].password))
+                                    //     //MyBcrypt.comparePass(this.state.password, result[0].password)
+                                    // {
                                         if (result[0].mainAdmin == 1)
                                         {
                                             this.props.navigation.navigate('WaterHomeBigAdmin');
@@ -78,12 +81,12 @@ export class Login extends React.Component {
                                             this._saveInfo();
                                             this.props.navigation.navigate('WaterHomeAdmin');
                                         }
-                                    }
-                                    else
-                                    {
-                                        alert('No coinciden la contraseña y el número de teléfono.');
-                                        return;
-                                    }
+                                    // }
+                                    // else
+                                    // {
+                                    //     alert('No coinciden la contraseña y el número de teléfono.');
+                                    //     return;
+                                    // }
                                 }
                             })
             .catch(error => console.log('error', error));

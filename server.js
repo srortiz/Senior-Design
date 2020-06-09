@@ -2,6 +2,7 @@ const mysql = require('mysql');
 const express = require('express');
 var app = express();
 const bodyparser = require('body-parser');
+const bcrypt = require("bcryptjs");
 
 app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({ extended: false}));
@@ -37,12 +38,31 @@ app.get('/users', (req, res) => {
 
 //get one user
 // how to call for certain user -> /users/phonenumber
-app.get('/users/:phonenumber', (req, res) => {
-
+app.get('/users/:phonenumber/:password', (req, res) => {
+	console.log("get one user");
 	var sql = 'SELECT * FROM users WHERE phonenumber = ?';
 	con.query(sql, [req.params.phonenumber], (err, rows, fields) => {
-		if (!err)
-			res.send(rows);
+		if (!err) {
+			console.log(req.params.password);
+			if(req.params.password != "none") {
+				if(rows.length == 0) {
+					console.log("user does not exist");
+				}
+				else {
+					const isMatch = bcrypt.compare(req.params.password, rows[0].password);
+					if(isMatch) {
+						console.log("Password matches!");
+						res.send(rows);
+					}
+					else {
+						console.log("Password doesn't match!");
+					}
+				}
+			}
+			else {
+				res.send(rows);
+			}
+		}
 		else
 			console.log(err);
 	});
@@ -68,11 +88,11 @@ app.post('/users', (req, res) => {
 	let user = req.body;
 
 	if(typeof user.firstname != "undefined") {
-		var sql = 'SET @firstname = ?; SET @lastname = ?; SET @phonenumber = ?; SET @requestedAdminRights = ?; SET @password = ?; SET @comm1 = ?; SET @comm2 = ?; SET @comm3 = ?; SET @comm4 = ?; SET @comm5 = ?; SET @allcomm = ?;\
-				CALL waterdb.AddNewUser(@firstname, @lastname, @phonenumber, @requestedAdminRights, @password, @comm1, @comm2, @comm3, @comm4, @comm5, @allcomm);';
-	
+		const hash = bcrypt.hash(user.password, 10);
+			var sql = 'SET @firstname = ?; SET @lastname = ?; SET @phonenumber = ?; SET @requestedAdminRights = ?; SET @password = ?; SET @comm1 = ?; SET @comm2 = ?; SET @comm3 = ?; SET @comm4 = ?; SET @comm5 = ?; SET @allcomm = ?;\
+			CALL waterdb.AddNewUser(@firstname, @lastname, @phonenumber, @requestedAdminRights, @password, @comm1, @comm2, @comm3, @comm4, @comm5, @allcomm);';
 
-		con.query(sql, [user.firstname, user.lastname, user.phonenumber, user.requestedAdminRights, user.password, user.comm1, user.comm2, user.comm3, user.comm4, user.comm5, user.allcomm], (err, rows, fields) => {
+			con.query(sql, [user.firstname, user.lastname, user.phonenumber, user.requestedAdminRights, hash, user.comm1, user.comm2, user.comm3, user.comm4, user.comm5, user.allcomm], (err, rows, fields) => {
 			if (!err)
 				res.send('Inserted successfully');
 			else
@@ -90,22 +110,6 @@ app.post('/users', (req, res) => {
 		});
 	}	
 });
-
-// update users' admin rights
-// app.post('/users', (req, res) => {
-
-// 	let user = req.body;
-
-// 	var sql = 'SET @givenAdminRights = ?; WHERE @phonenumber = ?; \
-// 					CALL waterdb.UpdateAdminRights(@givenAdminRights, @phonenumber);'; 
-	
-// 	con.query(sql, [1, user.phonenumber], (err, rows, fields) => {
-// 		if (!err)
-// 			res.send('Updated successfully');
-// 		else
-// 			console.log(err);
-// 	});
-// });
 
 
 //get all reports
