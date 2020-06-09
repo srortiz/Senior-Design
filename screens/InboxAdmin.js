@@ -83,7 +83,6 @@ export class InboxAdmin extends React.Component {
                                                                                 {
                                                                                     senderPass: item.sender,
                                                                                     datePass: item.date,
-                                                                                    commPass: item.community,
                                                                                     messPass: item.message,
                                                                                     subjectPass: item.subject,
                                                                                     idNumPass: item.idincidents,

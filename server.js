@@ -129,7 +129,7 @@ app.get('/reports', (req, res) => {
 app.get('/incidents', (req, res) => {
 
 	//var sql = 'SELECT * FROM incidents';
-	var sql = 'SELECT idincidents, sender, community, DATE_FORMAT(date, "%d/%m/%Y") date, urgent, message, audio, subject, image, readYn, phoneNumber FROM incidents';
+	var sql = 'SELECT idincidents, sender, DATE_FORMAT(date, "%d/%m/%Y") date, urgent, message, audio, subject, image, readYn, phoneNumber FROM incidents';
 	con.query(sql, (err, rows, fields) => {
 		if (!err)
 			res.send(rows);
@@ -188,11 +188,11 @@ app.post('/incidents', (req, res) => {
 
 	let incident = req.body;
 
-	var sql = 'SET @sender = ?; SET @community = ?; SET @urgent = ?; SET @message = ?; SET @audio = ?; SET @image = ?; SET @subject = ?; SET @phoneNumber = ?; SET @comm1 = ?; SET @comm2 = ?; SET @comm3 = ?; SET @comm4 = ?; SET @comm5 = ?; SET @allcomm = ?;\
-				CALL waterdb.AddNewIncident(@sender, @community, @urgent, @message, @audio, @image, @subject, @phoneNumber, @comm1, @comm2, @comm3, @comm4, @comm5, @allcomm);';
+	var sql = 'SET @sender = ?; SET @urgent = ?; SET @message = ?; SET @audio = ?; SET @image = ?; SET @subject = ?; SET @phoneNumber = ?; SET @comm1 = ?; SET @comm2 = ?; SET @comm3 = ?; SET @comm4 = ?; SET @comm5 = ?; SET @allcomm = ?;\
+				CALL waterdb.AddNewIncident(@sender, @urgent, @message, @audio, @image, @subject, @phoneNumber, @comm1, @comm2, @comm3, @comm4, @comm5, @allcomm);';
 	
 
-	con.query(sql, [incident.sender, incident.community, incident.urgent, incident.message, incident.audio, incident.image, incident.subject, incident.phoneNumber, incident.comm1, incident.comm2, incident.comm3, incident.comm4, incident.comm5, incident.allcomm], (err, rows, fields) => {
+	con.query(sql, [incident.sender, incident.urgent, incident.message, incident.audio, incident.image, incident.subject, incident.phoneNumber, incident.comm1, incident.comm2, incident.comm3, incident.comm4, incident.comm5, incident.allcomm], (err, rows, fields) => {
 		if (!err)
 			res.send('New incident inserted successfully');
 		else
