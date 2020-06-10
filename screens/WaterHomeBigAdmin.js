@@ -2,6 +2,7 @@ import React from 'react'
 import { View, Text, Image, TouchableOpacity, ScrollView, FlatList, Linking } from 'react-native'
 import { Form, Button } from 'native-base'
 import styles from '../Style'
+import UserProfile from '../UserProfile';
 
 export class WaterHomeBigAdmin extends React.Component {
     static navigationOptions = {
@@ -10,6 +11,7 @@ export class WaterHomeBigAdmin extends React.Component {
 
     state = {
         data: [],
+
     };
 
     fetchData = async() => {
@@ -17,6 +19,9 @@ export class WaterHomeBigAdmin extends React.Component {
         const users = await response.json();
         this.setState({data: users});
         console.log(this.state.data[0].date);
+
+        console.log('setting mainAdmin to 1');
+        UserProfile.setMainAdmin(1);
     }
 
     componentDidMount() {

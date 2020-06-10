@@ -2,14 +2,16 @@ import React from 'react'
 import { View, Text, Image, TouchableOpacity, ScrollView, FlatList, Linking } from 'react-native'
 import { Form, Button } from 'native-base'
 import styles from '../Style'
+import UserProfile from '../UserProfile';
 
-export class WaterHomeAdmin extends React.Component {
+export class WaterHomeBigAdminRefresh extends React.Component {
     static navigationOptions = {
-        title: 'WaterHomeAdmin',
+        title: 'WaterHomeBigAdminRefresh',
     };
 
     state = {
         data: [],
+
     };
 
     fetchData = async() => {
@@ -17,16 +19,15 @@ export class WaterHomeAdmin extends React.Component {
         const users = await response.json();
         this.setState({data: users});
         console.log(this.state.data[0].date);
+
+        console.log('setting mainAdmin to 1');
+        UserProfile.setMainAdmin(1);
     }
 
     componentDidMount() {
         this.fetchData();
     }
 
-    // _inbox() {
-    //     let num = this.props.navigation.state.params.phoneNumPass;
-    //     UserProfile.setNumber(num);
-    // }
 
     render() {
         return (
@@ -58,7 +59,7 @@ export class WaterHomeAdmin extends React.Component {
                                 <Text style={styles.addText}>+</Text>
                             </Button>
                             <Button style={styles.mail}
-                                onPress={() => {this.props.navigation.navigate('InboxAdmin')}}>
+                                onPress={() => this.props.navigation.navigate('InboxAdmin')}>
                                 <Image source={require('../assets/mail.png')} style={styles.mailPicture}/>
                             </Button>
                         </View>
@@ -91,6 +92,10 @@ export class WaterHomeAdmin extends React.Component {
                             </Button>}
                         />
                     </Form>
+                    <Button style={styles.link}
+                            onPress={() => this.props.navigation.navigate('GiveAdminRights')}>
+                            <Text style={styles.incidentButton}>Give others Admin rights.</Text>
+                    </Button>
                 </View>
 
                 <View style={styles.footer}>
@@ -101,4 +106,4 @@ export class WaterHomeAdmin extends React.Component {
     }
 }
 
-export default WaterHomeAdmin;
+export default WaterHomeBigAdminRefresh;

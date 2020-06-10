@@ -5,9 +5,9 @@ import Login from './screens/Login'
 import WaterHomeGen from './screens/WaterHomeGen'
 import WaterHomeAdmin from './screens/WaterHomeAdmin'
 import WaterHomeBigAdmin from './screens/WaterHomeBigAdmin'
+import WaterHomeBigAdminRefresh from './screens/WaterHomeBigAdminRefresh'
 import WaterHomeAdminRefresh from './screens/WaterHomeAdminRefresh'
 import ConfirmWaterQualityReport from './screens/ConfirmWaterQualityReport'
-import ConfirmNewReport from './screens/ConfirmNewReport'
 import CreateNewAccount from './screens/CreateNewAccount'
 import CreateNewWaterQualityReport from './screens/CreateNewWaterQualityReport'
 import CreateNewWaterQualityReportPub from './screens/CreateNewWaterQualityReportPub'
@@ -48,7 +48,6 @@ const myStackNavigatorAdmin = createStackNavigator(
 {
 	WaterHomeAdmin: WaterHomeAdmin,
 	WaterHomeAdminRefresh: WaterHomeAdminRefresh,
-	ConfirmNewReport: ConfirmNewReport,
 	CreateNewWaterQualityReport: CreateNewWaterQualityReport,
 	ViewIndividualWaterReport: ViewIndividualWaterReport,
 	RespondToMessage: RespondToMessage,
@@ -69,8 +68,7 @@ const myStackNavigatorAdmin = createStackNavigator(
 const myStackNavigatorBigAdmin = createStackNavigator(
 {
 	WaterHomeBigAdmin: WaterHomeBigAdmin,
-	WaterHomeAdminRefresh: WaterHomeAdminRefresh,
-	ConfirmNewReport: ConfirmNewReport,
+	WaterHomeBigAdminRefresh: WaterHomeBigAdminRefresh,
 	CreateNewWaterQualityReport: CreateNewWaterQualityReport,
 	ViewIndividualWaterReport: ViewIndividualWaterReport,
 	RespondToMessage: RespondToMessage,
