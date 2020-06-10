@@ -6,6 +6,7 @@ import { Form, Button } from 'native-base'
 import * as ImagePicker from 'expo-image-picker'
 import { CheckBox } from 'react-native-elements'
 import SelectMultiple from 'react-native-select-multiple'
+import UserProfile from '../UserProfile';
 
 const communities = [
 	{ label: 'Communidad 1', value: '1' },
@@ -103,7 +104,15 @@ export default class CreateNewWaterQualityReport extends React.Component {
 			.then(result => console.log(result))
 			.catch(error => console.log('error', error));
 
-		this.props.navigation.navigate('ConfirmNewReport');
+		console.log('main admin? ' + UserProfile.getMainAdmin());
+		if (UserProfile.getMainAdmin() == 1)
+		{
+			this.props.navigation.navigate('WaterHomeBigAdminRefresh');
+		}
+		else
+		{
+			this.props.navigation.navigate('WaterHomeAdminRefresh');
+		}
 	}
 
 	render(){
