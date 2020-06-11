@@ -194,16 +194,30 @@ app.post('/incidents', (req, res) => {
 
 	let incident = req.body;
 
-	var sql = 'SET @sender = ?; SET @urgent = ?; SET @message = ?; SET @audio = ?; SET @image = ?; SET @subject = ?; SET @phoneNumber = ?; SET @comm1 = ?; SET @comm2 = ?; SET @comm3 = ?; SET @comm4 = ?; SET @comm5 = ?; SET @allcomm = ?;\
-				CALL waterdb.AddNewIncident(@sender, @urgent, @message, @audio, @image, @subject, @phoneNumber, @comm1, @comm2, @comm3, @comm4, @comm5, @allcomm);';
-	
+	if(typeof incident.subject == "undefined") {
+		var sql = 'SET @sender = ?; SET @urgent = ?; SET @message = ?; SET @audio = ?; SET @image = ?; SET @subject = ?; SET @phoneNumber = ?; SET @comm1 = ?; SET @comm2 = ?; SET @comm3 = ?; SET @comm4 = ?; SET @comm5 = ?; SET @allcomm = ?;\
+					CALL waterdb.AddNewIncident(@sender, @urgent, @message, @audio, @image, @subject, @phoneNumber, @comm1, @comm2, @comm3, @comm4, @comm5, @allcomm);';
+		
 
-	con.query(sql, [incident.sender, incident.urgent, incident.message, incident.audio, incident.image, incident.subject, incident.phoneNumber, incident.comm1, incident.comm2, incident.comm3, incident.comm4, incident.comm5, incident.allcomm], (err, rows, fields) => {
-		if (!err)
-			res.send('New incident inserted successfully');
-		else
-			console.log(err);
-	});
+		con.query(sql, [incident.sender, incident.urgent, incident.message, incident.audio, incident.image, incident.subject, incident.phoneNumber, incident.comm1, incident.comm2, incident.comm3, incident.comm4, incident.comm5, incident.allcomm], (err, rows, fields) => {
+			if (!err)
+				res.send('New incident inserted successfully');
+			else
+				console.log(err);
+		});
+	}
+	else {
+		console.log("update incidents");
+		console.log(incident.subject);
+		var sql = 'UPDATE incidents SET readYn = ? WHERE subject = ?'; 
+	
+		con.query(sql, [1, incident.subject], (err, rows, fields) => {
+			if (!err)
+				res.send('Updated successfully');
+			else
+				console.log(err);
+		});
+	}
 });
 
 //insert a new mail message

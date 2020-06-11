@@ -46,7 +46,7 @@ export class Login extends React.Component {
         var checkNum = this.state.phoneNum;
         var checkPass = this.state.password;
 
-        await fetch("http://10.0.0.123:3004/users/" + checkNum + "/" + checkPass, {
+        await fetch("http://10.0.0.13:3004/users/" + checkNum + "/" + checkPass, {
             method: 'GET',
             redirect: 'follow'
         })
@@ -161,10 +161,10 @@ export class Login extends React.Component {
                             <Text style={styles.buttonText}>Entrar</Text>
                         </Button>
 
-                        <Button style={[styles.link, { marginTop: 20 }]}
+                        {/* <Button style={[styles.link, { marginTop: 20 }]}
                             onPress={() => this.sendCode()}>
                             <Text style={styles.loginPageButtons}>¿Olvidó su contraseña?</Text>
-                        </Button>
+                        </Button> */}
 
                         <Button style={styles.link}
                             onPress={() => this.props.navigation.navigate('CreateNewAccount')}>

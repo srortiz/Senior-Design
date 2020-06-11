@@ -26,7 +26,24 @@ export default class ViewMailMessage extends React.Component {
         let num = UserProfile.getNumber();
         console.log(UserProfile.getNumber());
         this.setState({number: num});
-    }
+	}
+	
+	// setRead (read, subject) {
+    //     if(!read) {
+    //         //updates incidents in database
+    //         fetch("http://10.0.0.13:3004/incidents", {
+    //             method: 'POST',
+    //             headers: {"Content-Type": "application/json"},
+    //             body: JSON.stringify({"subject":subject}),
+    //             redirect: 'follow'
+    //         })
+    //             .then(response => response.text())
+    //             .then(result => console.log(result))
+    //             .catch(error => console.log('error', error));
+	// 	}  
+		
+	// 	this.props.navigation.navigate('InboxAdmin');
+    // }
 
     componentDidMount() {
         this.fetchNumber();
@@ -54,7 +71,7 @@ export default class ViewMailMessage extends React.Component {
 					<View style={styles.viewMessCont}>
 
 						<Button style={styles.backButton}
-                            onPress={() => this.props.navigation.navigate('Inbox')}>
+							onPress={() => 	this.props.navigation.navigate('InboxGen')}>
                             <Text style={styles.backText}>{'<'} Atrás</Text>
                         </Button>
 

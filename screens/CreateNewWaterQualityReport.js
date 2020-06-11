@@ -94,7 +94,7 @@ export default class CreateNewWaterQualityReport extends React.Component {
         }
 
 		//inserts new report into database
-		fetch("http://10.0.0.123:3004/reports", {
+		fetch("http://10.0.0.13:3004/reports", {
 			method: 'POST',
 			headers: {"Content-Type": "application/json"},
 			body: JSON.stringify({"title":this.state.title,"urgent":this.state.urgent,"message":this.state.message,"audio":audioFile,"image":this.state.image, "comm1":this.state.comm1, "comm2":this.state.comm2, "comm3":this.state.comm3, "comm4":this.state.comm4, "comm5":this.state.comm5, "allcomm":this.state.allcomm}),
@@ -105,6 +105,8 @@ export default class CreateNewWaterQualityReport extends React.Component {
 			.catch(error => console.log('error', error));
 
 		console.log('main admin? ' + UserProfile.getMainAdmin());
+
+
 		if (UserProfile.getMainAdmin() == 1)
 		{
 			this.props.navigation.navigate('WaterHomeBigAdminRefresh');
