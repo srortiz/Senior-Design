@@ -9,13 +9,21 @@ import SelectMultiple from 'react-native-select-multiple'
 import UserProfile from '../UserProfile';
 
 const communities = [
-	{ label: 'Communidad 1', value: '1' },
-	{ label: 'Communidad 2', value: '2' },
-	{ label: 'Communidad 3', value: '3' },
-	{ label: 'Communidad 4', value: '4' },
-	{ label: 'Communidad 5', value: '5' },
-	{ label: 'All', value: '6' },
-
+	{ label: 'Darailí', value: '1' },
+	{ label: 'La Laguna', value: '2' },
+	{ label: 'San Andres', value: '3' },
+	{ label: 'Las Limas', value: '4' },
+	{ label: 'Bijahualt', value: '5' },
+	{ label: 'Venecia', value: '6' },
+	{ label: 'El Naranjo', value: '7' },
+	{ label: 'El Naranjito', value: '8' },
+	{ label: 'San Jerónimo', value: '9' },
+	{ label: 'Los Planes', value: '10' },
+	{ label: 'Robledalito', value: '11' },
+	{ label: 'Varonesa', value: '12' },
+	{ label: 'La Palmera', value: '13' },
+	{ label: 'El Bramadero', value: '14' },
+	{ label: 'Todos communidades', value: '15' },
 ]
 
 export default class CreateNewWaterQualityReport extends React.Component {
@@ -33,6 +41,15 @@ export default class CreateNewWaterQualityReport extends React.Component {
 		comm3: '',
 		comm4: '',
 		comm5: '',
+		comm6: '',
+		comm7: '',
+		comm8: '',
+		comm9: '',
+		comm10: '',
+		comm11: '',
+		comm12: '',
+		comm13: '',
+		comm14: '',
 		allcomm: '',
 	};
 
@@ -69,6 +86,51 @@ export default class CreateNewWaterQualityReport extends React.Component {
 			}
 			if (selectedComm[i-1].value == 6)
 			{
+				this.state.comm6 = 1;
+				console.log('comm6 is set to ' + this.state.comm6)
+			}
+			if (selectedComm[i-1].value == 7)
+			{
+				this.state.comm7 = 1;
+				console.log('comm7 is set to ' + this.state.comm7)
+			}
+			if (selectedComm[i-1].value == 8)
+			{
+				this.state.comm8 = 1;
+				console.log('comm8 is set to ' + this.state.comm8)
+			}
+			if (selectedComm[i-1].value == 9)
+			{
+				this.state.comm9 = 1;
+				console.log('comm9 is set to ' + this.state.comm9)
+			}
+			if (selectedComm[i-1].value == 10)
+			{
+				this.state.comm10 = 1;
+				console.log('comm10 is set to ' + this.state.comm10)
+			}
+			if (selectedComm[i-1].value == 11)
+			{
+				this.state.comm11 = 1;
+				console.log('comm11 is set to ' + this.state.comm11)
+			}
+			if (selectedComm[i-1].value == 12)
+			{
+				this.state.comm12 = 1;
+				console.log('comm12 is set to ' + this.state.comm12)
+			}
+			if (selectedComm[i-1].value == 13)
+			{
+				this.state.comm13 = 1;
+				console.log('comm13 is set to ' + this.state.comm13)
+			}
+			if (selectedComm[i-1].value == 14)
+			{
+				this.state.comm14 = 1;
+				console.log('comm14 is set to ' + this.state.comm14)
+			}
+			if (selectedComm[i-1].value == 15)
+			{
 				this.state.allcomm = 1;
 				console.log('all is set to ' + this.state.allcomm)
 			}
@@ -97,7 +159,7 @@ export default class CreateNewWaterQualityReport extends React.Component {
 		fetch("http://10.0.0.123:3004/reports", {
 			method: 'POST',
 			headers: {"Content-Type": "application/json"},
-			body: JSON.stringify({"title":this.state.title,"urgent":this.state.urgent,"message":this.state.message,"audio":audioFile,"image":this.state.image, "comm1":this.state.comm1, "comm2":this.state.comm2, "comm3":this.state.comm3, "comm4":this.state.comm4, "comm5":this.state.comm5, "allcomm":this.state.allcomm}),
+			body: JSON.stringify({"title":this.state.title,"urgent":this.state.urgent,"message":this.state.message,"audio":audioFile,"image":this.state.image, "comm1":this.state.comm1, "comm2":this.state.comm2, "comm3":this.state.comm3, "comm4":this.state.comm4, "comm5":this.state.comm5, "comm6":this.state.comm6, "comm7":this.state.comm7, "comm8":this.state.comm8, "comm9":this.state.comm9, "comm10":this.state.comm10, "comm11":this.state.comm11, "comm12":this.state.comm12, "comm13":this.state.comm13, "comm14":this.state.comm14, "allcomm":this.state.allcomm}),
 			redirect: 'follow'
 		})
 			.then(response => response.text())

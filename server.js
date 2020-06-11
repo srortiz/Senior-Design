@@ -89,10 +89,10 @@ app.post('/users', (req, res) => {
 
 	if(typeof user.firstname != "undefined") {
 		const hash = bcrypt.hash(user.password, 10);
-			var sql = 'SET @firstname = ?; SET @lastname = ?; SET @phonenumber = ?; SET @requestedAdminRights = ?; SET @password = ?; SET @comm1 = ?; SET @comm2 = ?; SET @comm3 = ?; SET @comm4 = ?; SET @comm5 = ?; SET @allcomm = ?;\
-			CALL waterdb.AddNewUser(@firstname, @lastname, @phonenumber, @requestedAdminRights, @password, @comm1, @comm2, @comm3, @comm4, @comm5, @allcomm);';
+			var sql = 'SET @firstname = ?; SET @lastname = ?; SET @phonenumber = ?; SET @requestedAdminRights = ?; SET @password = ?; SET @comm1 = ?; SET @comm2 = ?; SET @comm3 = ?; SET @comm4 = ?; SET @comm5 = ?; SET @comm6 = ?; SET @comm7 = ?; SET @comm8 = ?; SET @comm9 = ?; SET @comm10 = ?; SET @comm11 = ?; SET @comm12 = ?; SET @comm13 = ?; SET @comm14 = ?; SET @allcomm = ?;\
+			CALL waterdb.AddNewUser(@firstname, @lastname, @phonenumber, @requestedAdminRights, @password, @comm1, @comm2, @comm3, @comm4, @comm5, @comm6, @comm7, @comm8, @comm9, @comm10, @comm11, @comm12, @comm13, @comm14, @allcomm);';
 
-			con.query(sql, [user.firstname, user.lastname, user.phonenumber, user.requestedAdminRights, hash, user.comm1, user.comm2, user.comm3, user.comm4, user.comm5, user.allcomm], (err, rows, fields) => {
+			con.query(sql, [user.firstname, user.lastname, user.phonenumber, user.requestedAdminRights, hash, user.comm1, user.comm2, user.comm3, user.comm4, user.comm5, user.comm6, user.comm7, user.comm8, user.comm9, user.comm10, user.comm11, user.comm12, user.comm13, user.comm14, user.allcomm], (err, rows, fields) => {
 			if (!err)
 				res.send('Inserted successfully');
 			else
@@ -171,11 +171,11 @@ app.post('/reports', (req, res) => {
 
 	let report = req.body;
 
-	var sql = 'SET @title = ?; SET @urgent = ?; SET @message = ?; SET @audio = ?; SET @image = ?; SET @comm1 = ?; SET @comm2 = ?; SET @comm3 = ?; SET @comm4 = ?; SET @comm5 = ?; SET @allcomm = ?;\
-				CALL waterdb.AddNewReport(@title, @urgent, @message, @audio, @image, @comm1, @comm2, @comm3, @comm4, @comm5, @allcomm);';
+	var sql = 'SET @title = ?; SET @urgent = ?; SET @message = ?; SET @audio = ?; SET @image = ?; SET @comm1 = ?; SET @comm2 = ?; SET @comm3 = ?; SET @comm4 = ?; SET @comm5 = ?; SET @comm6 = ?; SET @comm7 = ?; SET @comm8 = ?; SET @comm9 = ?; SET @comm10 = ?; SET @comm11 = ?; SET @comm12 = ?; SET @comm13 = ?; SET @comm14 = ?; SET @allcomm = ?;\
+				CALL waterdb.AddNewReport(@title, @urgent, @message, @audio, @image, @comm1, @comm2, @comm3, @comm4, @comm5, @comm6, @comm7, @comm8, @comm9, @comm10, @comm11, @comm12, @comm13, @comm14, @allcomm);';
 	
 
-	con.query(sql, [report.title, report.urgent, report.message, report.audio, report.image, report.comm1, report.comm2, report.comm3, report.comm4, report.comm5, report.allcomm], (err, rows, fields) => {
+	con.query(sql, [report.title, report.urgent, report.message, report.audio, report.image, report.comm1, report.comm2, report.comm3, report.comm4, report.comm5, report.comm6, report.comm7, report.comm8, report.comm9, report.comm10, report.comm11, report.comm12, report.comm13, report.comm14, report.allcomm], (err, rows, fields) => {
 		if (!err)
 			res.send('New report inserted successfully');
 		else
@@ -188,11 +188,11 @@ app.post('/incidents', (req, res) => {
 
 	let incident = req.body;
 
-	var sql = 'SET @sender = ?; SET @urgent = ?; SET @message = ?; SET @audio = ?; SET @image = ?; SET @subject = ?; SET @phoneNumber = ?; SET @comm1 = ?; SET @comm2 = ?; SET @comm3 = ?; SET @comm4 = ?; SET @comm5 = ?; SET @allcomm = ?;\
-				CALL waterdb.AddNewIncident(@sender, @urgent, @message, @audio, @image, @subject, @phoneNumber, @comm1, @comm2, @comm3, @comm4, @comm5, @allcomm);';
+	var sql = 'SET @sender = ?; SET @urgent = ?; SET @message = ?; SET @audio = ?; SET @image = ?; SET @subject = ?; SET @phoneNumber = ?; SET @comm1 = ?; SET @comm2 = ?; SET @comm3 = ?; SET @comm4 = ?; SET @comm5 = ?; SET @comm6 = ?; SET @comm7 = ?; SET @comm8 = ?; SET @comm9 = ?; SET @comm10 = ?; SET @comm11 = ?; SET @comm12 = ?; SET @comm13 = ?; SET @comm14 = ?; SET @allcomm = ?;\
+				CALL waterdb.AddNewIncident(@sender, @urgent, @message, @audio, @image, @subject, @phoneNumber, @comm1, @comm2, @comm3, @comm4, @comm5, @comm6, @comm7, @comm8, @comm9, @comm10, @comm11, @comm12, @comm13, @comm14, @allcomm);';
 	
 
-	con.query(sql, [incident.sender, incident.urgent, incident.message, incident.audio, incident.image, incident.subject, incident.phoneNumber, incident.comm1, incident.comm2, incident.comm3, incident.comm4, incident.comm5, incident.allcomm], (err, rows, fields) => {
+	con.query(sql, [incident.sender, incident.urgent, incident.message, incident.audio, incident.image, incident.subject, incident.phoneNumber, incident.comm1, incident.comm2, incident.comm3, incident.comm4, incident.comm5, incident.comm6, incident.comm7, incident.comm8, incident.comm9, incident.comm10, incident.comm11, incident.comm12, incident.comm13, incident.comm14, incident.allcomm], (err, rows, fields) => {
 		if (!err)
 			res.send('New incident inserted successfully');
 		else

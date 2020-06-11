@@ -14,7 +14,7 @@ export class GiveAdminRights extends React.Component {
     };
 
     fetchData = async() => {
-        const response = await fetch ('http://10.0.0.13:3004/users');
+        const response = await fetch ('http://10.0.0.123:3004/users');
         const users = await response.json();
         this.setState({data: users});
     }
@@ -71,12 +71,12 @@ export class GiveAdminRights extends React.Component {
 
                 <View style={styles.pageContent}>
 
-                    <Text style={styles.adminRightsTitle}>Give Admin Rights</Text>
+                    <Text style={styles.adminRightsTitle}>Dar Acceso de admin</Text>
                     <Form style={styles.waterForm}>
-                        <Text style={styles.subTitle}>Users</Text>
+                        <Text style={styles.subTitle}>Usarios</Text>
                         <View style={styles.subsubTitle}>
-                            <Text style={styles.requestedAccess}>Requested{'\n'}Access</Text>
-                            <Text style={styles.giveAccess}>Give{'\n'}Access</Text>
+                            <Text style={styles.requestedAccess}>Accceso{'\n'}solicitado</Text>
+                            <Text style={styles.giveAccess}>Accesso{'\n'}concedido</Text>
                         </View>
 
                         <FlatList inverted data={this.state.data} 
@@ -117,7 +117,7 @@ export class GiveAdminRights extends React.Component {
 
                     <TouchableOpacity style={styles.GiveAdminRightsSubmit}
                             onPress={() =>  this.saveChanges() }>
-                            <Text style={{fontSize: 17, color: 'white', fontWeight: 'bold'}}>Save Changes</Text>
+                            <Text style={{fontSize: 17, color: 'white', fontWeight: 'bold'}}>Guardar cambios</Text>
                     </TouchableOpacity> 
                 </View>
 

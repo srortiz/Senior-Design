@@ -94,7 +94,7 @@ export class WaterHomeBigAdmin extends React.Component {
                     </Form>
                     <Button style={styles.link}
                             onPress={() => this.props.navigation.navigate('GiveAdminRights')}>
-                            <Text style={styles.incidentButton}>Give others Admin rights.</Text>
+                            <Text style={styles.incidentButton}>Dar acceso de admin a otros.</Text>
                     </Button>
                 </View>
 
