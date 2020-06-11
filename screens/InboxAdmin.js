@@ -26,7 +26,7 @@ export class InboxAdmin extends React.Component {
     };
 
     fetchData = async() => {
-        const response = await fetch ('http://10.0.0.123:3004/incidents');
+        const response = await fetch ('http://10.0.0.13:3004/incidents');
         const users = await response.json();
         this.setState({data: users});
         console.log('this is fetching data');
@@ -36,7 +36,31 @@ export class InboxAdmin extends React.Component {
         this.fetchData();
     }
 
-    setRead () {
+    setRead (read, subject, sender, date, message, idincidents, phoneNumber) {
+        if(!read) {
+            //updates incidents in database
+            fetch("http://10.0.0.13:3004/incidents", {
+                method: 'POST',
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify({"subject":subject}),
+                redirect: 'follow'
+            })
+                .then(response => response.text())
+                .then(result => console.log(result))
+                .catch(error => console.log('error', error));
+        } 
+        this.fetchData(); 
+
+        this.props.navigation.navigate('ViewIndividualMessage',
+        {
+            senderPass: sender,
+            datePass: date,
+            messPass: message,
+            subjectPass: subject,
+            idNumPass: idincidents,
+            phoneNumPass: phoneNumber
+        });
+        this.setState({incidentNum: idincidents});
     }
     
     render() {
@@ -79,18 +103,7 @@ export class InboxAdmin extends React.Component {
                             initialScrollIndex={this.state.data.length - 1}
                             keyExtractor={(item, index) => index.toString()}
                             renderItem={({ item, index }) =>
-                            <Button style={styles.message} onPress={() => {     this.props.navigation.navigate('ViewIndividualMessage',
-                                                                                {
-                                                                                    senderPass: item.sender,
-                                                                                    datePass: item.date,
-                                                                                    messPass: item.message,
-                                                                                    subjectPass: item.subject,
-                                                                                    idNumPass: item.idincidents,
-                                                                                    phoneNumPass: item.phoneNumber,
-                                                                                });
-                                                                                this.setState({incidentNum: item.idincidents});
-                                                                                this.setRead();
-                                                                    }}>
+                            <Button style={styles.message} onPress={() => this.setRead(item.readYn, item.subject, item.sender, item.date, item.message, item.idincidents, item.phoneNumber)}>
                                     <View style={styles.unread}>
                                     {item.readYn
                                         ? <Text></Text>

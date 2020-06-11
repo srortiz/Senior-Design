@@ -1,10 +1,1 @@
-{
-  "expoServerPort": 19000,
-  "expoServerNgrokUrl": "https://im-2wz.anonymous.senior-design.exp.direct",
-  "packagerNgrokUrl": "https://packager.im-2wz.anonymous.senior-design.exp.direct",
-  "ngrokPid": 16181,
-  "packagerPort": 19003,
-  "packagerPid": 16163,
-  "webpackServerPort": null,
-  "devToolsPort": 19002
-}
+{}

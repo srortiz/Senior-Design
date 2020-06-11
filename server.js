@@ -194,16 +194,30 @@ app.post('/incidents', (req, res) => {
 
 	let incident = req.body;
 
-	var sql = 'SET @sender = ?; SET @urgent = ?; SET @message = ?; SET @audio = ?; SET @image = ?; SET @subject = ?; SET @phoneNumber = ?; SET @comm1 = ?; SET @comm2 = ?; SET @comm3 = ?; SET @comm4 = ?; SET @comm5 = ?; SET @comm6 = ?; SET @comm7 = ?; SET @comm8 = ?; SET @comm9 = ?; SET @comm10 = ?; SET @comm11 = ?; SET @comm12 = ?; SET @comm13 = ?; SET @comm14 = ?; SET @allcomm = ?;\
+	if(typeof incident.subject == "undefined") {
+		var sql = 'SET @sender = ?; SET @urgent = ?; SET @message = ?; SET @audio = ?; SET @image = ?; SET @subject = ?; SET @phoneNumber = ?; SET @comm1 = ?; SET @comm2 = ?; SET @comm3 = ?; SET @comm4 = ?; SET @comm5 = ?; SET @comm6 = ?; SET @comm7 = ?; SET @comm8 = ?; SET @comm9 = ?; SET @comm10 = ?; SET @comm11 = ?; SET @comm12 = ?; SET @comm13 = ?; SET @comm14 = ?; SET @allcomm = ?;\
 				CALL waterdb.AddNewIncident(@sender, @urgent, @message, @audio, @image, @subject, @phoneNumber, @comm1, @comm2, @comm3, @comm4, @comm5, @comm6, @comm7, @comm8, @comm9, @comm10, @comm11, @comm12, @comm13, @comm14, @allcomm);';
-	
+		
 
-	con.query(sql, [incident.sender, incident.urgent, incident.message, incident.audio, incident.image, incident.subject, incident.phoneNumber, incident.comm1, incident.comm2, incident.comm3, incident.comm4, incident.comm5, incident.comm6, incident.comm7, incident.comm8, incident.comm9, incident.comm10, incident.comm11, incident.comm12, incident.comm13, incident.comm14, incident.allcomm], (err, rows, fields) => {
-		if (!err)
-			res.send('New incident inserted successfully');
-		else
-			console.log(err);
-	});
+		con.query(sql, [incident.sender, incident.urgent, incident.message, incident.audio, incident.image, incident.subject, incident.phoneNumber, incident.comm1, incident.comm2, incident.comm3, incident.comm4, incident.comm5, incident.comm6, incident.comm7, incident.comm8, incident.comm9, incident.comm10, incident.comm11, incident.comm12, incident.comm13, incident.comm14, incident.allcomm], (err, rows, fields) => {
+			if (!err)
+				res.send('New incident inserted successfully');
+			else
+				console.log(err);
+		});
+	}
+	else {
+		console.log("update incidents");
+		console.log(incident.subject);
+		var sql = 'UPDATE incidents SET readYn = ? WHERE subject = ?'; 
+	
+		con.query(sql, [1, incident.subject], (err, rows, fields) => {
+			if (!err)
+				res.send('Updated successfully');
+			else
+				console.log(err);
+		});
+	}
 });
 
 //insert a new mail message

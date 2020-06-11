@@ -614,7 +614,7 @@ export default StyleSheet.create({
     },
 
     blueButton: {
-        backgroundColor: '#008bfc',
+        backgroundColor: '#4a8eff',
         marginTop: 20,
         marginLeft: 70,
         marginRight: 70
@@ -703,7 +703,7 @@ export default StyleSheet.create({
     },
 
     reportButton: {
-        backgroundColor: '#008bfc',
+        backgroundColor: '#4a8eff',
         height: 80,
         marginTop: 20,
         marginLeft: 20,
@@ -768,7 +768,7 @@ export default StyleSheet.create({
     },
 
     clickReportButton: {
-        backgroundColor: '#008bfc',
+        backgroundColor: '#4a8eff',
         height: 80,
         marginTop: 20,
         marginLeft: 20,
