@@ -1,8 +1,8 @@
 {
   "expoServerPort": null,
-  "expoServerNgrokUrl": null,
-  "packagerNgrokUrl": null,
-  "ngrokPid": null,
+  "expoServerNgrokUrl": "https://im-2wz.rafreitag.senior-design.exp.direct",
+  "packagerNgrokUrl": "https://packager.im-2wz.rafreitag.senior-design.exp.direct",
+  "ngrokPid": 10515,
   "packagerPort": null,
   "packagerPid": null,
   "webpackServerPort": null,
