@@ -2,7 +2,7 @@ const mysql = require('mysql');
 const express = require('express');
 var app = express();
 const bodyparser = require('body-parser');
-const bcrypt = require("bcryptjs");
+const bcrypt = require('bcrypt');
 
 app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({ extended: false}));
@@ -43,19 +43,22 @@ app.get('/users/:phonenumber/:password', (req, res) => {
 	var sql = 'SELECT * FROM users WHERE phonenumber = ?';
 	con.query(sql, [req.params.phonenumber], (err, rows, fields) => {
 		if (!err) {
-			console.log(req.params.password);
 			if(req.params.password != "none") {
 				if(rows.length == 0) {
 					console.log("user does not exist");
 				}
 				else {
-					const isMatch = bcrypt.compare(req.params.password, rows[0].password);
-					if(isMatch) {
-						console.log("Password matches!");
-						res.send(rows);
-					}
-					else {
-						console.log("Password doesn't match!");
+					if(rows[0].password) {
+						bcrypt.compare(req.params.password, rows[0].password, function(err, result) {
+							console.log(req.params.password);
+							console.log(rows[0].password);
+							if(result) {
+								console.log("Password matches!");
+								res.send(rows);
+							} else {
+								console.log("Password doesn't match!");
+							} 
+						});
 					}
 				}
 			}
@@ -88,15 +91,18 @@ app.post('/users', (req, res) => {
 	let user = req.body;
 
 	if(typeof user.firstname != "undefined") {
-		const hash = bcrypt.hash(user.password, 10);
+
+		bcrypt.hash(user.password, 10, function(err, hash) {
+			// Store hash in database
 			var sql = 'SET @firstname = ?; SET @lastname = ?; SET @phonenumber = ?; SET @requestedAdminRights = ?; SET @password = ?; SET @comm1 = ?; SET @comm2 = ?; SET @comm3 = ?; SET @comm4 = ?; SET @comm5 = ?; SET @comm6 = ?; SET @comm7 = ?; SET @comm8 = ?; SET @comm9 = ?; SET @comm10 = ?; SET @comm11 = ?; SET @comm12 = ?; SET @comm13 = ?; SET @comm14 = ?; SET @allcomm = ?;\
 			CALL waterdb.AddNewUser(@firstname, @lastname, @phonenumber, @requestedAdminRights, @password, @comm1, @comm2, @comm3, @comm4, @comm5, @comm6, @comm7, @comm8, @comm9, @comm10, @comm11, @comm12, @comm13, @comm14, @allcomm);';
 
 			con.query(sql, [user.firstname, user.lastname, user.phonenumber, user.requestedAdminRights, hash, user.comm1, user.comm2, user.comm3, user.comm4, user.comm5, user.comm6, user.comm7, user.comm8, user.comm9, user.comm10, user.comm11, user.comm12, user.comm13, user.comm14, user.allcomm], (err, rows, fields) => {
-			if (!err)
-				res.send('Inserted successfully');
-			else
-				console.log(err);
+				if (!err)
+					res.send('Inserted successfully');
+				else
+					console.log(err);
+			});
 		});
 	}
 	else {

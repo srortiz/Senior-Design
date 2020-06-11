@@ -53,6 +53,19 @@ export default class CreateNewWaterQualityReportPub extends React.Component {
 		allcomm: '',
 	};
 
+	regOrMain = () => {
+		console.log('main admin? ' + UserProfile.getMainAdmin());
+
+		if (UserProfile.getMainAdmin() == 1)
+		{
+			this.props.navigation.navigate('WaterHomeBigAdmin');
+		}
+		else
+		{
+			this.props.navigation.navigate('WaterHomeAdmin');
+		}
+	}
+
 	onSelectionsChange = (selectedComm) => {
 		// selectedFruits is array of { label, value }
 		this.setState({ selectedComm });
@@ -233,7 +246,7 @@ export default class CreateNewWaterQualityReportPub extends React.Component {
 					<View style={styles.createReportCont}>
 
 						<Button style={styles.backButton}
-                            onPress={() => this.props.navigation.navigate('WaterHomeAdmin')}>
+                            onPress={() => this.regOrMain()}>
                             <Text style={styles.backText}>{'<'} Atrás</Text>
                         </Button>
 

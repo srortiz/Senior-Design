@@ -54,7 +54,7 @@ export default class ViewIndividualMessage extends React.Component {
 					<View style={styles.viewMessCont}>
 
 						<Button style={styles.backButton}
-                            onPress={() => this.props.navigation.navigate('Inbox')}>
+                            onPress={() => this.props.navigation.navigate('InboxAdmin')}>
                             <Text style={styles.backText}>{'<'} Atrás</Text>
                         </Button>
 

@@ -2,6 +2,7 @@ import React from 'react'
 import { View, Text, Image, TouchableOpacity, ScrollView, FlatList, Linking } from 'react-native'
 import { Form, Button } from 'native-base'
 import styles from '../Style'
+import UserProfile from '../UserProfile'
 
 export class WaterHomeGen extends React.Component {
     static navigationOptions = {
@@ -17,6 +18,9 @@ export class WaterHomeGen extends React.Component {
         const users = await response.json();
         this.setState({data: users});
         console.log(this.state.data[0].date);
+
+        console.log('setting genUser to 1');
+        UserProfile.setGenUser(1);
     }
 
     componentDidMount() {

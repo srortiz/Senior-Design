@@ -3,6 +3,7 @@ import { Text, View, Image, ScrollView, TouchableOpacity, Modal, Linking } from 
 import { Form, Button } from 'native-base'
 import ImageViewer from 'react-native-image-zoom-viewer'
 import styles from '../Style'
+import UserProfile from '../UserProfile'
 
 
 const images = [{
@@ -18,6 +19,23 @@ export default class ViewIndividualWaterReport extends React.Component {
 	state = {
 		modalVisible: false,
 	};
+
+	regOrMain = () => {
+		console.log('main admin? ' + UserProfile.getMainAdmin());
+
+		if (UserProfile.getMainAdmin() == 1)
+		{
+			this.props.navigation.navigate('WaterHomeBigAdmin');
+		}
+		else if (UserProfile.getGenUser() == 1)
+		{
+			this.props.navigation.navigate('WaterHomeGen');
+		}
+		else
+		{
+			this.props.navigation.navigate('WaterHomeAdmin');
+		}
+	}
 
 	setModalVisible = (visible) => {
 		this.setState({ modalVisible: visible });
@@ -51,7 +69,7 @@ export default class ViewIndividualWaterReport extends React.Component {
 					<View style={styles.viewReportCont}>
 
                         <Button style={styles.backButton}
-                            onPress={() => this.props.navigation.navigate('WaterHomeAdmin')}>
+                            onPress={() => this.regOrMain()}>
                             <Text style={styles.backText}>{'<'} Atrás</Text>
                         </Button>
 

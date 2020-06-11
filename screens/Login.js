@@ -161,11 +161,6 @@ export class Login extends React.Component {
                             <Text style={styles.buttonText}>Entrar</Text>
                         </Button>
 
-                        <Button style={[styles.link, { marginTop: 20 }]}
-                            onPress={() => this.sendCode()}>
-                            <Text style={styles.loginPageButtons}>¿Olvidó su contraseña?</Text>
-                        </Button>
-
                         <Button style={styles.link}
                             onPress={() => this.props.navigation.navigate('CreateNewAccount')}>
                             <Text style={styles.loginPageButtons}>¿Es nuevo aquí? ¡Crea una cuenta!</Text>
